@@ -1,0 +1,59 @@
+8/15/2013 11:17:38 AM AccuAccount - Application Processor: Decision Pro started
+
+8/15/2013 11:17:38 AM Reading all properties of the ApplicationImporter.Configuration object
+
+8/15/2013 11:17:38 AM Property Read: LogFolder - Value: logs\
+8/15/2013 11:17:38 AM Property Read: DaysToKeepLogs - Value: 14
+8/15/2013 11:17:38 AM Property Read: PathToDBXML - Value: \
+8/15/2013 11:17:38 AM Property Read: FieldMapFile - Value: FieldMappings.xml
+8/15/2013 11:17:38 AM Property Read: ProcessedDataFile - Value: ProcessedData.txt
+8/15/2013 11:17:38 AM Property Read: BusinessRulesFile - Value: rules.xml
+
+8/15/2013 11:17:38 AM Finished reading properties
+
+
+8/15/2013 11:17:38 AM Reading all properties of the ApplicationImporter.FieldMapper object
+
+8/15/2013 11:17:38 AM Property Read: customerNameMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: businessNameMappedField - Value: Name
+8/15/2013 11:17:38 AM Property Read: customerNumberMappedField - Value: CIF_ID
+8/15/2013 11:17:38 AM Property Read: TaxIdMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: customerStatusMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: customerTypeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: bankMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: employeeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: emailMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: customerOfficerMappedField - Value: Decision_Oficer_Name
+8/15/2013 11:17:38 AM Property Read: address1MappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: address2MappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: cityMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: stateMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: zipcodeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: phoneHomeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: phoneWorkMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: phoneMobileMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: phoneFaxMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: branchMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: customerLastNameMappedField - Value: Last_Name
+8/15/2013 11:17:38 AM Property Read: customerFirstNameMappedField - Value: First_Name
+8/15/2013 11:17:38 AM Property Read: customerMiddleNameMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: salutationMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: classificationMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: loanLineLimitMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: applicationNumberMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: loanTypeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: loanDescriptionMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: loanStatusMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: applicationDateMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: applicationAmountMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: coreClassCodeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: coreCollCodeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: corePurposeCodeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: coreTypeCodeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: commitmentAmountMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: coreNaicsCodeMappedField - Value: 
+8/15/2013 11:17:38 AM Property Read: loanMaturityDateMappedField - Value: 
+
+8/15/2013 11:17:38 AM Finished reading properties
+
+8/15/2013 11:17:38 AM Retrieving Source Data

@@ -1,0 +1,3032 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AcculoanModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="AcculoanModelStoreContainer">
+    <EntitySet Name="accountClass" EntityType="AcculoanModel.Store.accountClass" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="AccuLog" EntityType="AcculoanModel.Store.AccuLog" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="accusystemsProperties" EntityType="AcculoanModel.Store.accusystemsProperties" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="actionAnalysisStatusFilter" EntityType="AcculoanModel.Store.actionAnalysisStatusFilter" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="actionApplicationStatusFilter" EntityType="AcculoanModel.Store.actionApplicationStatusFilter" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="actionApprovalStatusFilter" EntityType="AcculoanModel.Store.actionApprovalStatusFilter" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="actionEvent" EntityType="AcculoanModel.Store.actionEvent" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="actionEventTimer" EntityType="AcculoanModel.Store.actionEventTimer" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="actionTimer" EntityType="AcculoanModel.Store.actionTimer" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="actionTimerDefinition" EntityType="AcculoanModel.Store.actionTimerDefinition" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="activitySummary" EntityType="AcculoanModel.Store.activitySummary" store:Type="Tables" store:Schema="dbo" store:Name="activitySummary" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [activitySummary].[activitySummaryId] AS [activitySummaryId], 
+      [activitySummary].[functionId] AS [functionId], 
+      [activitySummary].[userId] AS [userId], 
+      [activitySummary].[actionType] AS [actionType], 
+      [activitySummary].[target] AS [target], 
+      [activitySummary].[actionDate] AS [actionDate]
+      FROM [dbo].[activitySummary] AS [activitySummary]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="alternateBarcodeMap" EntityType="AcculoanModel.Store.alternateBarcodeMap" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="appFunctionList" EntityType="AcculoanModel.Store.appFunctionList" store:Type="Tables" store:Schema="dbo" store:Name="appFunctionList" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [appFunctionList].[functionId] AS [functionId], 
+      [appFunctionList].[appName] AS [appName], 
+      [appFunctionList].[functionName] AS [functionName]
+      FROM [dbo].[appFunctionList] AS [appFunctionList]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="approval" EntityType="AcculoanModel.Store.approval" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="approvalStatus" EntityType="AcculoanModel.Store.approvalStatus" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="auditDetail" EntityType="AcculoanModel.Store.auditDetail" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="auditDocumentDetail" EntityType="AcculoanModel.Store.auditDocumentDetail" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="auditHistory" EntityType="AcculoanModel.Store.auditHistory" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="bank" EntityType="AcculoanModel.Store.bank" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="borrowerType" EntityType="AcculoanModel.Store.borrowerType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="branch" EntityType="AcculoanModel.Store.branch" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="classCode" EntityType="AcculoanModel.Store.classCode" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="coborrower" EntityType="AcculoanModel.Store.coborrower" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="collateral" EntityType="AcculoanModel.Store.collateral" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="collateralCode" EntityType="AcculoanModel.Store.collateralCode" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="collateralFields" EntityType="AcculoanModel.Store.collateralFields" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="collCode" EntityType="AcculoanModel.Store.collCode" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="computation" EntityType="AcculoanModel.Store.computation" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="conditionStatus" EntityType="AcculoanModel.Store.conditionStatus" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="contacts" EntityType="AcculoanModel.Store.contacts" store:Type="Tables" store:Schema="dbo" store:Name="contacts" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [contacts].[contactID] AS [contactID], 
+      [contacts].[contactType] AS [contactType], 
+      [contacts].[emailAddress] AS [emailAddress], 
+      [contacts].[contactName] AS [contactName], 
+      [contacts].[businessName] AS [businessName], 
+      [contacts].[salutation] AS [salutation], 
+      [contacts].[Address1] AS [Address1], 
+      [contacts].[Address2] AS [Address2], 
+      [contacts].[City] AS [City], 
+      [contacts].[State] AS [State], 
+      [contacts].[Zipcode] AS [Zipcode], 
+      [contacts].[phoneHome] AS [phoneHome], 
+      [contacts].[phoneWork] AS [phoneWork], 
+      [contacts].[phoneMobile] AS [phoneMobile], 
+      [contacts].[faxNumber] AS [faxNumber], 
+      [contacts].[dateCreated] AS [dateCreated], 
+      [contacts].[dateChanged] AS [dateChanged], 
+      [contacts].[changedBy] AS [changedBy], 
+      [contacts].[contactFirstName] AS [contactFirstName], 
+      [contacts].[contactMiddleName] AS [contactMiddleName], 
+      [contacts].[contactLastName] AS [contactLastName], 
+      [contacts].[letterName] AS [letterName]
+      FROM [dbo].[contacts] AS [contacts]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="contactType" EntityType="AcculoanModel.Store.contactType" store:Type="Tables" store:Schema="dbo" store:Name="contactType" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [contactType].[contactTypeID] AS [contactTypeID], 
+      [contactType].[contactTypeName] AS [contactTypeName], 
+      [contactType].[dateCreated] AS [dateCreated], 
+      [contactType].[dateChanged] AS [dateChanged], 
+      [contactType].[changedBy] AS [changedBy]
+      FROM [dbo].[contactType] AS [contactType]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="creditAnalysisStatus" EntityType="AcculoanModel.Store.creditAnalysisStatus" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="creditClassification" EntityType="AcculoanModel.Store.creditClassification" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="customer" EntityType="AcculoanModel.Store.customer" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="customerComments" EntityType="AcculoanModel.Store.customerComments" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="customerFields" EntityType="AcculoanModel.Store.customerFields" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="customerStatus" EntityType="AcculoanModel.Store.customerStatus" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="customerType" EntityType="AcculoanModel.Store.customerType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="declinedReason" EntityType="AcculoanModel.Store.declinedReason" store:Type="Tables" store:Schema="dbo" store:Name="declinedReason" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [declinedReason].[declinedReasonId] AS [declinedReasonId], 
+      [declinedReason].[declinedReasonDescription] AS [declinedReasonDescription], 
+      [declinedReason].[declinedReasonCode] AS [declinedReasonCode]
+      FROM [dbo].[declinedReason] AS [declinedReason]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="declinedReason_Old" EntityType="AcculoanModel.Store.declinedReason_Old" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="dh2" EntityType="AcculoanModel.Store.dh2" store:Type="Tables" store:Schema="dbo" store:Name="dh2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [dh2].[historyId] AS [historyId], 
+      [dh2].[userLogin] AS [userLogin], 
+      [dh2].[userName] AS [userName], 
+      [dh2].[customerNumber] AS [customerNumber], 
+      [dh2].[loanNumber] AS [loanNumber], 
+      [dh2].[documentFileName] AS [documentFileName], 
+      [dh2].[documentType] AS [documentType], 
+      [dh2].[pagesAdded] AS [pagesAdded], 
+      [dh2].[pagesDeleted] AS [pagesDeleted], 
+      [dh2].[dateChanged] AS [dateChanged], 
+      [dh2].[documentDeletedYN] AS [documentDeletedYN], 
+      [dh2].[comment] AS [comment], 
+      [dh2].[remoteScanQueueId] AS [remoteScanQueueId], 
+      [dh2].[documentId] AS [documentId], 
+      [dh2].[qcHistory] AS [qcHistory], 
+      [dh2].[inputType] AS [inputType], 
+      [dh2].[qcStatus] AS [qcStatus]
+      FROM [dbo].[dh2] AS [dh2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="dhbackup" EntityType="AcculoanModel.Store.dhbackup" store:Type="Tables" store:Schema="dbo" store:Name="dhbackup" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [dhbackup].[historyId] AS [historyId], 
+      [dhbackup].[userLogin] AS [userLogin], 
+      [dhbackup].[userName] AS [userName], 
+      [dhbackup].[customerNumber] AS [customerNumber], 
+      [dhbackup].[loanNumber] AS [loanNumber], 
+      [dhbackup].[documentFileName] AS [documentFileName], 
+      [dhbackup].[documentType] AS [documentType], 
+      [dhbackup].[pagesAdded] AS [pagesAdded], 
+      [dhbackup].[pagesDeleted] AS [pagesDeleted], 
+      [dhbackup].[dateChanged] AS [dateChanged], 
+      [dhbackup].[documentDeletedYN] AS [documentDeletedYN], 
+      [dhbackup].[comment] AS [comment], 
+      [dhbackup].[remoteScanQueueId] AS [remoteScanQueueId], 
+      [dhbackup].[documentId] AS [documentId], 
+      [dhbackup].[qcHistory] AS [qcHistory], 
+      [dhbackup].[inputType] AS [inputType], 
+      [dhbackup].[qcStatus] AS [qcStatus]
+      FROM [dbo].[dhbackup] AS [dhbackup]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="document" EntityType="AcculoanModel.Store.document" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="documentActivation" EntityType="AcculoanModel.Store.documentActivation" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="documentDefinitions" EntityType="AcculoanModel.Store.documentDefinitions" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="documentDependantTask" EntityType="AcculoanModel.Store.documentDependantTask" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="documenthistory" EntityType="AcculoanModel.Store.documenthistory" store:Type="Tables" store:Schema="dbo" store:Name="documenthistory" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [documenthistory].[historyId] AS [historyId], 
+      [documenthistory].[userLogin] AS [userLogin], 
+      [documenthistory].[userName] AS [userName], 
+      [documenthistory].[customerNumber] AS [customerNumber], 
+      [documenthistory].[loanNumber] AS [loanNumber], 
+      [documenthistory].[documentFileName] AS [documentFileName], 
+      [documenthistory].[documentType] AS [documentType], 
+      [documenthistory].[pagesAdded] AS [pagesAdded], 
+      [documenthistory].[pagesDeleted] AS [pagesDeleted], 
+      [documenthistory].[dateChanged] AS [dateChanged], 
+      [documenthistory].[documentDeletedYN] AS [documentDeletedYN], 
+      [documenthistory].[comment] AS [comment], 
+      [documenthistory].[remoteScanQueueId] AS [remoteScanQueueId], 
+      [documenthistory].[documentId] AS [documentId], 
+      [documenthistory].[qcHistory] AS [qcHistory], 
+      [documenthistory].[inputType] AS [inputType], 
+      [documenthistory].[qcStatus] AS [qcStatus]
+      FROM [dbo].[documenthistory] AS [documenthistory]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="documentSubType" EntityType="AcculoanModel.Store.documentSubType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="documentTab" EntityType="AcculoanModel.Store.documentTab" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="documentTabAccountSecurity" EntityType="AcculoanModel.Store.documentTabAccountSecurity" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="documentType" EntityType="AcculoanModel.Store.documentType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="documentUpload" EntityType="AcculoanModel.Store.documentUpload" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="dtproperties" EntityType="AcculoanModel.Store.dtproperties" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="exceptedDocument" EntityType="AcculoanModel.Store.exceptedDocument" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="exception" EntityType="AcculoanModel.Store.exception" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="exceptionCategory" EntityType="AcculoanModel.Store.exceptionCategory" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="exceptionComment" EntityType="AcculoanModel.Store.exceptionComment" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="exceptionDefinition" EntityType="AcculoanModel.Store.exceptionDefinition" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="exceptionHistory" EntityType="AcculoanModel.Store.exceptionHistory" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="exceptionIgnoreLoanStatus" EntityType="AcculoanModel.Store.exceptionIgnoreLoanStatus" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="fieldDefGroup" EntityType="AcculoanModel.Store.fieldDefGroup" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="fieldDefinition" EntityType="AcculoanModel.Store.fieldDefinition" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="GroupsCustomers" EntityType="AcculoanModel.Store.GroupsCustomers" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="ImportLogs" EntityType="AcculoanModel.Store.ImportLogs" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="IntegratedSession" EntityType="AcculoanModel.Store.IntegratedSession" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="loan" EntityType="AcculoanModel.Store.loan" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="loanApplication" EntityType="AcculoanModel.Store.loanApplication" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="loanApplicationCondition" EntityType="AcculoanModel.Store.loanApplicationCondition" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="loanApplicationHistory" EntityType="AcculoanModel.Store.loanApplicationHistory" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="loanComments" EntityType="AcculoanModel.Store.loanComments" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="loanFields" EntityType="AcculoanModel.Store.loanFields" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="loanOfficer" EntityType="AcculoanModel.Store.loanOfficer" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="loanStatus" EntityType="AcculoanModel.Store.loanStatus" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="loanType" EntityType="AcculoanModel.Store.loanType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="MTE_List" EntityType="AcculoanModel.Store.MTE_List" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="naicsCode" EntityType="AcculoanModel.Store.naicsCode" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="noticeLetters" EntityType="AcculoanModel.Store.noticeLetters" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="noticeParagraphs" EntityType="AcculoanModel.Store.noticeParagraphs" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="noticesToBeSent" EntityType="AcculoanModel.Store.noticesToBeSent" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="noticeType" EntityType="AcculoanModel.Store.noticeType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="PolicyDefinitions" EntityType="AcculoanModel.Store.PolicyDefinitions" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="purposeCode" EntityType="AcculoanModel.Store.purposeCode" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="region" EntityType="AcculoanModel.Store.region" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="RelatedEntityGroups" EntityType="AcculoanModel.Store.RelatedEntityGroups" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="remoteScanCommTrunk" EntityType="AcculoanModel.Store.remoteScanCommTrunk" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="remoteScanFolders" EntityType="AcculoanModel.Store.remoteScanFolders" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="remoteScanQueue" EntityType="AcculoanModel.Store.remoteScanQueue" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="remoteScanStation" EntityType="AcculoanModel.Store.remoteScanStation" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="remoteScanStatus" EntityType="AcculoanModel.Store.remoteScanStatus" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="reportProperties" EntityType="AcculoanModel.Store.reportProperties" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="scanIssues" EntityType="AcculoanModel.Store.scanIssues" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="sysdiagrams" EntityType="AcculoanModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="tempGroupsCustomers" EntityType="AcculoanModel.Store.tempGroupsCustomers" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="tempNoticeSelection" EntityType="AcculoanModel.Store.tempNoticeSelection" store:Type="Tables" store:Schema="dbo" store:Name="tempNoticeSelection" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [tempNoticeSelection].[userName] AS [userName], 
+      [tempNoticeSelection].[exceptionID] AS [exceptionID], 
+      [tempNoticeSelection].[exceptionDefName] AS [exceptionDefName], 
+      [tempNoticeSelection].[customerName] AS [customerName], 
+      [tempNoticeSelection].[contactName] AS [contactName], 
+      [tempNoticeSelection].[loanNumber] AS [loanNumber], 
+      [tempNoticeSelection].[ColLoanNumber] AS [ColLoanNumber], 
+      [tempNoticeSelection].[nextDate] AS [nextDate], 
+      [tempNoticeSelection].[selected] AS [selected], 
+      [tempNoticeSelection].[verifyException] AS [verifyException]
+      FROM [dbo].[tempNoticeSelection] AS [tempNoticeSelection]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tmp_importData" EntityType="AcculoanModel.Store.tmp_importData" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="typeCode" EntityType="AcculoanModel.Store.typeCode" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="user" EntityType="AcculoanModel.Store.user" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="userAccountSecurity" EntityType="AcculoanModel.Store.userAccountSecurity" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="userbanksecurity" EntityType="AcculoanModel.Store.userbanksecurity" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="userBranchSecurity" EntityType="AcculoanModel.Store.userBranchSecurity" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="userGroup" EntityType="AcculoanModel.Store.userGroup" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="userGroup_user" EntityType="AcculoanModel.Store.userGroup_user" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+    <EntitySet Name="userProfile" EntityType="AcculoanModel.Store.userProfile" store:Type="Tables" store:Schema="dbo" store:Name="userProfile" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+      <DefiningQuery>SELECT 
+      [userProfile].[userId] AS [userId], 
+      [userProfile].[dasboardConfigXml] AS [dasboardConfigXml]
+      FROM [dbo].[userProfile] AS [userProfile]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_actionAnalysisStatusFilter_actionEvent" Association="AcculoanModel.Store.FK_actionAnalysisStatusFilter_actionEvent">
+      <End Role="actionEvent" EntitySet="actionEvent" />
+      <End Role="actionAnalysisStatusFilter" EntitySet="actionAnalysisStatusFilter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_actionAnalysisStatusFilter_creditAnalysisStatus" Association="AcculoanModel.Store.FK_actionAnalysisStatusFilter_creditAnalysisStatus">
+      <End Role="creditAnalysisStatus" EntitySet="creditAnalysisStatus" />
+      <End Role="actionAnalysisStatusFilter" EntitySet="actionAnalysisStatusFilter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_actionApplicationStatusFilter_actionEvent" Association="AcculoanModel.Store.FK_actionApplicationStatusFilter_actionEvent">
+      <End Role="actionEvent" EntitySet="actionEvent" />
+      <End Role="actionApplicationStatusFilter" EntitySet="actionApplicationStatusFilter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_actionApplicationStatusFilter_loanStatus" Association="AcculoanModel.Store.FK_actionApplicationStatusFilter_loanStatus">
+      <End Role="loanStatus" EntitySet="loanStatus" />
+      <End Role="actionApplicationStatusFilter" EntitySet="actionApplicationStatusFilter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_actionApprovalStatusFilter_actionEvent" Association="AcculoanModel.Store.FK_actionApprovalStatusFilter_actionEvent">
+      <End Role="actionEvent" EntitySet="actionEvent" />
+      <End Role="actionApprovalStatusFilter" EntitySet="actionApprovalStatusFilter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_actionApprovalStatusFilter_approvalStatus" Association="AcculoanModel.Store.FK_actionApprovalStatusFilter_approvalStatus">
+      <End Role="approvalStatus" EntitySet="approvalStatus" />
+      <End Role="actionApprovalStatusFilter" EntitySet="actionApprovalStatusFilter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_actionEventTimer_actionEvent" Association="AcculoanModel.Store.FK_actionEventTimer_actionEvent">
+      <End Role="actionEvent" EntitySet="actionEvent" />
+      <End Role="actionEventTimer" EntitySet="actionEventTimer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_actionEventTimer_actionTimerDefinition" Association="AcculoanModel.Store.FK_actionEventTimer_actionTimerDefinition">
+      <End Role="actionTimerDefinition" EntitySet="actionTimerDefinition" />
+      <End Role="actionEventTimer" EntitySet="actionEventTimer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_actionTimer_actionTimerDefinition" Association="AcculoanModel.Store.FK_actionTimer_actionTimerDefinition">
+      <End Role="actionTimerDefinition" EntitySet="actionTimerDefinition" />
+      <End Role="actionTimer" EntitySet="actionTimer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_actionTimer_loanApplication" Association="AcculoanModel.Store.FK_actionTimer_loanApplication">
+      <End Role="loanApplication" EntitySet="loanApplication" />
+      <End Role="actionTimer" EntitySet="actionTimer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_auditDetail_auditHistory" Association="AcculoanModel.Store.FK_auditDetail_auditHistory">
+      <End Role="auditHistory" EntitySet="auditHistory" />
+      <End Role="auditDetail" EntitySet="auditDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_auditDetail_customer" Association="AcculoanModel.Store.FK_auditDetail_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="auditDetail" EntitySet="auditDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_auditDetail_loan" Association="AcculoanModel.Store.FK_auditDetail_loan">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="auditDetail" EntitySet="auditDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_auditHistory_bank" Association="AcculoanModel.Store.FK_auditHistory_bank">
+      <End Role="bank" EntitySet="bank" />
+      <End Role="auditHistory" EntitySet="auditHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_branch_bank" Association="AcculoanModel.Store.FK_branch_bank">
+      <End Role="bank" EntitySet="bank" />
+      <End Role="branch" EntitySet="branch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_coborrower_customer" Association="AcculoanModel.Store.FK_coborrower_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="coborrower" EntitySet="coborrower" />
+    </AssociationSet>
+    <AssociationSet Name="FK_coborrower_loan" Association="AcculoanModel.Store.FK_coborrower_loan">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="coborrower" EntitySet="coborrower" />
+    </AssociationSet>
+    <AssociationSet Name="FK_collateral_loan_Collateral" Association="AcculoanModel.Store.FK_collateral_loan_Collateral">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="collateral" EntitySet="collateral" />
+    </AssociationSet>
+    <AssociationSet Name="FK_collateral_loan_Parent" Association="AcculoanModel.Store.FK_collateral_loan_Parent">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="collateral" EntitySet="collateral" />
+    </AssociationSet>
+    <AssociationSet Name="FK_collateralFields_loan" Association="AcculoanModel.Store.FK_collateralFields_loan">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="collateralFields" EntitySet="collateralFields" />
+    </AssociationSet>
+    <AssociationSet Name="FK_computation_documentDefinitions" Association="AcculoanModel.Store.FK_computation_documentDefinitions">
+      <End Role="documentDefinitions" EntitySet="documentDefinitions" />
+      <End Role="computation" EntitySet="computation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_computation_exceptionDefinition" Association="AcculoanModel.Store.FK_computation_exceptionDefinition">
+      <End Role="exceptionDefinition" EntitySet="exceptionDefinition" />
+      <End Role="computation" EntitySet="computation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_bank" Association="AcculoanModel.Store.FK_customer_bank">
+      <End Role="bank" EntitySet="bank" />
+      <End Role="customer" EntitySet="customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_branch" Association="AcculoanModel.Store.FK_customer_branch">
+      <End Role="branch" EntitySet="branch" />
+      <End Role="customer" EntitySet="customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_customerType" Association="AcculoanModel.Store.FK_customer_customerType">
+      <End Role="customerType" EntitySet="customerType" />
+      <End Role="customer" EntitySet="customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customer_loanOfficer" Association="AcculoanModel.Store.FK_customer_loanOfficer">
+      <End Role="loanOfficer" EntitySet="loanOfficer" />
+      <End Role="customer" EntitySet="customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customerComments_customer" Association="AcculoanModel.Store.FK_customerComments_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="customerComments" EntitySet="customerComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_customerFields_customer" Association="AcculoanModel.Store.FK_customerFields_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="customerFields" EntitySet="customerFields" />
+    </AssociationSet>
+    <AssociationSet Name="FK_document_customer" Association="AcculoanModel.Store.FK_document_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="document" EntitySet="document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_document_documentDefinitions" Association="AcculoanModel.Store.FK_document_documentDefinitions">
+      <End Role="documentDefinitions" EntitySet="documentDefinitions" />
+      <End Role="document" EntitySet="document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_document_documentSubType" Association="AcculoanModel.Store.FK_document_documentSubType">
+      <End Role="documentSubType" EntitySet="documentSubType" />
+      <End Role="document" EntitySet="document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_document_documentType" Association="AcculoanModel.Store.FK_document_documentType">
+      <End Role="documentType" EntitySet="documentType" />
+      <End Role="document" EntitySet="document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_document_loan" Association="AcculoanModel.Store.FK_document_loan">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="document" EntitySet="document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_document_tbl_remoteScanQueue" Association="AcculoanModel.Store.FK_document_tbl_remoteScanQueue">
+      <End Role="remoteScanQueue" EntitySet="remoteScanQueue" />
+      <End Role="document" EntitySet="document" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentActivation_customer" Association="AcculoanModel.Store.FK_documentActivation_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="documentActivation" EntitySet="documentActivation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentActivation_documentType" Association="AcculoanModel.Store.FK_documentActivation_documentType">
+      <End Role="documentType" EntitySet="documentType" />
+      <End Role="documentActivation" EntitySet="documentActivation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentActivation_loan" Association="AcculoanModel.Store.FK_documentActivation_loan">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="documentActivation" EntitySet="documentActivation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentDefinitions_bank" Association="AcculoanModel.Store.FK_documentDefinitions_bank">
+      <End Role="bank" EntitySet="bank" />
+      <End Role="documentDefinitions" EntitySet="documentDefinitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentDefinitions_customerType" Association="AcculoanModel.Store.FK_documentDefinitions_customerType">
+      <End Role="customerType" EntitySet="customerType" />
+      <End Role="documentDefinitions" EntitySet="documentDefinitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentDefinitions_documentSubType" Association="AcculoanModel.Store.FK_documentDefinitions_documentSubType">
+      <End Role="documentSubType" EntitySet="documentSubType" />
+      <End Role="documentDefinitions" EntitySet="documentDefinitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentDefinitions_documentType" Association="AcculoanModel.Store.FK_documentDefinitions_documentType">
+      <End Role="documentType" EntitySet="documentType" />
+      <End Role="documentDefinitions" EntitySet="documentDefinitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentDefinitions_loanType" Association="AcculoanModel.Store.FK_documentDefinitions_loanType">
+      <End Role="loanType" EntitySet="loanType" />
+      <End Role="documentDefinitions" EntitySet="documentDefinitions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentSubType_documentType" Association="AcculoanModel.Store.FK_documentSubType_documentType">
+      <End Role="documentType" EntitySet="documentType" />
+      <End Role="documentSubType" EntitySet="documentSubType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_documentTab_documentDef" Association="AcculoanModel.Store.FK_documentTab_documentDef">
+      <End Role="documentDefinitions" EntitySet="documentDefinitions" />
+      <End Role="documentTab" EntitySet="documentTab" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exception_customer" Association="AcculoanModel.Store.FK_exception_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="exception" EntitySet="exception" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exception_exceptionDefinition" Association="AcculoanModel.Store.FK_exception_exceptionDefinition">
+      <End Role="exceptionDefinition" EntitySet="exceptionDefinition" />
+      <End Role="exception" EntitySet="exception" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exception_loan" Association="AcculoanModel.Store.FK_exception_loan">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="exception" EntitySet="exception" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exception_user" Association="AcculoanModel.Store.FK_exception_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="exception" EntitySet="exception" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionCategory_bank" Association="AcculoanModel.Store.FK_exceptionCategory_bank">
+      <End Role="bank" EntitySet="bank" />
+      <End Role="exceptionCategory" EntitySet="exceptionCategory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionComment_exception" Association="AcculoanModel.Store.FK_exceptionComment_exception">
+      <End Role="exception" EntitySet="exception" />
+      <End Role="exceptionComment" EntitySet="exceptionComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionComment_user" Association="AcculoanModel.Store.FK_exceptionComment_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="exceptionComment" EntitySet="exceptionComment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionDefinition_bank" Association="AcculoanModel.Store.FK_exceptionDefinition_bank">
+      <End Role="bank" EntitySet="bank" />
+      <End Role="exceptionDefinition" EntitySet="exceptionDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionDefinition_customerType" Association="AcculoanModel.Store.FK_exceptionDefinition_customerType">
+      <End Role="customerType" EntitySet="customerType" />
+      <End Role="exceptionDefinition" EntitySet="exceptionDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionDefinition_exceptionCategory" Association="AcculoanModel.Store.FK_exceptionDefinition_exceptionCategory">
+      <End Role="exceptionCategory" EntitySet="exceptionCategory" />
+      <End Role="exceptionDefinition" EntitySet="exceptionDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionDefinition_loanType" Association="AcculoanModel.Store.FK_exceptionDefinition_loanType">
+      <End Role="loanType" EntitySet="loanType" />
+      <End Role="exceptionDefinition" EntitySet="exceptionDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionDefinition_PolicyDefinitions" Association="AcculoanModel.Store.FK_exceptionDefinition_PolicyDefinitions">
+      <End Role="PolicyDefinitions" EntitySet="PolicyDefinitions" />
+      <End Role="exceptionDefinition" EntitySet="exceptionDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionDefinition_user" Association="AcculoanModel.Store.FK_exceptionDefinition_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="exceptionDefinition" EntitySet="exceptionDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionHistory_exception" Association="AcculoanModel.Store.FK_exceptionHistory_exception">
+      <End Role="exception" EntitySet="exception" />
+      <End Role="exceptionHistory" EntitySet="exceptionHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_exceptionHistory_user" Association="AcculoanModel.Store.FK_exceptionHistory_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="exceptionHistory" EntitySet="exceptionHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fieldDefGroup_accountClass" Association="AcculoanModel.Store.FK_fieldDefGroup_accountClass">
+      <End Role="accountClass" EntitySet="accountClass" />
+      <End Role="fieldDefGroup" EntitySet="fieldDefGroup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fieldDefinition_accountClass" Association="AcculoanModel.Store.FK_fieldDefinition_accountClass">
+      <End Role="accountClass" EntitySet="accountClass" />
+      <End Role="fieldDefinition" EntitySet="fieldDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fieldDefinition_fieldDefGroup" Association="AcculoanModel.Store.FK_fieldDefinition_fieldDefGroup">
+      <End Role="fieldDefGroup" EntitySet="fieldDefGroup" />
+      <End Role="fieldDefinition" EntitySet="fieldDefinition" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupsCustomers_customer" Association="AcculoanModel.Store.FK_GroupsCustomers_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="GroupsCustomers" EntitySet="GroupsCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupsCustomers_RelatedEntityGroups" Association="AcculoanModel.Store.FK_GroupsCustomers_RelatedEntityGroups">
+      <End Role="RelatedEntityGroups" EntitySet="RelatedEntityGroups" />
+      <End Role="GroupsCustomers" EntitySet="GroupsCustomers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loan_branch" Association="AcculoanModel.Store.FK_loan_branch">
+      <End Role="branch" EntitySet="branch" />
+      <End Role="loan" EntitySet="loan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loan_customer" Association="AcculoanModel.Store.FK_loan_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="loan" EntitySet="loan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loan_loanOfficer" Association="AcculoanModel.Store.FK_loan_loanOfficer">
+      <End Role="loanOfficer" EntitySet="loanOfficer" />
+      <End Role="loan" EntitySet="loan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loan_loanStatus" Association="AcculoanModel.Store.FK_loan_loanStatus">
+      <End Role="loanStatus" EntitySet="loanStatus" />
+      <End Role="loan" EntitySet="loan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loan_loanType" Association="AcculoanModel.Store.FK_loan_loanType">
+      <End Role="loanType" EntitySet="loanType" />
+      <End Role="loan" EntitySet="loan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loanComments_loan" Association="AcculoanModel.Store.FK_loanComments_loan">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="loanComments" EntitySet="loanComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loanComments_user" Association="AcculoanModel.Store.FK_loanComments_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="loanComments" EntitySet="loanComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loanFields_loan" Association="AcculoanModel.Store.FK_loanFields_loan">
+      <End Role="loan" EntitySet="loan" />
+      <End Role="loanFields" EntitySet="loanFields" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loanOfficer_bank" Association="AcculoanModel.Store.FK_loanOfficer_bank">
+      <End Role="bank" EntitySet="bank" />
+      <End Role="loanOfficer" EntitySet="loanOfficer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_remoteScanFolders_Tbl_commTrunk" Association="AcculoanModel.Store.FK_tbl_remoteScanFolders_Tbl_commTrunk">
+      <End Role="remoteScanCommTrunk" EntitySet="remoteScanCommTrunk" />
+      <End Role="remoteScanFolders" EntitySet="remoteScanFolders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_scanStation_tbl_remoteScanFolders" Association="AcculoanModel.Store.FK_tbl_scanStation_tbl_remoteScanFolders">
+      <End Role="remoteScanFolders" EntitySet="remoteScanFolders" />
+      <End Role="remoteScanStation" EntitySet="remoteScanStation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_loanOfficer" Association="AcculoanModel.Store.FK_user_loanOfficer">
+      <End Role="loanOfficer" EntitySet="loanOfficer" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userbanksecurity_bank" Association="AcculoanModel.Store.FK_userbanksecurity_bank">
+      <End Role="bank" EntitySet="bank" />
+      <End Role="userbanksecurity" EntitySet="userbanksecurity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userbanksecurity_user" Association="AcculoanModel.Store.FK_userbanksecurity_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="userbanksecurity" EntitySet="userbanksecurity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userBranchSecurity_branch" Association="AcculoanModel.Store.FK_userBranchSecurity_branch">
+      <End Role="branch" EntitySet="branch" />
+      <End Role="userBranchSecurity" EntitySet="userBranchSecurity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userBranchSecurity_user" Association="AcculoanModel.Store.FK_userBranchSecurity_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="userBranchSecurity" EntitySet="userBranchSecurity" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="accountClass">
+    <Key>
+      <PropertyRef Name="accountClassId" />
+    </Key>
+    <Property Name="accountClassId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="accountClassName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="accountClassCode" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="accountClassSortOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccuLog">
+    <Key>
+      <PropertyRef Name="logId" />
+    </Key>
+    <Property Name="logId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="logEntryType" Type="smallint" />
+    <Property Name="applicationName" Type="nvarchar" MaxLength="50" />
+    <Property Name="runId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="eventId" Type="int" />
+    <Property Name="entryTime" Type="datetime" />
+    <Property Name="message" Type="nvarchar" MaxLength="2048" />
+    <Property Name="longMessage" Type="ntext" />
+  </EntityType>
+  <EntityType Name="accusystemsProperties">
+    <Key>
+      <PropertyRef Name="propertyId" />
+    </Key>
+    <Property Name="propertyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="propertyKey" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="propertyName" Type="nvarchar" MaxLength="255" />
+    <Property Name="propertyValue" Type="nvarchar" MaxLength="255" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="DateChanged" Type="datetime" />
+    <Property Name="ChangedBy" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="actionAnalysisStatusFilter">
+    <Key>
+      <PropertyRef Name="actionAnalysisStatusFilterId" />
+    </Key>
+    <Property Name="actionAnalysisStatusFilterId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="actionEventId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="creditAnalysisStatusId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="actionApplicationStatusFilter">
+    <Key>
+      <PropertyRef Name="actionApplicationStatusFilterId" />
+    </Key>
+    <Property Name="actionApplicationStatusFilterId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="actionEventId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanStatusId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="actionApprovalStatusFilter">
+    <Key>
+      <PropertyRef Name="actionApprovalStatusFilterId" />
+    </Key>
+    <Property Name="actionApprovalStatusFilterId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="actionEventId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="approvalStatusId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="actionEvent">
+    <Key>
+      <PropertyRef Name="actionEventId" />
+    </Key>
+    <Property Name="actionEventId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="actionEventName" Type="nvarchar" Nullable="false" MaxLength="1024" />
+    <Property Name="actionEventDescription" Type="text" />
+    <Property Name="isLenderAction" Type="bit" Nullable="false" />
+    <Property Name="isApproverAction" Type="bit" Nullable="false" />
+    <Property Name="isAnalystAction" Type="bit" Nullable="false" />
+    <Property Name="selectLender" Type="bit" Nullable="false" />
+    <Property Name="selectApprover" Type="bit" Nullable="false" />
+    <Property Name="selectAnalyst" Type="bit" Nullable="false" />
+    <Property Name="notifyLender" Type="bit" Nullable="false" />
+    <Property Name="notifyApprover" Type="bit" Nullable="false" />
+    <Property Name="notifyAnalyst" Type="bit" Nullable="false" />
+    <Property Name="setApplicationStatus" Type="bit" Nullable="false" />
+    <Property Name="applicationStatusId" Type="uniqueidentifier" />
+    <Property Name="setApprovalStatus" Type="bit" Nullable="false" />
+    <Property Name="approvalStatusId" Type="uniqueidentifier" />
+    <Property Name="setCreditAnalysisStatus" Type="bit" Nullable="false" />
+    <Property Name="creditAnalysisStatusId" Type="uniqueidentifier" />
+    <Property Name="setLoanStatus" Type="bit" Nullable="false" />
+    <Property Name="loanStatusId" Type="uniqueidentifier" />
+    <Property Name="setDeclinedException" Type="bit" Nullable="false" />
+    <Property Name="declinedExceptionDefCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="selectDeclinedReason" Type="bit" Nullable="false" />
+    <Property Name="editConditions" Type="bit" Nullable="false" />
+    <Property Name="enforceApprovalLimit" Type="bit" Nullable="false" />
+    <Property Name="setLockApplication" Type="bit" Nullable="false" />
+    <Property Name="buildApplicationSnapshot" Type="bit" Nullable="false" />
+    <Property Name="snapshotDocumentCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="analystSortOrder" Type="int" />
+    <Property Name="approverSortOrder" Type="int" />
+    <Property Name="lenderSortOrder" Type="int" />
+    <Property Name="notifyOther" Type="bit" Nullable="false" />
+    <Property Name="notifyOtherEmail" Type="text" Nullable="false" />
+    <Property Name="loanTypeId" Type="uniqueidentifier" />
+    <Property Name="requireStatusFilter" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="actionEventTimer">
+    <Key>
+      <PropertyRef Name="actionEventTimerId" />
+    </Key>
+    <Property Name="actionEventTimerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="actionTimerDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="actionEventId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="timerActionType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="actionTimer">
+    <Key>
+      <PropertyRef Name="actionTimerId" />
+    </Key>
+    <Property Name="actionTimerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="actionTimerDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="timerStart" Type="datetime" />
+    <Property Name="timerEnd" Type="datetime" />
+  </EntityType>
+  <EntityType Name="actionTimerDefinition">
+    <Key>
+      <PropertyRef Name="actionTimerDefId" />
+    </Key>
+    <Property Name="actionTimerDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="actionTimerDefName" Type="nvarchar" MaxLength="1024" />
+    <Property Name="notificationPeriod" Type="int" />
+    <Property Name="isDefaultApplicationTimer" Type="bit" Nullable="false" />
+    <Property Name="notificationEmail" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.activitySummary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="activitySummary">
+    <Key>
+      <PropertyRef Name="activitySummaryId" />
+      <PropertyRef Name="functionId" />
+      <PropertyRef Name="actionType" />
+      <PropertyRef Name="actionDate" />
+    </Key>
+    <Property Name="activitySummaryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="functionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="userId" Type="uniqueidentifier" />
+    <Property Name="actionType" Type="int" Nullable="false" />
+    <Property Name="target" Type="nvarchar" MaxLength="256" />
+    <Property Name="actionDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="alternateBarcodeMap">
+    <Key>
+      <PropertyRef Name="alternateBarcodeMapId" />
+    </Key>
+    <Property Name="alternateBarcodeMapId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="documentSubTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="barcodeKey" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.appFunctionList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="appFunctionList">
+    <Key>
+      <PropertyRef Name="functionId" />
+      <PropertyRef Name="appName" />
+      <PropertyRef Name="functionName" />
+    </Key>
+    <Property Name="functionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="appName" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="functionName" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="approval">
+    <Key>
+      <PropertyRef Name="approvalId" />
+    </Key>
+    <Property Name="approvalId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="approvalStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="originatingUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="assignedApproverId" Type="uniqueidentifier" />
+    <Property Name="assignedApproverType" Type="nvarchar" MaxLength="128" />
+    <Property Name="dateActedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="approvalStatus">
+    <Key>
+      <PropertyRef Name="approvalStatusId" />
+    </Key>
+    <Property Name="approvalStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="approvalStatusDescription" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="approvalStatusCode" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+    <Property Name="isActiveApprovalStatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="auditDetail">
+    <Key>
+      <PropertyRef Name="auditDetailId" />
+    </Key>
+    <Property Name="auditDetailId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="auditId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="auditDocumentDetail">
+    <Key>
+      <PropertyRef Name="auditDocumentDetailId" />
+    </Key>
+    <Property Name="auditDocumentDetailId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="auditDetailId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="documentId" Type="uniqueidentifier" />
+    <Property Name="documentDefId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="auditHistory">
+    <Key>
+      <PropertyRef Name="auditId" />
+    </Key>
+    <Property Name="auditId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="auditName" Type="varchar" MaxLength="50" />
+    <Property Name="auditDescription" Type="text" />
+    <Property Name="userName" Type="varchar" MaxLength="50" />
+    <Property Name="originationDate" Type="datetime" />
+    <Property Name="modifiedDate" Type="datetime" />
+    <Property Name="bankId" Type="uniqueidentifier" />
+    <Property Name="buildCustomerCommentsYN" Type="char" MaxLength="1" />
+    <Property Name="auditSize" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="bank">
+    <Key>
+      <PropertyRef Name="bankId" />
+    </Key>
+    <Property Name="bankId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="bankName" Type="nvarchar" MaxLength="50" />
+    <Property Name="bankCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="privacyStatement" Type="text" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="borrowerType">
+    <Key>
+      <PropertyRef Name="borrowerTypeId" />
+    </Key>
+    <Property Name="borrowerTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="borrowerTypeName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="borrowerTypeCode" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="accountClassId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="branch">
+    <Key>
+      <PropertyRef Name="branchId" />
+    </Key>
+    <Property Name="branchId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="bankId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="branchName" Type="nvarchar" MaxLength="128" />
+    <Property Name="branchCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="regionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="classCode">
+    <Key>
+      <PropertyRef Name="classCodeId" />
+    </Key>
+    <Property Name="classCodeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="classCodeDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="classCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="coborrower">
+    <Key>
+      <PropertyRef Name="loanId" />
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="loanId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="borrowerTypeId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="collateral">
+    <Key>
+      <PropertyRef Name="parentLoanId" />
+      <PropertyRef Name="collateralLoanId" />
+    </Key>
+    <Property Name="parentLoanId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="collateralLoanId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="rowguid" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="statusOverrideYN" Type="char" MaxLength="1" />
+    <Property Name="ignoreExceptionsOverrideYN" Type="char" MaxLength="1" />
+    <Property Name="collateralSequence" Type="int" />
+  </EntityType>
+  <EntityType Name="collateralCode">
+    <Key>
+      <PropertyRef Name="collateralCodeId" />
+    </Key>
+    <Property Name="collateralCodeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="collateralCodeDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="collateralCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="collateralFields">
+    <Key>
+      <PropertyRef Name="collateralId" />
+    </Key>
+    <Property Name="collateralId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="collCode">
+    <Key>
+      <PropertyRef Name="collCodeId" />
+    </Key>
+    <Property Name="collCodeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="collCodeDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="collCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="computation">
+    <Key>
+      <PropertyRef Name="computationId" />
+    </Key>
+    <Property Name="computationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="docDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="gracePeriod" Type="int" Nullable="false" />
+    <Property Name="statusTypeCheck" Type="nvarchar" Nullable="false" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="conditionStatus">
+    <Key>
+      <PropertyRef Name="conditionStatusId" />
+    </Key>
+    <Property Name="conditionStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="conditionStatusDescription" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="conditionStatusCode" Type="nvarchar" Nullable="false" MaxLength="128" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.contacts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="contacts">
+    <Key>
+      <PropertyRef Name="contactID" />
+      <PropertyRef Name="contactName" />
+      <PropertyRef Name="dateCreated" />
+      <PropertyRef Name="dateChanged" />
+      <PropertyRef Name="changedBy" />
+    </Key>
+    <Property Name="contactID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="contactType" Type="uniqueidentifier" />
+    <Property Name="emailAddress" Type="nvarchar" MaxLength="128" />
+    <Property Name="contactName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="businessName" Type="nvarchar" MaxLength="50" />
+    <Property Name="salutation" Type="nvarchar" MaxLength="20" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="128" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="128" />
+    <Property Name="City" Type="nvarchar" MaxLength="128" />
+    <Property Name="State" Type="nvarchar" MaxLength="128" />
+    <Property Name="Zipcode" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneHome" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneWork" Type="nvarchar" MaxLength="50" />
+    <Property Name="phoneMobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="faxNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="dateCreated" Type="datetime" Nullable="false" />
+    <Property Name="dateChanged" Type="datetime" Nullable="false" />
+    <Property Name="changedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="contactFirstName" Type="nvarchar" MaxLength="80" />
+    <Property Name="contactMiddleName" Type="nvarchar" MaxLength="80" />
+    <Property Name="contactLastName" Type="nvarchar" MaxLength="80" />
+    <Property Name="letterName" Type="nvarchar" MaxLength="80" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.contactType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="contactType">
+    <Key>
+      <PropertyRef Name="contactTypeID" />
+      <PropertyRef Name="dateCreated" />
+      <PropertyRef Name="dateChanged" />
+      <PropertyRef Name="changedBy" />
+    </Key>
+    <Property Name="contactTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="contactTypeName" Type="nvarchar" MaxLength="128" />
+    <Property Name="dateCreated" Type="datetime" Nullable="false" />
+    <Property Name="dateChanged" Type="datetime" Nullable="false" />
+    <Property Name="changedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="creditAnalysisStatus">
+    <Key>
+      <PropertyRef Name="creditAnalysisStatusId" />
+    </Key>
+    <Property Name="creditAnalysisStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="creditAnalysisStatusDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="creditAnalysisStatusCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+    <Property Name="isActiveAnalysisStatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="creditClassification">
+    <Key>
+      <PropertyRef Name="classificationId" />
+    </Key>
+    <Property Name="classificationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="classificationName" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="classificationCode" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="displayEmphasis" Type="bit" Nullable="false" />
+    <Property Name="displayColor" Type="nvarchar" Nullable="false" MaxLength="7" />
+    <Property Name="type" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="customerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerName" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="businessName" Type="nvarchar" MaxLength="80" />
+    <Property Name="customerNumber" Type="nvarchar" MaxLength="255" />
+    <Property Name="TaxId" Type="nvarchar" Nullable="false" MaxLength="9" />
+    <Property Name="customerFolder" Type="nvarchar" MaxLength="255" />
+    <Property Name="transferstatus" Type="nvarchar" MaxLength="1" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="customerTypeId" Type="uniqueidentifier" />
+    <Property Name="origdate" Type="datetime" />
+    <Property Name="modifieddate" Type="datetime" />
+    <Property Name="bankId" Type="uniqueidentifier" />
+    <Property Name="employee" Type="int" />
+    <Property Name="email" Type="nvarchar" MaxLength="128" />
+    <Property Name="lockCustomerTypeYN" Type="char" MaxLength="1" />
+    <Property Name="ignoreExceptionsYN" Type="char" MaxLength="1" />
+    <Property Name="customerOfficerId" Type="uniqueidentifier" />
+    <Property Name="address1" Type="nvarchar" MaxLength="128" />
+    <Property Name="address2" Type="nvarchar" MaxLength="128" />
+    <Property Name="city" Type="nvarchar" MaxLength="128" />
+    <Property Name="state" Type="char" MaxLength="2" />
+    <Property Name="zipcode" Type="nvarchar" MaxLength="10" />
+    <Property Name="phoneHome" Type="nvarchar" MaxLength="30" />
+    <Property Name="phoneWork" Type="nvarchar" MaxLength="30" />
+    <Property Name="phoneMobile" Type="nvarchar" MaxLength="30" />
+    <Property Name="phoneFax" Type="nvarchar" MaxLength="30" />
+    <Property Name="customerBranchId" Type="uniqueidentifier" />
+    <Property Name="customerLastName" Type="nvarchar" MaxLength="80" />
+    <Property Name="customerFirstName" Type="nvarchar" MaxLength="80" />
+    <Property Name="customerMiddleName" Type="nvarchar" MaxLength="80" />
+    <Property Name="salutation" Type="nvarchar" MaxLength="20" />
+    <Property Name="letterName" Type="nvarchar" MaxLength="80" />
+    <Property Name="classificationId" Type="uniqueidentifier" />
+    <Property Name="lockCustomerName" Type="bit" Nullable="false" />
+    <Property Name="lockBusinessName" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerNumber" Type="bit" Nullable="false" />
+    <Property Name="lockTaxId" Type="bit" Nullable="false" />
+    <Property Name="lockStatus" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerType" Type="bit" Nullable="false" />
+    <Property Name="lockOrigDate" Type="bit" Nullable="false" />
+    <Property Name="lockBank" Type="bit" Nullable="false" />
+    <Property Name="lockEmployee" Type="bit" Nullable="false" />
+    <Property Name="lockEmail" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerOfficer" Type="bit" Nullable="false" />
+    <Property Name="lockAddress1" Type="bit" Nullable="false" />
+    <Property Name="lockAddress2" Type="bit" Nullable="false" />
+    <Property Name="lockCity" Type="bit" Nullable="false" />
+    <Property Name="lockState" Type="bit" Nullable="false" />
+    <Property Name="lockZip" Type="bit" Nullable="false" />
+    <Property Name="lockPhoneHome" Type="bit" Nullable="false" />
+    <Property Name="lockPhoneWork" Type="bit" Nullable="false" />
+    <Property Name="lockPhoneMobile" Type="bit" Nullable="false" />
+    <Property Name="lockPhoneFax" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerBranch" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerLastName" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerFirstName" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerMiddleName" Type="bit" Nullable="false" />
+    <Property Name="lockSalutation" Type="bit" Nullable="false" />
+    <Property Name="lockLetterName" Type="bit" Nullable="false" />
+    <Property Name="lockClassification" Type="bit" Nullable="false" />
+    <Property Name="customerStatusId" Type="uniqueidentifier" />
+    <Property Name="loanLineLimit" Type="money" Nullable="false" />
+    <Property Name="allowExternalAppLink" Type="bit" Nullable="false" />
+    <Property Name="lockAllowExternalAppLink" Type="bit" Nullable="false" />
+    <Property Name="lockCustomer" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customerComments">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerId" Type="uniqueidentifier" />
+    <Property Name="userId" Type="uniqueidentifier" />
+    <Property Name="date" Type="datetime" />
+    <Property Name="comment" Type="ntext" />
+  </EntityType>
+  <EntityType Name="customerFields">
+    <Key>
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="customerId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customerStatus">
+    <Key>
+      <PropertyRef Name="customerStatusId" />
+    </Key>
+    <Property Name="customerStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerStatusDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="customerStatusCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customerType">
+    <Key>
+      <PropertyRef Name="customerTypeId" />
+    </Key>
+    <Property Name="customerTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerTypeDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="defaultType" Type="bit" Nullable="false" />
+    <Property Name="customerTypeCode" Type="nvarchar" MaxLength="128" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.declinedReason' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="declinedReason">
+    <Key>
+      <PropertyRef Name="declinedReasonId" />
+      <PropertyRef Name="declinedReasonDescription" />
+      <PropertyRef Name="declinedReasonCode" />
+    </Key>
+    <Property Name="declinedReasonId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="declinedReasonDescription" Type="nvarchar" Nullable="false" MaxLength="1024" />
+    <Property Name="declinedReasonCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="declinedReason_Old">
+    <Key>
+      <PropertyRef Name="declinedReasonId" />
+    </Key>
+    <Property Name="declinedReasonId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="declinedReasonDescription" Type="nvarchar" Nullable="false" MaxLength="1024" />
+    <Property Name="declinedReasonCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.dh2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="dh2">
+    <Key>
+      <PropertyRef Name="historyId" />
+      <PropertyRef Name="userLogin" />
+      <PropertyRef Name="customerNumber" />
+      <PropertyRef Name="documentFileName" />
+    </Key>
+    <Property Name="historyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="userLogin" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="userName" Type="varchar" MaxLength="128" />
+    <Property Name="customerNumber" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="loanNumber" Type="varchar" MaxLength="64" />
+    <Property Name="documentFileName" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="documentType" Type="varchar" MaxLength="128" />
+    <Property Name="pagesAdded" Type="int" />
+    <Property Name="pagesDeleted" Type="int" />
+    <Property Name="dateChanged" Type="datetime" />
+    <Property Name="documentDeletedYN" Type="char" MaxLength="1" />
+    <Property Name="comment" Type="text" />
+    <Property Name="remoteScanQueueId" Type="int" />
+    <Property Name="documentId" Type="uniqueidentifier" />
+    <Property Name="qcHistory" Type="text" />
+    <Property Name="inputType" Type="uniqueidentifier" />
+    <Property Name="qcStatus" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.dhbackup' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="dhbackup">
+    <Key>
+      <PropertyRef Name="historyId" />
+      <PropertyRef Name="userLogin" />
+      <PropertyRef Name="customerNumber" />
+      <PropertyRef Name="documentFileName" />
+    </Key>
+    <Property Name="historyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="userLogin" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="userName" Type="varchar" MaxLength="128" />
+    <Property Name="customerNumber" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="loanNumber" Type="varchar" MaxLength="64" />
+    <Property Name="documentFileName" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="documentType" Type="varchar" MaxLength="128" />
+    <Property Name="pagesAdded" Type="int" />
+    <Property Name="pagesDeleted" Type="int" />
+    <Property Name="dateChanged" Type="datetime" />
+    <Property Name="documentDeletedYN" Type="char" MaxLength="1" />
+    <Property Name="comment" Type="text" />
+    <Property Name="remoteScanQueueId" Type="int" />
+    <Property Name="documentId" Type="uniqueidentifier" />
+    <Property Name="qcHistory" Type="text" />
+    <Property Name="inputType" Type="uniqueidentifier" />
+    <Property Name="qcStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="document">
+    <Key>
+      <PropertyRef Name="documentId" />
+    </Key>
+    <Property Name="documentId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerId" Type="uniqueidentifier" />
+    <Property Name="loanId" Type="uniqueidentifier" />
+    <Property Name="documentTypeId" Type="uniqueidentifier" />
+    <Property Name="documentSubTypeId" Type="uniqueidentifier" />
+    <Property Name="documentDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="loanFile" Type="nvarchar" MaxLength="255" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="255" />
+    <Property Name="documentAssociation" Type="nvarchar" MaxLength="1" />
+    <Property Name="documentStatus" Type="int" />
+    <Property Name="origdate" Type="datetime" />
+    <Property Name="modifieddate" Type="datetime" />
+    <Property Name="expdate" Type="datetime" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="documentStatusType" Type="int" />
+    <Property Name="documentComment" Type="ntext" />
+    <Property Name="documentDefId" Type="uniqueidentifier" />
+    <Property Name="remoteScanQueueId" Type="int" />
+    <Property Name="documentTabId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="documentTitle" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="documentHighlightColor" Type="nvarchar" Nullable="false" MaxLength="7" />
+    <Property Name="nonExpiring" Type="bit" />
+  </EntityType>
+  <EntityType Name="documentActivation">
+    <Key>
+      <PropertyRef Name="activationId" />
+    </Key>
+    <Property Name="activationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanId" Type="uniqueidentifier" />
+    <Property Name="documentTypeId" Type="uniqueidentifier" />
+    <Property Name="activationStatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="documentDefinitions">
+    <Key>
+      <PropertyRef Name="documentDefId" />
+    </Key>
+    <Property Name="documentDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="documentDefType" Type="nvarchar" Nullable="false" MaxLength="1" />
+    <Property Name="documentTypeId" Type="uniqueidentifier" />
+    <Property Name="documentSubTypeId" Type="uniqueidentifier" />
+    <Property Name="customerTypeId" Type="uniqueidentifier" />
+    <Property Name="loanTypeId" Type="uniqueidentifier" />
+    <Property Name="bankId" Type="uniqueidentifier" />
+    <Property Name="defaultName" Type="nvarchar" MaxLength="255" />
+    <Property Name="sortOrder" Type="int" />
+    <Property Name="requireExpdate" Type="bit" Nullable="false" />
+    <Property Name="defaultexpdate" Type="datetime" />
+    <Property Name="documentRequired" Type="bit" Nullable="false" />
+    <Property Name="defaultDocumentStatusType" Type="int" />
+    <Property Name="hideEmployeeFileYN" Type="char" MaxLength="1" />
+    <Property Name="barcodeKey" Type="int" />
+    <Property Name="hideTabYN" Type="char" MaxLength="1" />
+    <Property Name="defaultExistingDocumentStatusType" Type="int" />
+    <Property Name="defaultActivationStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="docDefDocSortBy" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="docDefHighlightColor" Type="nvarchar" Nullable="false" MaxLength="7" />
+    <Property Name="docDefAllowSchedule" Type="bit" Nullable="false" />
+    <Property Name="docDefScheduleUnits" Type="int" Nullable="false" />
+    <Property Name="docDefSchedulePeriod" Type="int" Nullable="false" />
+    <Property Name="docDefProcessingDateEnd" Type="datetime" />
+    <Property Name="docDefDocumentExpireUnits" Type="int" Nullable="false" />
+    <Property Name="docDefDocumentExpirePeriod" Type="int" Nullable="false" />
+    <Property Name="docDefDocumentTitlePattern" Type="nvarchar" Nullable="false" MaxLength="1028" />
+    <Property Name="docDefNextCreateDate" Type="datetime" />
+    <Property Name="isDefault" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="documentDependantTask">
+    <Key>
+      <PropertyRef Name="documentDependantTaskId" />
+    </Key>
+    <Property Name="documentDependantTaskId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="documentDefId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.documenthistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="documenthistory">
+    <Key>
+      <PropertyRef Name="historyId" />
+      <PropertyRef Name="userLogin" />
+      <PropertyRef Name="customerNumber" />
+    </Key>
+    <Property Name="historyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="userLogin" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="userName" Type="varchar" MaxLength="128" />
+    <Property Name="customerNumber" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="loanNumber" Type="varchar" MaxLength="64" />
+    <Property Name="documentFileName" Type="varchar" MaxLength="255" />
+    <Property Name="documentType" Type="varchar" MaxLength="128" />
+    <Property Name="pagesAdded" Type="int" />
+    <Property Name="pagesDeleted" Type="int" />
+    <Property Name="dateChanged" Type="datetime" />
+    <Property Name="documentDeletedYN" Type="char" MaxLength="1" />
+    <Property Name="comment" Type="text" />
+    <Property Name="remoteScanQueueId" Type="int" />
+    <Property Name="documentId" Type="uniqueidentifier" />
+    <Property Name="qcHistory" Type="text" />
+    <Property Name="inputType" Type="uniqueidentifier" />
+    <Property Name="qcStatus" Type="int" />
+  </EntityType>
+  <EntityType Name="documentSubType">
+    <Key>
+      <PropertyRef Name="documentSubTypeId" />
+    </Key>
+    <Property Name="documentSubTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="documentTypeId" Type="uniqueidentifier" />
+    <Property Name="documentSubTypeName" Type="nvarchar" MaxLength="256" />
+    <Property Name="documentCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="subTypeFolderName" Type="nvarchar" MaxLength="255" />
+    <Property Name="subTypeDefaultStatus" Type="int" />
+    <Property Name="subTypeRequireExpDateYN" Type="char" MaxLength="1" />
+    <Property Name="subTypeHideEmployeeFileYN" Type="char" MaxLength="1" />
+    <Property Name="subTypeSortOrder" Type="int" />
+    <Property Name="subTypeDescription" Type="ntext" />
+    <Property Name="subTypeInstruction" Type="ntext" />
+    <Property Name="subTypeDocSortBy" Type="nvarchar" Nullable="false" MaxLength="32" />
+    <Property Name="subTypeHighlightColor" Type="nvarchar" Nullable="false" MaxLength="7" />
+    <Property Name="qcCritical" Type="bit" Nullable="false" />
+    <Property Name="allowAccucapture" Type="bit" Nullable="false" />
+    <Property Name="subTypeScanFlag" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="documentTab">
+    <Key>
+      <PropertyRef Name="documentTabId" />
+    </Key>
+    <Property Name="documentTabId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="documentDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanId" Type="uniqueidentifier" />
+    <Property Name="docTabStatusType" Type="int" Nullable="false" />
+    <Property Name="docTabHighlightColor" Type="nvarchar" MaxLength="7" />
+    <Property Name="docTabAllowSchedule" Type="bit" />
+    <Property Name="docTabScheduleUnits" Type="int" />
+    <Property Name="docTabSchedulePeriod" Type="int" />
+    <Property Name="docTabProcessingDateEnd" Type="datetime" />
+    <Property Name="docTabDocumentExpireUnits" Type="int" />
+    <Property Name="docTabDocumentExpirePeriod" Type="int" />
+    <Property Name="docTabDocumentTitlePattern" Type="nvarchar" MaxLength="1028" />
+    <Property Name="docTabOverrideDefinition" Type="bit" Nullable="false" />
+    <Property Name="docTabNextCreateDate" Type="datetime" />
+    <Property Name="docTabLockSettings" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="documentTabAccountSecurity">
+    <Key>
+      <PropertyRef Name="tabAccountAccessId" />
+    </Key>
+    <Property Name="tabAccountAccessId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="documentSubTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="accountClassId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="documentType">
+    <Key>
+      <PropertyRef Name="documentTypeId" />
+    </Key>
+    <Property Name="documentTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="documentTypeName" Type="nvarchar" MaxLength="256" />
+    <Property Name="typeSortOrder" Type="int" />
+    <Property Name="typeCode" Type="char" MaxLength="1" />
+    <Property Name="typeActivationStatus" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="documentUpload">
+    <Key>
+      <PropertyRef Name="documentUploadId" />
+    </Key>
+    <Property Name="documentUploadId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerName" Type="nvarchar" MaxLength="80" />
+    <Property Name="customerNumber" Type="nvarchar" MaxLength="255" />
+    <Property Name="loanNumber" Type="nvarchar" MaxLength="255" />
+    <Property Name="documentTitle" Type="nvarchar" MaxLength="256" />
+    <Property Name="documentComment" Type="ntext" />
+    <Property Name="documentFilename" Type="nvarchar" MaxLength="255" />
+    <Property Name="documentCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="documentExpDate" Type="datetime" />
+    <Property Name="uploadSource" Type="nvarchar" MaxLength="256" />
+    <Property Name="uploadedBy" Type="nvarchar" MaxLength="256" />
+    <Property Name="UploadPath" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="dtproperties">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="property" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="objectid" Type="int" />
+    <Property Name="property" Type="varchar" Nullable="false" MaxLength="64" />
+    <Property Name="value" Type="varchar" MaxLength="255" />
+    <Property Name="uvalue" Type="nvarchar" MaxLength="255" />
+    <Property Name="lvalue" Type="image" />
+    <Property Name="version" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exceptedDocument">
+    <Key>
+      <PropertyRef Name="exception_documentId" />
+    </Key>
+    <Property Name="exception_documentId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptedDocumentId" Type="uniqueidentifier" />
+    <Property Name="documentExceptionState" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="exceptedDocDefId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exception">
+    <Key>
+      <PropertyRef Name="exceptionId" />
+    </Key>
+    <Property Name="exceptionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionState" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="assignedUserId" Type="uniqueidentifier" />
+    <Property Name="customerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanId" Type="uniqueidentifier" />
+    <Property Name="comment" Type="text" />
+    <Property Name="statusType" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="dateExcepted" Type="datetime" />
+    <Property Name="datePending" Type="datetime" />
+    <Property Name="dateResolved" Type="datetime" />
+    <Property Name="reminderDate" Type="datetime" />
+    <Property Name="noticeTypeID" Type="uniqueidentifier" />
+    <Property Name="noticeActive" Type="int" />
+    <Property Name="noticeSetDate" Type="datetime" />
+    <Property Name="noticeContactID" Type="uniqueidentifier" />
+    <Property Name="dateAdded" Type="datetime" />
+    <Property Name="dateChanged" Type="datetime" />
+    <Property Name="changedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="noticeResetDays" Type="int" />
+    <Property Name="noticeReoccuresYN" Type="char" MaxLength="1" />
+    <Property Name="noticePendingYN" Type="char" MaxLength="1" />
+    <Property Name="noticeParagraphID" Type="uniqueidentifier" />
+    <Property Name="reminderDateGracePeriod" Type="int" Nullable="false" />
+    <Property Name="exceptedDocumentId" Type="uniqueidentifier" />
+    <Property Name="allowNotification" Type="bit" />
+    <Property Name="ccNotification" Type="nvarchar" MaxLength="2048" />
+    <Property Name="ExceptionWeight" Type="float" />
+  </EntityType>
+  <EntityType Name="exceptionCategory">
+    <Key>
+      <PropertyRef Name="categoryId" />
+    </Key>
+    <Property Name="categoryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="categoryName" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="categoryDescription" Type="text" />
+    <Property Name="bankId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exceptionComment">
+    <Key>
+      <PropertyRef Name="exceptionCommentId" />
+    </Key>
+    <Property Name="exceptionCommentId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionComment" Type="text" />
+    <Property Name="userId" Type="uniqueidentifier" />
+    <Property Name="dateAdded" Type="datetime" Nullable="false" />
+    <Property Name="dateModified" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exceptionDefinition">
+    <Key>
+      <PropertyRef Name="exceptionDefId" />
+    </Key>
+    <Property Name="exceptionDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionDefName" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="weight" Type="float" Nullable="false" />
+    <Property Name="isGlobalYN" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="bankId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerTypeId" Type="uniqueidentifier" />
+    <Property Name="loanTypeId" Type="uniqueidentifier" />
+    <Property Name="exceptionDefType" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="computationType" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="compoundStatement" Type="text" />
+    <Property Name="defaultAssignedUserId" Type="uniqueidentifier" />
+    <Property Name="defaultStatusType" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="sortOrder" Type="int" Nullable="false" />
+    <Property Name="defaultExistingExceptionState" Type="char" MaxLength="1" />
+    <Property Name="defaultNewExceptionState" Type="char" MaxLength="1" />
+    <Property Name="exceptionCategoryId" Type="uniqueidentifier" />
+    <Property Name="requireReminderDate" Type="char" MaxLength="1" />
+    <Property Name="defaultReminderDate" Type="datetime" />
+    <Property Name="PolicyId" Type="uniqueidentifier" />
+    <Property Name="noticeTypeID" Type="uniqueidentifier" />
+    <Property Name="noticeContactID" Type="uniqueidentifier" />
+    <Property Name="dateChanged" Type="datetime" />
+    <Property Name="dateAdded" Type="datetime" />
+    <Property Name="changedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="noticeResetDays" Type="int" />
+    <Property Name="noticeReoccuresYN" Type="char" MaxLength="1" />
+    <Property Name="noticePendingYN" Type="char" MaxLength="1" />
+    <Property Name="noticeParagraphID" Type="uniqueidentifier" />
+    <Property Name="exceptionDefCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="amountThresholdFlag" Type="int" Nullable="false" />
+    <Property Name="amountThreshold" Type="money" />
+    <Property Name="requireLoanMaturityDate" Type="bit" Nullable="false" />
+    <Property Name="customCustomerId" Type="uniqueidentifier" />
+    <Property Name="customLoanId" Type="uniqueidentifier" />
+    <Property Name="defaultReminderDateGracePeriod" Type="int" Nullable="false" />
+    <Property Name="allowNotificationDefault" Type="bit" Nullable="false" />
+    <Property Name="taskType" Type="int" Nullable="false" />
+    <Property Name="ccNotificationDefault" Type="nvarchar" MaxLength="2048" />
+    <Property Name="qcType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="exceptionHistory">
+    <Key>
+      <PropertyRef Name="historyId" />
+    </Key>
+    <Property Name="historyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="changedByUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="actionTaken" Type="text" Nullable="false" />
+    <Property Name="dateChanged" Type="datetime" Nullable="false" />
+    <Property Name="noticeFlag" Type="bit" />
+  </EntityType>
+  <EntityType Name="exceptionIgnoreLoanStatus">
+    <Key>
+      <PropertyRef Name="exceptionIgnoreLoanStatusId" />
+    </Key>
+    <Property Name="exceptionIgnoreLoanStatusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="exceptionDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanStatusId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="fieldDefGroup">
+    <Key>
+      <PropertyRef Name="fieldDefGroupId" />
+    </Key>
+    <Property Name="fieldDefGroupId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="fieldDefGroupName" Type="nvarchar" MaxLength="256" />
+    <Property Name="fieldDefGroupLabel" Type="nvarchar" MaxLength="256" />
+    <Property Name="fieldDefGroupOrder" Type="int" Nullable="false" />
+    <Property Name="fieldDefGroupIsCollateral" Type="bit" Nullable="false" />
+    <Property Name="accountClassId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="fieldDefinition">
+    <Key>
+      <PropertyRef Name="fieldDefId" />
+    </Key>
+    <Property Name="fieldDefId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="fieldDefName" Type="nvarchar" Nullable="false" MaxLength="1024" />
+    <Property Name="fieldDefLabel" Type="nvarchar" Nullable="false" MaxLength="1024" />
+    <Property Name="fieldDefIsCollateral" Type="bit" Nullable="false" />
+    <Property Name="fieldDefIsSearchable" Type="bit" Nullable="false" />
+    <Property Name="fieldDefIsDisplayable" Type="bit" Nullable="false" />
+    <Property Name="fieldDefDisplayOrder" Type="int" Nullable="false" />
+    <Property Name="fieldDefDataType" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="fieldDefDataSize" Type="int" Nullable="false" />
+    <Property Name="fieldDefDataPrecision" Type="int" Nullable="false" />
+    <Property Name="fieldDefChoiceList" Type="nvarchar(max)" />
+    <Property Name="fieldDefChoiceDefaultValue" Type="nvarchar" MaxLength="1024" />
+    <Property Name="fieldDefGroupId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="accountClassId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="GroupsCustomers">
+    <Key>
+      <PropertyRef Name="GroupsCustomersId" />
+    </Key>
+    <Property Name="GroupsCustomersId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupId" Type="uniqueidentifier" />
+    <Property Name="CustId" Type="uniqueidentifier" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="ChangedBy" Type="char" MaxLength="50" />
+    <Property Name="DateChanged" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ImportLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="Severity" Type="nvarchar" MaxLength="128" />
+    <Property Name="CustomerNumber" Type="nvarchar" MaxLength="128" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="128" />
+    <Property Name="Details" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="IntegratedSession">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IpAddress" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="loan">
+    <Key>
+      <PropertyRef Name="loanId" />
+    </Key>
+    <Property Name="loanId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanNumber" Type="nvarchar" MaxLength="255" />
+    <Property Name="customerId" Type="uniqueidentifier" />
+    <Property Name="loanTypeId" Type="uniqueidentifier" />
+    <Property Name="loanDescription" Type="nvarchar" MaxLength="255" />
+    <Property Name="loanOfficerId" Type="uniqueidentifier" />
+    <Property Name="loanFolder" Type="nvarchar" MaxLength="255" />
+    <Property Name="transferStatus" Type="nvarchar" MaxLength="1" />
+    <Property Name="loanStatusId" Type="uniqueidentifier" />
+    <Property Name="loanClosed" Type="datetime" />
+    <Property Name="loanOrigDate" Type="datetime" />
+    <Property Name="origdate" Type="datetime" />
+    <Property Name="modifieddate" Type="datetime" />
+    <Property Name="loanAmount" Type="nvarchar" MaxLength="12" />
+    <Property Name="lockLoanTypeYN" Type="char" MaxLength="1" />
+    <Property Name="ignoreExceptionsYN" Type="char" MaxLength="1" />
+    <Property Name="isCollateralYN" Type="char" MaxLength="1" />
+    <Property Name="loanBranchId" Type="uniqueidentifier" />
+    <Property Name="orderNumber" Type="nvarchar" MaxLength="255" />
+    <Property Name="PropertyDesc" Type="nvarchar" MaxLength="1000" />
+    <Property Name="isCrossCollateralYN" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="primaryCollateralId" Type="uniqueidentifier" />
+    <Property Name="coreClassCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="coreCollCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="coreCollateralCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="corePurposeCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="coreTypeCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="commitmentAmount" Type="money" />
+    <Property Name="coreNaicsCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="loanMaturityDate" Type="datetime" />
+    <Property Name="loanClassificationId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="loanApplication">
+    <Key>
+      <PropertyRef Name="loanApplicationId" />
+    </Key>
+    <Property Name="loanApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="applicationNumber" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="applicationDate" Type="datetime" />
+    <Property Name="creditAnalysisStatusId" Type="uniqueidentifier" />
+    <Property Name="primaryCollateralValue" Type="money" />
+    <Property Name="FICO" Type="nvarchar" MaxLength="20" />
+    <Property Name="requestedAmount" Type="money" />
+    <Property Name="valuationDate" Type="datetime" />
+    <Property Name="assignedAnalystType" Type="nvarchar" MaxLength="128" />
+    <Property Name="assignedAnalystId" Type="uniqueidentifier" />
+    <Property Name="assignedLenderType" Type="nvarchar" MaxLength="128" />
+    <Property Name="assignedLenderId" Type="uniqueidentifier" />
+    <Property Name="assignedLoanProcessorType" Type="nvarchar" MaxLength="128" />
+    <Property Name="assignedLoanProcessorId" Type="uniqueidentifier" />
+    <Property Name="declinedReasonId" Type="uniqueidentifier" />
+    <Property Name="approvalId" Type="uniqueidentifier" />
+    <Property Name="nextApplicationNumber" Type="int" />
+    <Property Name="interestRate" Type="nvarchar" MaxLength="128" />
+    <Property Name="applicationLocked" Type="bit" Nullable="false" />
+    <Property Name="probability" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="estimatedCloseDate" Type="datetime" />
+    <Property Name="repaymentOption" Type="nvarchar" MaxLength="2048" />
+  </EntityType>
+  <EntityType Name="loanApplicationCondition">
+    <Key>
+      <PropertyRef Name="loanApplicationConditionId" />
+    </Key>
+    <Property Name="loanApplicationConditionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="approvalCondition" Type="text" />
+    <Property Name="postApprovalCondition" Type="text" />
+  </EntityType>
+  <EntityType Name="loanApplicationHistory">
+    <Key>
+      <PropertyRef Name="loanApplicationHistoryId" />
+    </Key>
+    <Property Name="loanApplicationHistoryId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="changedByUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="dateModified" Type="datetime" Nullable="false" />
+    <Property Name="actionTaken" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="loanComments">
+    <Key>
+      <PropertyRef Name="loanCommentId" />
+    </Key>
+    <Property Name="loanCommentId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanId" Type="uniqueidentifier" />
+    <Property Name="userId" Type="uniqueidentifier" />
+    <Property Name="commentDate" Type="datetime" />
+    <Property Name="comment" Type="ntext" />
+  </EntityType>
+  <EntityType Name="loanFields">
+    <Key>
+      <PropertyRef Name="loanId" />
+    </Key>
+    <Property Name="loanId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="loanOfficer">
+    <Key>
+      <PropertyRef Name="officerId" />
+    </Key>
+    <Property Name="officerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="officerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="officerCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="bankId" Type="uniqueidentifier" />
+    <Property Name="officerTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="defaultOfficer" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="loanStatus">
+    <Key>
+      <PropertyRef Name="statusId" />
+    </Key>
+    <Property Name="statusId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="statusDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="statusCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="isDefaultYN" Type="char" MaxLength="1" />
+    <Property Name="isActive" Type="bit" Nullable="false" />
+    <Property Name="isApplicationStatus" Type="bit" Nullable="false" />
+    <Property Name="isActiveApplicationStatus" Type="bit" Nullable="false" />
+    <Property Name="isApprovedApplicationStatus" Type="bit" Nullable="false" />
+    <Property Name="isDefaultApplicationStatus" Type="bit" Nullable="false" />
+    <Property Name="accountClassId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="loanType">
+    <Key>
+      <PropertyRef Name="loanTypeId" />
+    </Key>
+    <Property Name="loanTypeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="loanTypeDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="loanTypeCode" Type="nvarchar" MaxLength="128" />
+    <Property Name="isCollateralTypeYN" Type="char" MaxLength="1" />
+    <Property Name="accountClassId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MTE_List">
+    <Key>
+      <PropertyRef Name="MTEID" />
+    </Key>
+    <Property Name="MTEID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TaxID" Type="nvarchar" Nullable="false" MaxLength="9" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CustomerNumber" Type="nvarchar" Nullable="false" MaxLength="15" />
+    <Property Name="Appendage" Type="nvarchar" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="naicsCode">
+    <Key>
+      <PropertyRef Name="naicsCodeId" />
+    </Key>
+    <Property Name="naicsCodeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="naicsCodeDescription" Type="nvarchar" MaxLength="128" />
+    <Property Name="naicsCode" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="noticeLetters">
+    <Key>
+      <PropertyRef Name="LetterID" />
+    </Key>
+    <Property Name="LetterID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupKeyID" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="SentToID" Type="uniqueidentifier" />
+    <Property Name="sentToName" Type="nvarchar" MaxLength="80" />
+    <Property Name="headerText" Type="text" />
+    <Property Name="paragraphs" Type="nvarchar" MaxLength="3900" />
+    <Property Name="footerText" Type="text" />
+    <Property Name="dateCreated" Type="datetime" Nullable="false" />
+    <Property Name="dateChanged" Type="datetime" Nullable="false" />
+    <Property Name="changedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="officerName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="noticeParagraphs">
+    <Key>
+      <PropertyRef Name="noticeParagraphID" />
+    </Key>
+    <Property Name="noticeParagraphID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="noticeParagraphDesc" Type="nvarchar" MaxLength="128" />
+    <Property Name="noticeParagraphText" Type="nvarchar" />
+    <Property Name="dateCreated" Type="datetime" Nullable="false" />
+    <Property Name="dateChanged" Type="datetime" Nullable="false" />
+    <Property Name="changedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="noticesToBeSent">
+    <Key>
+      <PropertyRef Name="sentID" />
+    </Key>
+    <Property Name="NoticeGroupKey" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="exceptionID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="dateStored" Type="datetime" Nullable="false" />
+    <Property Name="sentBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="letterID" Type="uniqueidentifier" />
+    <Property Name="sentID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="noticeType">
+    <Key>
+      <PropertyRef Name="noticeTypeID" />
+    </Key>
+    <Property Name="noticeTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="noticeTypeName" Type="nvarchar" MaxLength="128" />
+    <Property Name="letterHeaderText" Type="nvarchar" />
+    <Property Name="letterFooterText" Type="nvarchar" />
+    <Property Name="report" Type="nvarchar" MaxLength="100" />
+    <Property Name="noticeResetDays" Type="int" />
+    <Property Name="dateCreated" Type="datetime" Nullable="false" />
+    <Property Name="dateChanged" Type="datetime" Nullable="false" />
+    <Property Name="changedBy" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="singleParagraph" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="PolicyDefinitions">
+    <Key>
+      <PropertyRef Name="PolicyId" />
+    </Key>
+    <Property Name="PolicyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PolicyTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="PolicyDescription" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="purposeCode">
+    <Key>
+      <PropertyRef Name="purposeCodeId" />
+    </Key>
+    <Property Name="purposeCodeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="purposeCodeDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="purposeCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="region">
+    <Key>
+      <PropertyRef Name="regionId" />
+    </Key>
+    <Property Name="regionId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="regionName" Type="nvarchar" Nullable="false" MaxLength="1024" />
+    <Property Name="regionCode" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="RelatedEntityGroups">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EntityRelationship" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="ChangedBy" Type="char" MaxLength="50" />
+    <Property Name="DateChanged" Type="datetime" />
+  </EntityType>
+  <EntityType Name="remoteScanCommTrunk">
+    <Key>
+      <PropertyRef Name="commTrunkId" />
+    </Key>
+    <Property Name="commTrunkId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="commTrunkLabel" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="commTrunkDescription" Type="nvarchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="remoteScanFolders">
+    <Key>
+      <PropertyRef Name="remoteScanFoldersId" />
+    </Key>
+    <Property Name="remoteScanFoldersId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="folderPath" Type="nvarchar" Nullable="false" MaxLength="2000" />
+    <Property Name="folderLabel" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="hasEmbeddedBarcodes" Type="bit" Nullable="false" />
+    <Property Name="commTrunkId" Type="int" />
+  </EntityType>
+  <EntityType Name="remoteScanQueue">
+    <Key>
+      <PropertyRef Name="remoteScanQueueId" />
+    </Key>
+    <Property Name="remoteScanQueueId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="remoteScanFoldersId" Type="int" />
+    <Property Name="scanInfoXml" Type="nvarchar" Nullable="false" />
+    <Property Name="fileName" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="machineName" Type="nvarchar" MaxLength="100" />
+    <Property Name="scannerLoginName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="hasEmbeddedBarcodes" Type="bit" Nullable="false" />
+    <Property Name="rowInsertTime" Type="datetime" Nullable="false" />
+    <Property Name="remoteFileSeenTime" Type="datetime" />
+    <Property Name="failToSeeServerFolderTime" Type="datetime" />
+    <Property Name="failToSeeRemoteFolderTime" Type="datetime" />
+    <Property Name="copyToServerTime" Type="datetime" />
+    <Property Name="failToSeeRemoteFileTime" Type="datetime" />
+    <Property Name="deleteRemoteFileTime" Type="datetime" />
+    <Property Name="failToDeleteTime" Type="datetime" />
+    <Property Name="failToCopyTime" Type="datetime" />
+    <Property Name="failToCopyLog" Type="nvarchar" MaxLength="512" />
+    <Property Name="barcodeProcessingDoneTime" Type="datetime" />
+    <Property Name="sourceBarcodeRemoteScanQueueId" Type="int" />
+    <Property Name="importDoneTime" Type="datetime" />
+    <Property Name="failToImportTime" Type="datetime" />
+    <Property Name="failToImportLog" Type="nvarchar" MaxLength="512" />
+    <Property Name="importIsActive" Type="bit" Nullable="false" />
+    <Property Name="remoteFolderPath" Type="nvarchar" Nullable="false" MaxLength="1024" />
+    <Property Name="documentId" Type="uniqueidentifier" />
+    <Property Name="ScanID" Type="int" />
+    <Property Name="pagesAdded" Type="int" />
+    <Property Name="pagesDeleted" Type="int" />
+    <Property Name="remoteFilename" Type="nvarchar" MaxLength="200" />
+    <Property Name="fromAccuCapture" Type="bit" />
+    <Property Name="remoteScanStatusCode" Type="smallint" />
+    <Property Name="accucaptureAssignedDocCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="remoteScanStation">
+    <Key>
+      <PropertyRef Name="scanStationId" />
+    </Key>
+    <Property Name="scanStationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="machineName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="remoteScanFoldersId" Type="int" />
+    <Property Name="scanStationDescription" Type="nvarchar" Nullable="false" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="remoteScanStatus">
+    <Key>
+      <PropertyRef Name="remoteScanStatusCode" />
+    </Key>
+    <Property Name="remoteScanStatusCode" Type="smallint" Nullable="false" />
+    <Property Name="remoteScanStatus" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="errorLevel" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="reportProperties">
+    <Key>
+      <PropertyRef Name="reportPropertyId" />
+    </Key>
+    <Property Name="reportPropertyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="websiteURL" Type="nvarchar" MaxLength="255" />
+    <Property Name="isGuidYN" Type="char" MaxLength="1" />
+    <Property Name="displayName" Type="char" MaxLength="1" />
+    <Property Name="reportsBaseURL" Type="nvarchar" MaxLength="255" />
+    <Property Name="reportServerBaseURL" Type="nvarchar" MaxLength="255" />
+    <Property Name="reportPath" Type="nvarchar" MaxLength="255" />
+    <Property Name="noticeReportRemovalDays" Type="int" />
+    <Property Name="reportServerURL" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="scanIssues">
+    <Key>
+      <PropertyRef Name="rowNumber" />
+    </Key>
+    <Property Name="rowNumber" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="userLogin" Type="nvarchar" MaxLength="255" />
+    <Property Name="userName" Type="nvarchar" MaxLength="255" />
+    <Property Name="Existing userLogin" Type="nvarchar" MaxLength="255" />
+    <Property Name="ConvertToRow" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tempGroupsCustomers">
+    <Key>
+      <PropertyRef Name="tmpKeyId" />
+    </Key>
+    <Property Name="tmpKeyId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupiD" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CustID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.tempNoticeSelection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="tempNoticeSelection">
+    <Key>
+      <PropertyRef Name="userName" />
+    </Key>
+    <Property Name="userName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="exceptionID" Type="uniqueidentifier" />
+    <Property Name="exceptionDefName" Type="varchar" MaxLength="128" />
+    <Property Name="customerName" Type="varchar" MaxLength="128" />
+    <Property Name="contactName" Type="varchar" MaxLength="128" />
+    <Property Name="loanNumber" Type="varchar" MaxLength="128" />
+    <Property Name="ColLoanNumber" Type="varchar" MaxLength="128" />
+    <Property Name="nextDate" Type="nvarchar" MaxLength="128" />
+    <Property Name="selected" Type="char" MaxLength="1" />
+    <Property Name="verifyException" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="tmp_importData">
+    <Key>
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="customerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="customerName" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="businessName" Type="nvarchar" MaxLength="80" />
+    <Property Name="customerNumber" Type="nvarchar" MaxLength="255" />
+    <Property Name="TaxId" Type="nvarchar" Nullable="false" MaxLength="9" />
+    <Property Name="customerFolder" Type="nvarchar" MaxLength="255" />
+    <Property Name="transferstatus" Type="nvarchar" MaxLength="1" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="customerTypeId" Type="uniqueidentifier" />
+    <Property Name="origdate" Type="datetime" />
+    <Property Name="modifieddate" Type="datetime" />
+    <Property Name="bankId" Type="uniqueidentifier" />
+    <Property Name="employee" Type="int" />
+    <Property Name="email" Type="nvarchar" MaxLength="128" />
+    <Property Name="lockCustomerTypeYN" Type="char" MaxLength="1" />
+    <Property Name="ignoreExceptionsYN" Type="char" MaxLength="1" />
+    <Property Name="customerOfficerId" Type="uniqueidentifier" />
+    <Property Name="address1" Type="nvarchar" MaxLength="128" />
+    <Property Name="address2" Type="nvarchar" MaxLength="128" />
+    <Property Name="city" Type="nvarchar" MaxLength="128" />
+    <Property Name="state" Type="char" MaxLength="2" />
+    <Property Name="zipcode" Type="nvarchar" MaxLength="10" />
+    <Property Name="phoneHome" Type="nvarchar" MaxLength="30" />
+    <Property Name="phoneWork" Type="nvarchar" MaxLength="30" />
+    <Property Name="phoneMobile" Type="nvarchar" MaxLength="30" />
+    <Property Name="phoneFax" Type="nvarchar" MaxLength="30" />
+    <Property Name="customerBranchId" Type="uniqueidentifier" />
+    <Property Name="customerLastName" Type="nvarchar" MaxLength="80" />
+    <Property Name="customerFirstName" Type="nvarchar" MaxLength="80" />
+    <Property Name="customerMiddleName" Type="nvarchar" MaxLength="80" />
+    <Property Name="salutation" Type="nvarchar" MaxLength="20" />
+    <Property Name="letterName" Type="nvarchar" MaxLength="80" />
+    <Property Name="classificationId" Type="uniqueidentifier" />
+    <Property Name="lockCustomerName" Type="bit" Nullable="false" />
+    <Property Name="lockBusinessName" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerNumber" Type="bit" Nullable="false" />
+    <Property Name="lockTaxId" Type="bit" Nullable="false" />
+    <Property Name="lockStatus" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerType" Type="bit" Nullable="false" />
+    <Property Name="lockOrigDate" Type="bit" Nullable="false" />
+    <Property Name="lockBank" Type="bit" Nullable="false" />
+    <Property Name="lockEmployee" Type="bit" Nullable="false" />
+    <Property Name="lockEmail" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerOfficer" Type="bit" Nullable="false" />
+    <Property Name="lockAddress1" Type="bit" Nullable="false" />
+    <Property Name="lockAddress2" Type="bit" Nullable="false" />
+    <Property Name="lockCity" Type="bit" Nullable="false" />
+    <Property Name="lockState" Type="bit" Nullable="false" />
+    <Property Name="lockZip" Type="bit" Nullable="false" />
+    <Property Name="lockPhoneHome" Type="bit" Nullable="false" />
+    <Property Name="lockPhoneWork" Type="bit" Nullable="false" />
+    <Property Name="lockPhoneMobile" Type="bit" Nullable="false" />
+    <Property Name="lockPhoneFax" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerBranch" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerLastName" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerFirstName" Type="bit" Nullable="false" />
+    <Property Name="lockCustomerMiddleName" Type="bit" Nullable="false" />
+    <Property Name="lockSalutation" Type="bit" Nullable="false" />
+    <Property Name="lockLetterName" Type="bit" Nullable="false" />
+    <Property Name="lockClassification" Type="bit" Nullable="false" />
+    <Property Name="customerStatusId" Type="uniqueidentifier" />
+    <Property Name="loanLineLimit" Type="money" Nullable="false" />
+    <Property Name="allowExternalAppLink" Type="bit" Nullable="false" />
+    <Property Name="lockAllowExternalAppLink" Type="bit" Nullable="false" />
+    <Property Name="lockCustomer" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="typeCode">
+    <Key>
+      <PropertyRef Name="typeCodeId" />
+    </Key>
+    <Property Name="typeCodeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="typeCodeDescription" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="typeCode" Type="nvarchar" Nullable="false" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="userLogin" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="userPassword" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="userFirstName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="userLastName" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="userMiddleInitial" Type="nvarchar" MaxLength="1" />
+    <Property Name="userEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="userNotes" Type="ntext" />
+    <Property Name="scanmodule" Type="nvarchar" MaxLength="255" />
+    <Property Name="scannedfilespath" Type="nvarchar" MaxLength="255" />
+    <Property Name="permissionException" Type="smallint" Nullable="false" />
+    <Property Name="inactive" Type="char" MaxLength="1" />
+    <Property Name="loanOfficerID" Type="uniqueidentifier" />
+    <Property Name="loanApprovalLimit" Type="money" Nullable="false" />
+    <Property Name="isApprover" Type="bit" Nullable="false" />
+    <Property Name="isAnalyst" Type="bit" Nullable="false" />
+    <Property Name="isLender" Type="bit" Nullable="false" />
+    <Property Name="isLoanProcessor" Type="bit" Nullable="false" />
+    <Property Name="isSuperUser" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userAccountSecurity">
+    <Key>
+      <PropertyRef Name="userAccountAccessId" />
+    </Key>
+    <Property Name="userAccountAccessId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="userId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="accountClassCode" Type="nvarchar" MaxLength="256" />
+    <Property Name="allowRead" Type="bit" Nullable="false" />
+    <Property Name="allowEdit" Type="bit" Nullable="false" />
+    <Property Name="allowAdd" Type="bit" Nullable="false" />
+    <Property Name="allowDelete" Type="bit" Nullable="false" />
+    <Property Name="allowDocRead" Type="bit" Nullable="false" />
+    <Property Name="allowDocEdit" Type="bit" Nullable="false" />
+    <Property Name="allowDocAdd" Type="bit" Nullable="false" />
+    <Property Name="allowDocDelete" Type="bit" Nullable="false" />
+    <Property Name="allowDocScan" Type="bit" Nullable="false" />
+    <Property Name="allowDocScanDelete" Type="bit" Nullable="false" />
+    <Property Name="allowDocUpload" Type="bit" Nullable="false" />
+    <Property Name="allowDocMoveCopy" Type="bit" Nullable="false" />
+    <Property Name="isAdmin" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userbanksecurity">
+    <Key>
+      <PropertyRef Name="bankSecurityId" />
+    </Key>
+    <Property Name="bankSecurityId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="bankId" Type="uniqueidentifier" />
+    <Property Name="userId" Type="uniqueidentifier" />
+    <Property Name="bankaccess" Type="int" />
+    <Property Name="employeefiles" Type="int" />
+  </EntityType>
+  <EntityType Name="userBranchSecurity">
+    <Key>
+      <PropertyRef Name="branchSecurityID" />
+    </Key>
+    <Property Name="branchSecurityID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="branchID" Type="uniqueidentifier" />
+    <Property Name="userID" Type="uniqueidentifier" />
+    <Property Name="dateCreated" Type="datetime" />
+    <Property Name="dateChanged" Type="datetime" />
+    <Property Name="changedBy" Type="char" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="userGroup">
+    <Key>
+      <PropertyRef Name="userGroupId" />
+    </Key>
+    <Property Name="userGroupId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="userGroupName" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="userGroupCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="isAnalystGroup" Type="bit" Nullable="false" />
+    <Property Name="isApproverGroup" Type="bit" Nullable="false" />
+    <Property Name="isLenderGroup" Type="bit" Nullable="false" />
+    <Property Name="isLoanProcessorGroup" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userGroup_user">
+    <Key>
+      <PropertyRef Name="userGroup_userId" />
+    </Key>
+    <Property Name="userGroup_userId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="userGroupId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="userId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'Acculoan.dbo.userProfile' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="userProfile">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="dasboardConfigXml" Type="text" />
+  </EntityType>
+  <Association Name="FK_actionAnalysisStatusFilter_actionEvent">
+    <End Role="actionEvent" Type="AcculoanModel.Store.actionEvent" Multiplicity="1" />
+    <End Role="actionAnalysisStatusFilter" Type="AcculoanModel.Store.actionAnalysisStatusFilter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actionEvent">
+        <PropertyRef Name="actionEventId" />
+      </Principal>
+      <Dependent Role="actionAnalysisStatusFilter">
+        <PropertyRef Name="actionEventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_actionAnalysisStatusFilter_creditAnalysisStatus">
+    <End Role="creditAnalysisStatus" Type="AcculoanModel.Store.creditAnalysisStatus" Multiplicity="1" />
+    <End Role="actionAnalysisStatusFilter" Type="AcculoanModel.Store.actionAnalysisStatusFilter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="creditAnalysisStatus">
+        <PropertyRef Name="creditAnalysisStatusId" />
+      </Principal>
+      <Dependent Role="actionAnalysisStatusFilter">
+        <PropertyRef Name="creditAnalysisStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_actionApplicationStatusFilter_actionEvent">
+    <End Role="actionEvent" Type="AcculoanModel.Store.actionEvent" Multiplicity="1" />
+    <End Role="actionApplicationStatusFilter" Type="AcculoanModel.Store.actionApplicationStatusFilter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actionEvent">
+        <PropertyRef Name="actionEventId" />
+      </Principal>
+      <Dependent Role="actionApplicationStatusFilter">
+        <PropertyRef Name="actionEventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_actionApplicationStatusFilter_loanStatus">
+    <End Role="loanStatus" Type="AcculoanModel.Store.loanStatus" Multiplicity="1" />
+    <End Role="actionApplicationStatusFilter" Type="AcculoanModel.Store.actionApplicationStatusFilter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loanStatus">
+        <PropertyRef Name="statusId" />
+      </Principal>
+      <Dependent Role="actionApplicationStatusFilter">
+        <PropertyRef Name="loanStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_actionApprovalStatusFilter_actionEvent">
+    <End Role="actionEvent" Type="AcculoanModel.Store.actionEvent" Multiplicity="1" />
+    <End Role="actionApprovalStatusFilter" Type="AcculoanModel.Store.actionApprovalStatusFilter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actionEvent">
+        <PropertyRef Name="actionEventId" />
+      </Principal>
+      <Dependent Role="actionApprovalStatusFilter">
+        <PropertyRef Name="actionEventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_actionApprovalStatusFilter_approvalStatus">
+    <End Role="approvalStatus" Type="AcculoanModel.Store.approvalStatus" Multiplicity="1" />
+    <End Role="actionApprovalStatusFilter" Type="AcculoanModel.Store.actionApprovalStatusFilter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="approvalStatus">
+        <PropertyRef Name="approvalStatusId" />
+      </Principal>
+      <Dependent Role="actionApprovalStatusFilter">
+        <PropertyRef Name="approvalStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_actionEventTimer_actionEvent">
+    <End Role="actionEvent" Type="AcculoanModel.Store.actionEvent" Multiplicity="1" />
+    <End Role="actionEventTimer" Type="AcculoanModel.Store.actionEventTimer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actionEvent">
+        <PropertyRef Name="actionEventId" />
+      </Principal>
+      <Dependent Role="actionEventTimer">
+        <PropertyRef Name="actionEventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_actionEventTimer_actionTimerDefinition">
+    <End Role="actionTimerDefinition" Type="AcculoanModel.Store.actionTimerDefinition" Multiplicity="1" />
+    <End Role="actionEventTimer" Type="AcculoanModel.Store.actionEventTimer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actionTimerDefinition">
+        <PropertyRef Name="actionTimerDefId" />
+      </Principal>
+      <Dependent Role="actionEventTimer">
+        <PropertyRef Name="actionTimerDefId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_actionTimer_actionTimerDefinition">
+    <End Role="actionTimerDefinition" Type="AcculoanModel.Store.actionTimerDefinition" Multiplicity="1" />
+    <End Role="actionTimer" Type="AcculoanModel.Store.actionTimer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actionTimerDefinition">
+        <PropertyRef Name="actionTimerDefId" />
+      </Principal>
+      <Dependent Role="actionTimer">
+        <PropertyRef Name="actionTimerDefId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_actionTimer_loanApplication">
+    <End Role="loanApplication" Type="AcculoanModel.Store.loanApplication" Multiplicity="1" />
+    <End Role="actionTimer" Type="AcculoanModel.Store.actionTimer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loanApplication">
+        <PropertyRef Name="loanApplicationId" />
+      </Principal>
+      <Dependent Role="actionTimer">
+        <PropertyRef Name="loanApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_auditDetail_auditHistory">
+    <End Role="auditHistory" Type="AcculoanModel.Store.auditHistory" Multiplicity="1" />
+    <End Role="auditDetail" Type="AcculoanModel.Store.auditDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="auditHistory">
+        <PropertyRef Name="auditId" />
+      </Principal>
+      <Dependent Role="auditDetail">
+        <PropertyRef Name="auditId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_auditDetail_customer">
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="1" />
+    <End Role="auditDetail" Type="AcculoanModel.Store.auditDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="auditDetail">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_auditDetail_loan">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="0..1" />
+    <End Role="auditDetail" Type="AcculoanModel.Store.auditDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="auditDetail">
+        <PropertyRef Name="loanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_auditHistory_bank">
+    <End Role="bank" Type="AcculoanModel.Store.bank" Multiplicity="0..1" />
+    <End Role="auditHistory" Type="AcculoanModel.Store.auditHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bank">
+        <PropertyRef Name="bankId" />
+      </Principal>
+      <Dependent Role="auditHistory">
+        <PropertyRef Name="bankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_branch_bank">
+    <End Role="bank" Type="AcculoanModel.Store.bank" Multiplicity="1" />
+    <End Role="branch" Type="AcculoanModel.Store.branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bank">
+        <PropertyRef Name="bankId" />
+      </Principal>
+      <Dependent Role="branch">
+        <PropertyRef Name="bankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_coborrower_customer">
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="1" />
+    <End Role="coborrower" Type="AcculoanModel.Store.coborrower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="coborrower">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_coborrower_loan">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="1" />
+    <End Role="coborrower" Type="AcculoanModel.Store.coborrower" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="coborrower">
+        <PropertyRef Name="loanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_collateral_loan_Collateral">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="1" />
+    <End Role="collateral" Type="AcculoanModel.Store.collateral" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="collateral">
+        <PropertyRef Name="collateralLoanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_collateral_loan_Parent">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="1" />
+    <End Role="collateral" Type="AcculoanModel.Store.collateral" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="collateral">
+        <PropertyRef Name="parentLoanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_collateralFields_loan">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="1" />
+    <End Role="collateralFields" Type="AcculoanModel.Store.collateralFields" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="collateralFields">
+        <PropertyRef Name="collateralId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_computation_documentDefinitions">
+    <End Role="documentDefinitions" Type="AcculoanModel.Store.documentDefinitions" Multiplicity="1" />
+    <End Role="computation" Type="AcculoanModel.Store.computation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentDefinitions">
+        <PropertyRef Name="documentDefId" />
+      </Principal>
+      <Dependent Role="computation">
+        <PropertyRef Name="docDefId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_computation_exceptionDefinition">
+    <End Role="exceptionDefinition" Type="AcculoanModel.Store.exceptionDefinition" Multiplicity="1" />
+    <End Role="computation" Type="AcculoanModel.Store.computation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exceptionDefinition">
+        <PropertyRef Name="exceptionDefId" />
+      </Principal>
+      <Dependent Role="computation">
+        <PropertyRef Name="exceptionDefId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_bank">
+    <End Role="bank" Type="AcculoanModel.Store.bank" Multiplicity="0..1" />
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bank">
+        <PropertyRef Name="bankId" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="bankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_branch">
+    <End Role="branch" Type="AcculoanModel.Store.branch" Multiplicity="0..1" />
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="branch">
+        <PropertyRef Name="branchId" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="customerBranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_customerType">
+    <End Role="customerType" Type="AcculoanModel.Store.customerType" Multiplicity="0..1" />
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customerType">
+        <PropertyRef Name="customerTypeId" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="customerTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customer_loanOfficer">
+    <End Role="loanOfficer" Type="AcculoanModel.Store.loanOfficer" Multiplicity="0..1" />
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loanOfficer">
+        <PropertyRef Name="officerId" />
+      </Principal>
+      <Dependent Role="customer">
+        <PropertyRef Name="customerOfficerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customerComments_customer">
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="0..1" />
+    <End Role="customerComments" Type="AcculoanModel.Store.customerComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="customerComments">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_customerFields_customer">
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="1" />
+    <End Role="customerFields" Type="AcculoanModel.Store.customerFields" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="customerFields">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_document_customer">
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="0..1" />
+    <End Role="document" Type="AcculoanModel.Store.document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="document">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_document_documentDefinitions">
+    <End Role="documentDefinitions" Type="AcculoanModel.Store.documentDefinitions" Multiplicity="0..1" />
+    <End Role="document" Type="AcculoanModel.Store.document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentDefinitions">
+        <PropertyRef Name="documentDefId" />
+      </Principal>
+      <Dependent Role="document">
+        <PropertyRef Name="documentDefId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_document_documentSubType">
+    <End Role="documentSubType" Type="AcculoanModel.Store.documentSubType" Multiplicity="0..1" />
+    <End Role="document" Type="AcculoanModel.Store.document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentSubType">
+        <PropertyRef Name="documentSubTypeId" />
+      </Principal>
+      <Dependent Role="document">
+        <PropertyRef Name="documentSubTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_document_documentType">
+    <End Role="documentType" Type="AcculoanModel.Store.documentType" Multiplicity="0..1" />
+    <End Role="document" Type="AcculoanModel.Store.document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentType">
+        <PropertyRef Name="documentTypeId" />
+      </Principal>
+      <Dependent Role="document">
+        <PropertyRef Name="documentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_document_loan">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="0..1" />
+    <End Role="document" Type="AcculoanModel.Store.document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="document">
+        <PropertyRef Name="loanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_document_tbl_remoteScanQueue">
+    <End Role="remoteScanQueue" Type="AcculoanModel.Store.remoteScanQueue" Multiplicity="0..1" />
+    <End Role="document" Type="AcculoanModel.Store.document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="remoteScanQueue">
+        <PropertyRef Name="remoteScanQueueId" />
+      </Principal>
+      <Dependent Role="document">
+        <PropertyRef Name="remoteScanQueueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentActivation_customer">
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="1" />
+    <End Role="documentActivation" Type="AcculoanModel.Store.documentActivation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="documentActivation">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentActivation_documentType">
+    <End Role="documentType" Type="AcculoanModel.Store.documentType" Multiplicity="0..1" />
+    <End Role="documentActivation" Type="AcculoanModel.Store.documentActivation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentType">
+        <PropertyRef Name="documentTypeId" />
+      </Principal>
+      <Dependent Role="documentActivation">
+        <PropertyRef Name="documentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentActivation_loan">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="0..1" />
+    <End Role="documentActivation" Type="AcculoanModel.Store.documentActivation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="documentActivation">
+        <PropertyRef Name="loanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentDefinitions_bank">
+    <End Role="bank" Type="AcculoanModel.Store.bank" Multiplicity="0..1" />
+    <End Role="documentDefinitions" Type="AcculoanModel.Store.documentDefinitions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bank">
+        <PropertyRef Name="bankId" />
+      </Principal>
+      <Dependent Role="documentDefinitions">
+        <PropertyRef Name="bankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentDefinitions_customerType">
+    <End Role="customerType" Type="AcculoanModel.Store.customerType" Multiplicity="0..1" />
+    <End Role="documentDefinitions" Type="AcculoanModel.Store.documentDefinitions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customerType">
+        <PropertyRef Name="customerTypeId" />
+      </Principal>
+      <Dependent Role="documentDefinitions">
+        <PropertyRef Name="customerTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentDefinitions_documentSubType">
+    <End Role="documentSubType" Type="AcculoanModel.Store.documentSubType" Multiplicity="0..1" />
+    <End Role="documentDefinitions" Type="AcculoanModel.Store.documentDefinitions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentSubType">
+        <PropertyRef Name="documentSubTypeId" />
+      </Principal>
+      <Dependent Role="documentDefinitions">
+        <PropertyRef Name="documentSubTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentDefinitions_documentType">
+    <End Role="documentType" Type="AcculoanModel.Store.documentType" Multiplicity="0..1" />
+    <End Role="documentDefinitions" Type="AcculoanModel.Store.documentDefinitions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentType">
+        <PropertyRef Name="documentTypeId" />
+      </Principal>
+      <Dependent Role="documentDefinitions">
+        <PropertyRef Name="documentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentDefinitions_loanType">
+    <End Role="loanType" Type="AcculoanModel.Store.loanType" Multiplicity="0..1" />
+    <End Role="documentDefinitions" Type="AcculoanModel.Store.documentDefinitions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loanType">
+        <PropertyRef Name="loanTypeId" />
+      </Principal>
+      <Dependent Role="documentDefinitions">
+        <PropertyRef Name="loanTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentSubType_documentType">
+    <End Role="documentType" Type="AcculoanModel.Store.documentType" Multiplicity="0..1" />
+    <End Role="documentSubType" Type="AcculoanModel.Store.documentSubType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentType">
+        <PropertyRef Name="documentTypeId" />
+      </Principal>
+      <Dependent Role="documentSubType">
+        <PropertyRef Name="documentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_documentTab_documentDef">
+    <End Role="documentDefinitions" Type="AcculoanModel.Store.documentDefinitions" Multiplicity="1" />
+    <End Role="documentTab" Type="AcculoanModel.Store.documentTab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="documentDefinitions">
+        <PropertyRef Name="documentDefId" />
+      </Principal>
+      <Dependent Role="documentTab">
+        <PropertyRef Name="documentDefId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exception_customer">
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="1" />
+    <End Role="exception" Type="AcculoanModel.Store.exception" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="exception">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exception_exceptionDefinition">
+    <End Role="exceptionDefinition" Type="AcculoanModel.Store.exceptionDefinition" Multiplicity="1" />
+    <End Role="exception" Type="AcculoanModel.Store.exception" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exceptionDefinition">
+        <PropertyRef Name="exceptionDefId" />
+      </Principal>
+      <Dependent Role="exception">
+        <PropertyRef Name="exceptionDefId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exception_loan">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="0..1" />
+    <End Role="exception" Type="AcculoanModel.Store.exception" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="exception">
+        <PropertyRef Name="loanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exception_user">
+    <End Role="user" Type="AcculoanModel.Store.user" Multiplicity="0..1" />
+    <End Role="exception" Type="AcculoanModel.Store.exception" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="exception">
+        <PropertyRef Name="assignedUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionCategory_bank">
+    <End Role="bank" Type="AcculoanModel.Store.bank" Multiplicity="1" />
+    <End Role="exceptionCategory" Type="AcculoanModel.Store.exceptionCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bank">
+        <PropertyRef Name="bankId" />
+      </Principal>
+      <Dependent Role="exceptionCategory">
+        <PropertyRef Name="bankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionComment_exception">
+    <End Role="exception" Type="AcculoanModel.Store.exception" Multiplicity="1" />
+    <End Role="exceptionComment" Type="AcculoanModel.Store.exceptionComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exception">
+        <PropertyRef Name="exceptionId" />
+      </Principal>
+      <Dependent Role="exceptionComment">
+        <PropertyRef Name="exceptionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionComment_user">
+    <End Role="user" Type="AcculoanModel.Store.user" Multiplicity="0..1" />
+    <End Role="exceptionComment" Type="AcculoanModel.Store.exceptionComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="exceptionComment">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionDefinition_bank">
+    <End Role="bank" Type="AcculoanModel.Store.bank" Multiplicity="1" />
+    <End Role="exceptionDefinition" Type="AcculoanModel.Store.exceptionDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bank">
+        <PropertyRef Name="bankId" />
+      </Principal>
+      <Dependent Role="exceptionDefinition">
+        <PropertyRef Name="bankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionDefinition_customerType">
+    <End Role="customerType" Type="AcculoanModel.Store.customerType" Multiplicity="0..1" />
+    <End Role="exceptionDefinition" Type="AcculoanModel.Store.exceptionDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customerType">
+        <PropertyRef Name="customerTypeId" />
+      </Principal>
+      <Dependent Role="exceptionDefinition">
+        <PropertyRef Name="customerTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionDefinition_exceptionCategory">
+    <End Role="exceptionCategory" Type="AcculoanModel.Store.exceptionCategory" Multiplicity="0..1" />
+    <End Role="exceptionDefinition" Type="AcculoanModel.Store.exceptionDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exceptionCategory">
+        <PropertyRef Name="categoryId" />
+      </Principal>
+      <Dependent Role="exceptionDefinition">
+        <PropertyRef Name="exceptionCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionDefinition_loanType">
+    <End Role="loanType" Type="AcculoanModel.Store.loanType" Multiplicity="0..1" />
+    <End Role="exceptionDefinition" Type="AcculoanModel.Store.exceptionDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loanType">
+        <PropertyRef Name="loanTypeId" />
+      </Principal>
+      <Dependent Role="exceptionDefinition">
+        <PropertyRef Name="loanTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionDefinition_PolicyDefinitions">
+    <End Role="PolicyDefinitions" Type="AcculoanModel.Store.PolicyDefinitions" Multiplicity="0..1" />
+    <End Role="exceptionDefinition" Type="AcculoanModel.Store.exceptionDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PolicyDefinitions">
+        <PropertyRef Name="PolicyId" />
+      </Principal>
+      <Dependent Role="exceptionDefinition">
+        <PropertyRef Name="PolicyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionDefinition_user">
+    <End Role="user" Type="AcculoanModel.Store.user" Multiplicity="0..1" />
+    <End Role="exceptionDefinition" Type="AcculoanModel.Store.exceptionDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="exceptionDefinition">
+        <PropertyRef Name="defaultAssignedUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionHistory_exception">
+    <End Role="exception" Type="AcculoanModel.Store.exception" Multiplicity="1" />
+    <End Role="exceptionHistory" Type="AcculoanModel.Store.exceptionHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="exception">
+        <PropertyRef Name="exceptionId" />
+      </Principal>
+      <Dependent Role="exceptionHistory">
+        <PropertyRef Name="exceptionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_exceptionHistory_user">
+    <End Role="user" Type="AcculoanModel.Store.user" Multiplicity="1" />
+    <End Role="exceptionHistory" Type="AcculoanModel.Store.exceptionHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="exceptionHistory">
+        <PropertyRef Name="changedByUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fieldDefGroup_accountClass">
+    <End Role="accountClass" Type="AcculoanModel.Store.accountClass" Multiplicity="0..1" />
+    <End Role="fieldDefGroup" Type="AcculoanModel.Store.fieldDefGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountClass">
+        <PropertyRef Name="accountClassId" />
+      </Principal>
+      <Dependent Role="fieldDefGroup">
+        <PropertyRef Name="accountClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fieldDefinition_accountClass">
+    <End Role="accountClass" Type="AcculoanModel.Store.accountClass" Multiplicity="0..1" />
+    <End Role="fieldDefinition" Type="AcculoanModel.Store.fieldDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="accountClass">
+        <PropertyRef Name="accountClassId" />
+      </Principal>
+      <Dependent Role="fieldDefinition">
+        <PropertyRef Name="accountClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fieldDefinition_fieldDefGroup">
+    <End Role="fieldDefGroup" Type="AcculoanModel.Store.fieldDefGroup" Multiplicity="1" />
+    <End Role="fieldDefinition" Type="AcculoanModel.Store.fieldDefinition" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="fieldDefGroup">
+        <PropertyRef Name="fieldDefGroupId" />
+      </Principal>
+      <Dependent Role="fieldDefinition">
+        <PropertyRef Name="fieldDefGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupsCustomers_customer">
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="0..1" />
+    <End Role="GroupsCustomers" Type="AcculoanModel.Store.GroupsCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="GroupsCustomers">
+        <PropertyRef Name="CustId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupsCustomers_RelatedEntityGroups">
+    <End Role="RelatedEntityGroups" Type="AcculoanModel.Store.RelatedEntityGroups" Multiplicity="0..1" />
+    <End Role="GroupsCustomers" Type="AcculoanModel.Store.GroupsCustomers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RelatedEntityGroups">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="GroupsCustomers">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loan_branch">
+    <End Role="branch" Type="AcculoanModel.Store.branch" Multiplicity="0..1" />
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="branch">
+        <PropertyRef Name="branchId" />
+      </Principal>
+      <Dependent Role="loan">
+        <PropertyRef Name="loanBranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loan_customer">
+    <End Role="customer" Type="AcculoanModel.Store.customer" Multiplicity="0..1" />
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="loan">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loan_loanOfficer">
+    <End Role="loanOfficer" Type="AcculoanModel.Store.loanOfficer" Multiplicity="0..1" />
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loanOfficer">
+        <PropertyRef Name="officerId" />
+      </Principal>
+      <Dependent Role="loan">
+        <PropertyRef Name="loanOfficerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loan_loanStatus">
+    <End Role="loanStatus" Type="AcculoanModel.Store.loanStatus" Multiplicity="0..1" />
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loanStatus">
+        <PropertyRef Name="statusId" />
+      </Principal>
+      <Dependent Role="loan">
+        <PropertyRef Name="loanStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loan_loanType">
+    <End Role="loanType" Type="AcculoanModel.Store.loanType" Multiplicity="0..1" />
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loanType">
+        <PropertyRef Name="loanTypeId" />
+      </Principal>
+      <Dependent Role="loan">
+        <PropertyRef Name="loanTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loanComments_loan">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="0..1" />
+    <End Role="loanComments" Type="AcculoanModel.Store.loanComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="loanComments">
+        <PropertyRef Name="loanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loanComments_user">
+    <End Role="user" Type="AcculoanModel.Store.user" Multiplicity="0..1" />
+    <End Role="loanComments" Type="AcculoanModel.Store.loanComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="loanComments">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loanFields_loan">
+    <End Role="loan" Type="AcculoanModel.Store.loan" Multiplicity="1" />
+    <End Role="loanFields" Type="AcculoanModel.Store.loanFields" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="loan">
+        <PropertyRef Name="loanId" />
+      </Principal>
+      <Dependent Role="loanFields">
+        <PropertyRef Name="loanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loanOfficer_bank">
+    <End Role="bank" Type="AcculoanModel.Store.bank" Multiplicity="0..1" />
+    <End Role="loanOfficer" Type="AcculoanModel.Store.loanOfficer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bank">
+        <PropertyRef Name="bankId" />
+      </Principal>
+      <Dependent Role="loanOfficer">
+        <PropertyRef Name="bankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_remoteScanFolders_Tbl_commTrunk">
+    <End Role="remoteScanCommTrunk" Type="AcculoanModel.Store.remoteScanCommTrunk" Multiplicity="0..1" />
+    <End Role="remoteScanFolders" Type="AcculoanModel.Store.remoteScanFolders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="remoteScanCommTrunk">
+        <PropertyRef Name="commTrunkId" />
+      </Principal>
+      <Dependent Role="remoteScanFolders">
+        <PropertyRef Name="commTrunkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_scanStation_tbl_remoteScanFolders">
+    <End Role="remoteScanFolders" Type="AcculoanModel.Store.remoteScanFolders" Multiplicity="0..1" />
+    <End Role="remoteScanStation" Type="AcculoanModel.Store.remoteScanStation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="remoteScanFolders">
+        <PropertyRef Name="remoteScanFoldersId" />
+      </Principal>
+      <Dependent Role="remoteScanStation">
+        <PropertyRef Name="remoteScanFoldersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_loanOfficer">
+    <End Role="loanOfficer" Type="AcculoanModel.Store.loanOfficer" Multiplicity="0..1" />
+    <End Role="user" Type="AcculoanModel.Store.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loanOfficer">
+        <PropertyRef Name="officerId" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="loanOfficerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userbanksecurity_bank">
+    <End Role="bank" Type="AcculoanModel.Store.bank" Multiplicity="0..1" />
+    <End Role="userbanksecurity" Type="AcculoanModel.Store.userbanksecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bank">
+        <PropertyRef Name="bankId" />
+      </Principal>
+      <Dependent Role="userbanksecurity">
+        <PropertyRef Name="bankId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userbanksecurity_user">
+    <End Role="user" Type="AcculoanModel.Store.user" Multiplicity="0..1" />
+    <End Role="userbanksecurity" Type="AcculoanModel.Store.userbanksecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="userbanksecurity">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userBranchSecurity_branch">
+    <End Role="branch" Type="AcculoanModel.Store.branch" Multiplicity="0..1" />
+    <End Role="userBranchSecurity" Type="AcculoanModel.Store.userBranchSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="branch">
+        <PropertyRef Name="branchId" />
+      </Principal>
+      <Dependent Role="userBranchSecurity">
+        <PropertyRef Name="branchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userBranchSecurity_user">
+    <End Role="user" Type="AcculoanModel.Store.user" Multiplicity="0..1" />
+    <End Role="userBranchSecurity" Type="AcculoanModel.Store.userBranchSecurity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="userBranchSecurity">
+        <PropertyRef Name="userID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'Acculoan.dbo.userDashboard' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="userDashboard">
+        <Property Name="preferenceId" Type="uniqueidentifier" />
+        <Property Name="userId" Type="uniqueidentifier" />
+        <Property Name="pageNumber" Type="smallint" />
+        <Property Name="panelNumber" Type="smallint" />
+        <Property Name="module" Type="nvarchar" MaxLength="50" />
+      </EntityType>-->
+</Schema>

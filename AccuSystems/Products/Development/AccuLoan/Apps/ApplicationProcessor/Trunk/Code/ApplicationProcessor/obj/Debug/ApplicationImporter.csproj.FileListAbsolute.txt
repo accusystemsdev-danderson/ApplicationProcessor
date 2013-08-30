@@ -1,0 +1,11 @@
+c:\users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\ApplicationImporter.exe.config
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\ApplicationImporter.exe
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\ApplicationImporter.pdb
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\obj\Debug\ApplicationImporter.exe
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\obj\Debug\ApplicationImporter.pdb
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\config.xml
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\Schema.ini
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\test.csv
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\EntityFramework.dll
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\EntityFramework.xml
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\obj\Debug\ApplicationImporter.csprojResolveAssemblyReference.cache

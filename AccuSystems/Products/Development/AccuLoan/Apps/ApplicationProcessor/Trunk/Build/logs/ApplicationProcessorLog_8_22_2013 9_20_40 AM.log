@@ -1,0 +1,54 @@
+8/22/2013 9:20:40 AM AccuAccount - Application Processor: Decision Pro started
+
+8/22/2013 9:20:40 AM Reading all properties of the ApplicationProcessor.Configuration object
+
+8/22/2013 9:20:40 AM Property Read: LogFolder - Value: logs\
+8/22/2013 9:20:40 AM Property Read: DaysToKeepLogs - Value: 14
+8/22/2013 9:20:40 AM Property Read: PathToDBXML - Value: c:\accusystems\config\db.xml
+8/22/2013 9:20:40 AM Property Read: FieldMapFile - Value: FieldMappings.xml
+8/22/2013 9:20:40 AM Property Read: OutputFile - Value: acculoan.xml
+8/22/2013 9:20:40 AM Property Read: RulesFile - Value: Rules.xml
+8/22/2013 9:20:40 AM Property Read: SourceDelimitedSQLXML - Value: delimited
+8/22/2013 9:20:40 AM Property Read: SourceFile - Value: test.csv
+
+8/22/2013 9:20:40 AM Finished reading properties
+
+
+8/22/2013 9:20:40 AM Reading all properties of the ApplicationProcessor.FieldMapper object
+
+8/22/2013 9:20:40 AM Property Read: customerNameMappedField - Value: Last_Name
+8/22/2013 9:20:40 AM Property Read: customerNumberMappedField - Value: CIF_ID
+8/22/2013 9:20:40 AM Property Read: taxIdMappedField - Value: SSN
+8/22/2013 9:20:40 AM Property Read: customerBranchMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: loanNumberMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: loanStatusMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: loanAmountMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: loanOrigDateMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: applicationDateMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: creditAnalysisStatusMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: requestedAmountMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: primaryCollateralValueMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: FICOMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: valuationDateMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: interestRateMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: probabilityMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: estimatedCloseDateMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: assignedLenderMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: assignedLenderTypeMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: assignedAnalystMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: assignedAnalystTypeMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: assignedLoanProcessorMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: assignedLoanProcessorTypeMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: applicationLockedMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: approvalStatusMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: originatingUserMappedField - Value: 
+8/22/2013 9:20:40 AM Property Read: assignedApproverMappedField - Value: 
+
+8/22/2013 9:20:40 AM Finished reading properties
+
+8/22/2013 9:20:40 AM Retrieving Source Data
+8/22/2013 9:20:40 AM Mapping Source Data to MappedTable
+8/22/2013 9:20:40 AM Processing MTEs
+8/22/2013 9:20:40 AM Connection String: metadata=res://*/AccuLoanDBModel.csdl|res://*/AccuLoanDBModel.ssdl|res://*/AccuLoanDBModel.msl;provider=System.Data.SqlClient;provider connection string='data source=accusys-laptp10\accusystems;initial catalog=acculoan;user id=accusystems;password=accusystems;MultipleActiveResultSets=True;App=EntityFramework'
+8/22/2013 9:20:41 AM Applying Rules
+8/22/2013 9:20:41 AM Writing XML File for Importer

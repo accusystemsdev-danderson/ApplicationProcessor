@@ -1,0 +1,16 @@
+8/25/2013 10:33:28 PM AccuAccount - Application Processor: Decision Pro started
+
+8/25/2013 10:33:28 PM Reading all properties of the ApplicationProcessor.Configuration object
+
+8/25/2013 10:33:28 PM Property Read: LogFolder - Value: logs\
+8/25/2013 10:33:28 PM Property Read: DaysToKeepLogs - Value: 14
+8/25/2013 10:33:28 PM Property Read: PathToDBXML - Value: c:\accusystems\config\db.xml
+8/25/2013 10:33:28 PM Property Read: FieldMapFile - Value: FieldMappings.xml
+8/25/2013 10:33:28 PM Property Read: OutputFile - Value: acculoan.xml
+8/25/2013 10:33:28 PM Property Read: RulesFile - Value: Rules.xml
+8/25/2013 10:33:28 PM Property Read: SourceDelimitedSQLXML - Value: delimited
+8/25/2013 10:33:28 PM Property Read: SourceFile - Value: test.csv
+8/25/2013 10:33:28 PM Property Read: CollateralsYN - Value: Y
+
+8/25/2013 10:33:28 PM Finished reading properties
+

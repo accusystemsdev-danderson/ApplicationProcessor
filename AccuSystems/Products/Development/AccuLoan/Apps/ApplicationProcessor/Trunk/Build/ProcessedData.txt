@@ -1,0 +1,72 @@
+<AccuSystems>
+  <customer>
+    <customerNumber>123456789</customerNumber>
+    <customerName>Last</customerName>
+    <taxId>987654321</taxId>
+    <customerBranch>0</customerBranch>
+    <loan>
+      <loanNumber />
+      <loannStatus />
+      <loannAmount />
+      <loannOrigDate />
+      <application>
+        <applicationDate />
+        <creditAnalysisStatus />
+        <requestedAmount />
+        <primaryCollateralValue />
+        <FICO />
+        <valuationDate />
+        <interestRate />
+        <probability />
+        <estimatedCloseDate />
+        <assignedLender />
+        <assignedLenderType />
+        <assignedAnalyst />
+        <assignedAnalystType />
+        <assignedLoanProcessor />
+        <assignedLoanProcessorType />
+        <applicationLocked />
+        <approval>
+          <approvalStatus />
+          <originatingUser />
+          <assignedApprover />
+        </approval>
+      </application>
+    </loan>
+  </customer>
+  <customer>
+    <customerNumber>111223333</customerNumber>
+    <customerName>Last2</customerName>
+    <taxId>222334444</taxId>
+    <customerBranch>0</customerBranch>
+    <loan>
+      <loanNumber />
+      <loannStatus />
+      <loannAmount />
+      <loannOrigDate />
+      <application>
+        <applicationDate />
+        <creditAnalysisStatus />
+        <requestedAmount />
+        <primaryCollateralValue />
+        <FICO />
+        <valuationDate />
+        <interestRate />
+        <probability />
+        <estimatedCloseDate />
+        <assignedLender />
+        <assignedLenderType />
+        <assignedAnalyst />
+        <assignedAnalystType />
+        <assignedLoanProcessor />
+        <assignedLoanProcessorType />
+        <applicationLocked />
+        <approval>
+          <approvalStatus />
+          <originatingUser />
+          <assignedApprover />
+        </approval>
+      </application>
+    </loan>
+  </customer>
+</AccuSystems>
