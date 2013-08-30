@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ec495f3d7dbf46c9b44d3d8069bc4c29" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="AcculoanModel.accountClass" Width="1.5" PointX="5.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.AccuLog" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.accusystemsProperty" Width="1.5" PointX="7.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.actionAnalysisStatusFilter" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.actionApplicationStatusFilter" Width="1.5" PointX="18.5" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.actionApprovalStatusFilter" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.actionEvent" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.actionEventTimer" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.actionTimer" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.actionTimerDefinition" Width="1.5" PointX="0.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.activitySummary" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.alternateBarcodeMap" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.appFunctionList" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.approval" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.approvalStatu" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.auditDetail" Width="1.5" PointX="5.25" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.auditDocumentDetail" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.auditHistory" Width="1.5" PointX="3" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.bank" Width="1.5" PointX="0.75" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.borrowerType" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.branch" Width="1.5" PointX="3" PointY="37" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.classCode" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.coborrower" Width="1.5" PointX="13.5" PointY="45" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.collateral" Width="1.5" PointX="20.75" PointY="50.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.collateralCode" Width="1.5" PointX="13.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.collateralField" Width="1.5" PointX="20.75" PointY="53.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.collCode" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.computation" Width="1.5" PointX="15.75" PointY="52.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.conditionStatu" Width="1.5" PointX="11.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.contact" Width="1.5" PointX="13.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.contactType" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.creditAnalysisStatu" Width="1.5" PointX="0.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.creditClassification" Width="1.5" PointX="14.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.customer" Width="1.5" PointX="8.25" PointY="38" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.customerComment" Width="1.5" PointX="10.5" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.customerField" Width="1.5" PointX="10.5" PointY="61.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.customerStatu" Width="1.5" PointX="6.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.customerType" Width="1.5" PointX="6" PointY="46.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.declinedReason" Width="1.5" PointX="15.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.declinedReason_Old" Width="1.5" PointX="15.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.dh2" Width="1.5" PointX="15.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.dhbackup" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.document" Width="1.5" PointX="16.5" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.documentActivation" Width="1.5" PointX="13.5" PointY="40.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.documentDefinition" Width="1.5" PointX="6" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.documentDependantTask" Width="1.5" PointX="2.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.documenthistory" Width="1.5" PointX="8.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.documentSubType" Width="1.5" PointX="3.75" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.documentTab" Width="1.5" PointX="8.25" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.documentTabAccountSecurity" Width="1.5" PointX="10.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.documentType" Width="1.5" PointX="11.25" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.documentUpload" Width="1.5" PointX="5.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.dtproperty" Width="1.5" PointX="17.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.exceptedDocument" Width="1.5" PointX="17.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.exception" Width="1.5" PointX="12.75" PointY="48.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.exceptionCategory" Width="1.5" PointX="3" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.exceptionComment" Width="1.5" PointX="15" PointY="56.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.exceptionDefinition" Width="1.5" PointX="10.5" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.exceptionHistory" Width="1.5" PointX="21" PointY="47.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.exceptionIgnoreLoanStatu" Width="1.5" PointX="17.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.fieldDefGroup" Width="1.5" PointX="8" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.fieldDefinition" Width="1.5" PointX="10.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.GroupsCustomer" Width="1.5" PointX="15.5" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.ImportLog" Width="1.5" PointX="17.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.IntegratedSession" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.loan" Width="1.5" PointX="18.5" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.loanApplication" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.loanApplicationCondition" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.loanApplicationHistory" Width="1.5" PointX="12.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.loanComment" Width="1.5" PointX="23.75" PointY="52.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.loanField" Width="1.5" PointX="20.75" PointY="59.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.loanOfficer" Width="1.5" PointX="3" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.loanStatu" Width="1.5" PointX="16.25" PointY="59.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.loanType" Width="1.5" PointX="16.25" PointY="63.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.MTE_List" Width="1.5" PointX="19.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.naicsCode" Width="1.5" PointX="19.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.noticeLetter" Width="1.5" PointX="19.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.noticeParagraph" Width="1.5" PointX="14.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.noticesToBeSent" Width="1.5" PointX="19.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.noticeType" Width="1.5" PointX="16.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.PolicyDefinition" Width="1.5" PointX="8.25" PointY="55.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.purposeCode" Width="1.5" PointX="18.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.region" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.RelatedEntityGroup" Width="1.5" PointX="13.25" PointY="60" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.remoteScanCommTrunk" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.remoteScanFolder" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.remoteScanQueue" Width="1.5" PointX="14.25" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.remoteScanStation" Width="1.5" PointX="10.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.remoteScanStatu" Width="1.5" PointX="20.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.reportProperty" Width="1.5" PointX="20.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.scanIssue" Width="1.5" PointX="21.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.sysdiagram" Width="1.5" PointX="21.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.tempGroupsCustomer" Width="1.5" PointX="10.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.tempNoticeSelection" Width="1.5" PointX="21.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.tmp_importData" Width="1.5" PointX="22.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.typeCode" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.user" Width="1.5" PointX="5.25" PointY="52.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.userAccountSecurity" Width="1.5" PointX="2.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.userbanksecurity" Width="1.5" PointX="10.5" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.userBranchSecurity" Width="1.5" PointX="10.5" PointY="46.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.userGroup" Width="1.5" PointX="4.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.userGroup_user" Width="1.5" PointX="22.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcculoanModel.userProfile" Width="1.5" PointX="6.75" PointY="22.75" IsExpanded="true" />
+        <AssociationConnector Association="AcculoanModel.FK_fieldDefGroup_accountClass" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_fieldDefinition_accountClass" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionAnalysisStatusFilter_actionEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionAnalysisStatusFilter_creditAnalysisStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionApplicationStatusFilter_actionEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionApplicationStatusFilter_loanStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionApprovalStatusFilter_actionEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionApprovalStatusFilter_approvalStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionEventTimer_actionEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionEventTimer_actionTimerDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionTimer_actionTimerDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_actionTimer_loanApplication" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_auditDetail_auditHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_auditDetail_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_auditDetail_loan" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_auditHistory_bank" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_branch_bank" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_customer_bank" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentDefinitions_bank" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionCategory_bank" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionDefinition_bank" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_loanOfficer_bank" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_userbanksecurity_bank" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_customer_branch" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_loan_branch" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_userBranchSecurity_branch" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_coborrower_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_coborrower_loan" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_collateral_loan_Collateral" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_collateral_loan_Parent" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_collateralFields_loan" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_computation_documentDefinitions" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_computation_exceptionDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_customer_customerType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_customer_loanOfficer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_customerComments_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_customerFields_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_document_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentActivation_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exception_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_GroupsCustomers_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_loan_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentDefinitions_customerType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionDefinition_customerType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_document_documentDefinitions" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_document_documentSubType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_document_documentType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_document_loan" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_document_tbl_remoteScanQueue" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentActivation_documentType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentActivation_loan" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentDefinitions_documentSubType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentDefinitions_documentType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentDefinitions_loanType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentTab_documentDef" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_documentSubType_documentType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exception_exceptionDefinition" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exception_loan" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exception_user" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionComment_exception" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionHistory_exception" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionDefinition_exceptionCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionComment_user" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionDefinition_loanType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionDefinition_PolicyDefinitions" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionDefinition_user" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_exceptionHistory_user" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_fieldDefinition_fieldDefGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_GroupsCustomers_RelatedEntityGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_loan_loanOfficer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_loan_loanStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_loan_loanType" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_loanComments_loan" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_loanFields_loan" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_loanComments_user" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_user_loanOfficer" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_tbl_remoteScanFolders_Tbl_commTrunk" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_tbl_scanStation_tbl_remoteScanFolders" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_userbanksecurity_user" ManuallyRouted="false" />
+        <AssociationConnector Association="AcculoanModel.FK_userBranchSecurity_user" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{35796AF4-2B0B-47C5-8769-C8819C3D5908}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ApplicationProcessor</RootNamespace>
+    <AssemblyName>ApplicationProcessor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="accountClass.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccuLoanDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccuLoanDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccuLoanDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccuLoanDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccuLoanDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AccuLog.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="accusystemsProperty.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="actionAnalysisStatusFilter.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="actionApplicationStatusFilter.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="actionApprovalStatusFilter.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="actionEvent.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="actionEventTimer.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="actionTimer.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="actionTimerDefinition.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="activitySummary.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="alternateBarcodeMap.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="appFunctionList.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="approval.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="approvalStatu.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="auditDetail.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="auditDocumentDetail.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="auditHistory.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="bank.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="borrowerType.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="branch.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RulesProcessor.cs" />
+    <Compile Include="classCode.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="coborrower.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="collateral.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="collateralCode.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="collateralField.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="collCode.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="computation.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="conditionStatu.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="contact.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contactType.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creditAnalysisStatu.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="creditClassification.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="customer.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="customerComment.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="customerField.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="customerStatu.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="customerType.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="declinedReason.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="declinedReason_Old.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dh2.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dhbackup.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="document.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentActivation.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentDefinition.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentDependantTask.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documenthistory.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentSubType.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentTab.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentTabAccountSecurity.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentType.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="documentUpload.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dtproperty.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exceptedDocument.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exception.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exceptionCategory.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exceptionComment.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exceptionDefinition.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exceptionHistory.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="exceptionIgnoreLoanStatu.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fieldDefGroup.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="fieldDefinition.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FieldMapper.cs" />
+    <Compile Include="FileProcessor.cs" />
+    <Compile Include="GroupsCustomer.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImportLog.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IntegratedSession.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loan.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loanApplication.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loanApplicationCondition.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loanApplicationHistory.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loanComment.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loanField.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loanOfficer.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loanStatu.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="loanType.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LogWriter.cs" />
+    <Compile Include="MTEProcessor.cs" />
+    <Compile Include="MTE_List.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="naicsCode.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="noticeLetter.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="noticeParagraph.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="noticesToBeSent.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="noticeType.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolicyDefinition.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessedDataWriter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="purposeCode.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="region.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RelatedEntityGroup.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="remoteScanCommTrunk.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="remoteScanFolder.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="remoteScanQueue.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="remoteScanStation.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="remoteScanStatu.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="reportProperty.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scanIssue.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tempGroupsCustomer.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tempNoticeSelection.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tmp_importData.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="typeCode.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userAccountSecurity.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userbanksecurity.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userBranchSecurity.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userGroup.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userGroup_user.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userProfile.cs">
+      <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="AccuLoanDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AccuLoanDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AccuLoanDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AccuLoanDBModel.edmx</DependentUpon>
+      <LastGenOutput>AccuLoanDBModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="AccuLoanDBModel.edmx.diagram">
+      <DependentUpon>AccuLoanDBModel.edmx</DependentUpon>
+    </None>
+    <None Include="AccuLoanDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AccuLoanDBModel.edmx</DependentUpon>
+      <LastGenOutput>AccuLoanDBModel.cs</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Schema.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="config_template.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ToDo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

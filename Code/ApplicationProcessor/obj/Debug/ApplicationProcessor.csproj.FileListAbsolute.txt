@@ -1,0 +1,32 @@
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\ApplicationImporter.exe.config
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\obj\Debug\ApplicationImporter.exe
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\obj\Debug\ApplicationImporter.pdb
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\obj\Debug\ApplicationProcessor.csprojResolveAssemblyReference.cache
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\config.xml
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\Schema.ini
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\test.csv
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\ApplicationImporter.exe
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\ApplicationImporter.pdb
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\EntityFramework.dll
+C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\EntityFramework.xml
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\Schema.ini
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\test.csv
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\EntityFramework.dll
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\EntityFramework.xml
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\obj\Debug\ApplicationProcessor.csprojResolveAssemblyReference.cache
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\ApplicationProcessor.exe.config
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\ApplicationProcessor.exe
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\ApplicationProcessor.pdb
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\obj\Debug\ApplicationProcessor.exe
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\obj\Debug\ApplicationProcessor.pdb
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\config_template.xml
+C:\Development\ApplicationProcessor\ApplicationProcessor\bin\Debug\ApplicationProcessor.exe.config
+C:\Development\ApplicationProcessor\ApplicationProcessor\obj\Debug\ApplicationProcessor.exe
+C:\Development\ApplicationProcessor\ApplicationProcessor\obj\Debug\ApplicationProcessor.pdb
+C:\Development\build\ApplicationProcessor.exe.config
+C:\Development\build\config_template.xml
+C:\Development\build\Schema.ini
+C:\Development\build\test.csv
+C:\Development\build\ApplicationProcessor.exe
+C:\Development\build\ApplicationProcessor.pdb
+C:\Development\ApplicationProcessor\ApplicationProcessor\obj\Debug\ApplicationProcessor.csprojResolveAssemblyReference.cache

@@ -1,0 +1,11 @@
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\bin\Release\Config.exe.config
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\bin\Release\Config.exe
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\bin\Release\Config.pdb
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Release\Config.csprojResolveAssemblyReference.cache
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Release\Config.FormMain.resources
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Release\Config.FormRules.resources
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Release\Config.FormSettings.resources
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Release\Config.Properties.Resources.resources
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Release\Config.csproj.GenerateResource.Cache
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Release\Config.exe
+C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Release\Config.pdb

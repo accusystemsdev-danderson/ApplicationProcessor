@@ -1,0 +1,112 @@
+<AccuSystems>
+  <customer>
+    <customerNumber>111223333</customerNumber>
+    <customerName>Last1 First1 M</customerName>
+    <taxId>111223333</taxId>
+    <customerBranch>0</customerBranch>
+    <customerOfficerCode>AKM</customerOfficerCode>
+    <loan>
+      <loanNumber>APP_27</loanNumber>
+      <customerNumber>111223333</customerNumber>
+      <accountClass>loan</accountClass>
+      <loanTypeCode>L_INDIRECT</loanTypeCode>
+      <loanStatusCode />
+      <loanAmount />
+      <loanOriginationDate />
+      <loanDescription />
+      <borrowerType />
+      <owningCustomerNumber />
+      <application>
+        <applicationDate>7/20/2013</applicationDate>
+        <creditAnalysisStatus />
+        <requestedAmount>25000</requestedAmount>
+        <primaryCollateralValue />
+        <FICO />
+        <valuationDate />
+        <interestRate />
+        <probability />
+        <estimatedCloseDate />
+        <assignedLender
+          type="">12345</assignedLender>
+        <assignedAnalyst
+          type=""></assignedAnalyst>
+        <assignedLoanProcessor
+          type=""></assignedLoanProcessor>
+        <applicationLocked />
+        <approval>
+          <approvalStatus>APR1</approvalStatus>
+          <originatingUser>0b9b1643-0233-4708-af2e-83cfb02b5064</originatingUser>
+          <assignedApprover />
+          <assignedApprover
+            type=""></assignedApprover>
+        </approval>
+      </application>
+    </loan>
+    <loan>
+      <loanNumber>27_001</loanNumber>
+      <customerNumber>111223333</customerNumber>
+      <accountClass>loan</accountClass>
+      <loanTypeCode>L_coll_titledIND</loanTypeCode>
+      <parentLoanNumber>27</parentLoanNumber>
+      <loanStatusCode />
+      <loanAmount />
+      <loanOriginationDate />
+      <loanDescription>2013 Dodge Durango</loanDescription>
+    </loan>
+  </customer>
+  <customer>
+    <customerNumber>131313131</customerNumber>
+    <customerName>Last3 First3 D</customerName>
+    <taxId>131313131</taxId>
+    <customerBranch>0</customerBranch>
+    <customerOfficerCode>AKM</customerOfficerCode>
+    <loan>
+      <loanNumber>APP_54321</loanNumber>
+      <customerNumber>131313131</customerNumber>
+      <accountClass>loan</accountClass>
+      <loanTypeCode>L_INDIRECT</loanTypeCode>
+      <loanStatusCode />
+      <loanAmount />
+      <loanOriginationDate />
+      <loanDescription />
+      <borrowerType />
+      <owningCustomerNumber />
+      <application>
+        <applicationDate>7/20/2013</applicationDate>
+        <creditAnalysisStatus />
+        <requestedAmount>25000</requestedAmount>
+        <primaryCollateralValue />
+        <FICO />
+        <valuationDate />
+        <interestRate />
+        <probability />
+        <estimatedCloseDate />
+        <assignedLender
+          type="">12345</assignedLender>
+        <assignedAnalyst
+          type=""></assignedAnalyst>
+        <assignedLoanProcessor
+          type=""></assignedLoanProcessor>
+        <applicationLocked />
+        <approval>
+          <approvalStatus>APR1</approvalStatus>
+          <originatingUser>0b9b1643-0233-4708-af2e-83cfb02b5064</originatingUser>
+          <assignedApprover />
+          <assignedApprover
+            type=""></assignedApprover>
+        </approval>
+      </application>
+    </loan>
+    <loan>
+      <loanNumber>54321_001</loanNumber>
+      <customerNumber>131313131</customerNumber>
+      <accountClass>loan</accountClass>
+      <loanTypeCode>L_coll_titledIND</loanTypeCode>
+      <parentLoanNumber>54321</parentLoanNumber>
+      <loanStatusCode />
+      <loanAmount />
+      <loanOriginationDate />
+      <loanDescription>2013 Dodge Durango</loanDescription>
+    </loan>
+  </customer>
+</AccuSystems>
