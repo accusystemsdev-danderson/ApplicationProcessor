@@ -10,15 +10,6 @@
     Parameter3="" />
   <Rule
     Sequence="2"
-    Field="loanNumber"
-    Operator="Has no Value"
-    Value=""
-    Action="Set Value to:"
-    Parameter1="15"
-    Parameter2=""
-    Parameter3="" />
-  <Rule
-    Sequence="3"
     Field="borrowerType"
     Operator="="
     Value="Borrower"
@@ -27,12 +18,21 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="4"
+    Sequence="3"
     Field="borrowerType"
     Operator="="
     Value="Co-Borrower"
     Action="Set Value to:"
     Parameter1="C"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="4"
+    Field="loanNumber"
+    Operator="Always"
+    Value=""
+    Action="Prepend field with text"
+    Parameter1="APP"
     Parameter2=""
     Parameter3="" />
   <Rule
@@ -55,24 +55,6 @@
     Parameter3="" />
   <Rule
     Sequence="7"
-    Field="collateralLoanNumber"
-    Operator="Always"
-    Value=""
-    Action="Set Value to field:"
-    Parameter1="loanNumber"
-    Parameter2=""
-    Parameter3="" />
-  <Rule
-    Sequence="8"
-    Field="collateralLoanNumber"
-    Operator="Always"
-    Value=""
-    Action="Append field with text"
-    Parameter1="_001"
-    Parameter2=""
-    Parameter3="" />
-  <Rule
-    Sequence="9"
     Field="parentLoanNumber"
     Operator="Always"
     Value=""
@@ -81,7 +63,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="10"
+    Sequence="8"
     Field="accountClass"
     Operator="Always"
     Value=""
@@ -90,7 +72,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="11"
+    Sequence="9"
     Field="originatingUser"
     Operator="Always"
     Value=""
@@ -99,7 +81,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="12"
+    Sequence="10"
     Field="originatingUser"
     Operator="Always"
     Value=""
@@ -108,7 +90,7 @@
     Parameter2="userLogin"
     Parameter3="userId" />
   <Rule
-    Sequence="13"
+    Sequence="11"
     Field="customerOfficerCode"
     Operator="Always"
     Value=""
@@ -117,7 +99,7 @@
     Parameter2=" "
     Parameter3="" />
   <Rule
-    Sequence="14"
+    Sequence="12"
     Field="customerOfficerCode"
     Operator="Always"
     Value=""
@@ -126,7 +108,7 @@
     Parameter2="officerName"
     Parameter3="officerCode" />
   <Rule
-    Sequence="15"
+    Sequence="13"
     Field="approvalStatus"
     Operator="Always"
     Value=""
@@ -135,7 +117,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="16"
+    Sequence="14"
     Field="applicationDate"
     Operator="Always"
     Value=""
@@ -144,12 +126,39 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="17"
-    Field="loanNumber"
+    Sequence="15"
+    Field="collateralAddenda"
     Operator="Always"
     Value=""
-    Action="Prepend field with text"
-    Parameter1="APP_"
+    Action="Next Collateral Number"
+    Parameter1=""
     Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="16"
+    Field="collateralLoanNumber"
+    Operator="Always"
+    Value=""
+    Action="Set Value to field:"
+    Parameter1="parentLoanNumber"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="17"
+    Field="collateralLoanNumber"
+    Operator="Always"
+    Value=""
+    Action="Append field with text"
+    Parameter1="_"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="18"
+    Field="collateralLoanNumber"
+    Operator="Always"
+    Value=""
+    Action="Combine fields no space"
+    Parameter1="collateralLoanNumber"
+    Parameter2="collateralAddenda"
     Parameter3="" />
 </ApplicationRules>

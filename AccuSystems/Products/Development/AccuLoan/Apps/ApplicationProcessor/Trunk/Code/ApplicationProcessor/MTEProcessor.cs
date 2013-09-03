@@ -18,19 +18,32 @@ namespace ApplicationProcessor
         public FieldMapper FieldMap { get; set; } 
         private AcculoanDBEntities db { get; set; }
 
-        public void processMTEs()
+        public bool processMTEs()
         {
-            string connectionString = setupDBConnectionString();
-
-            db = new AcculoanDBEntities(connectionString);
-            
+            bool success = false;
+            db = new AcculoanDBEntities(Config.dbConnectionString);
+            try
+            {
+                if (!db.Database.Exists())
+                {
+                    LogFile.LogMessage("Unable to connect to database");
+                    return success;
+                }
+            }
+            catch (Exception e)
+            {
+                LogFile.LogMessage(e.ToString());
+                LogFile.LogMessage();
+                LogFile.LogMessage("Unable to connect to database");
+                return success;
+            }
             foreach (DataRow row in TableToProcess.Rows)
             {
                 string customerNumber = row[FieldMap.customerNumberFieldName].ToString();
                 string customerName = row[FieldMap.customerNameFieldName].ToString();
                 string customerTaxID = row[FieldMap.taxIdFieldName].ToString();
 
-                //Check to see if any customes exist that share the same taxID, but under a different name
+                //Check to see if any customers exist that share the same taxID, but under a different name
                 int DupTaxIDs = (from M in db.customers
                                  where M.TaxId == customerTaxID && M.customerName != customerName
                                  select M).Count();
@@ -88,31 +101,20 @@ namespace ApplicationProcessor
                     }
                 }
             }
-                
-            db.SaveChanges();
-        }
-
-        private string setupDBConnectionString()
-        {
-            StringBuilder connectionString = new StringBuilder();
-
-            XElement xml = XElement.Load(Config.PathToDBXML);
-            foreach (XElement setting in xml.Elements("DBSource"))
+            try
             {
-                if (setting.Element("application").Value.ToUpper() == "ACCULOAN")
-                {
-                    connectionString.Append("metadata=res://*/AccuLoanDBModel.csdl|res://*/AccuLoanDBModel.ssdl|res://*/AccuLoanDBModel.msl;provider=System.Data.SqlClient;provider connection string='");
-                    connectionString.Append("data source=" + setting.Element("server").Value + ";");
-                    connectionString.Append("initial catalog=" + setting.Element("database").Value + ";");
-                    connectionString.Append("user id=" + setting.Element("user_ID").Value + ";");
-                    connectionString.Append("password=" + setting.Element("password").Value + ";");
-                    connectionString.Append("MultipleActiveResultSets=True;App=EntityFramework'");
-                }
-
+                db.SaveChanges();
             }
-            LogFile.LogMessage("Connection String: " + connectionString);
-            return connectionString.ToString();
-            
+            catch (Exception e)
+            {
+                LogFile.LogMessage(e.ToString());
+                LogFile.LogMessage();
+                LogFile.LogMessage("Unable to save to MTE table");
+                return success;
+            }
+
+            success = true;
+            return success;
         }
 
         private void addPrimaryRecordToMTEList(string taxID)

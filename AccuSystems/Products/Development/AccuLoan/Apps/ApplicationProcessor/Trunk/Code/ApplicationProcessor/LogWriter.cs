@@ -10,33 +10,57 @@ namespace ApplicationProcessor
 {
     class LogWriter
     {
+        public string LogFileName { get; set; }
+        public string LogFilePath { get; set; }
         private StreamWriter logWriter;
 
-        /// <summary>
-        /// Creates a log file in the directory specified.  Also removes any "*.log" files in the given directory older the number of days specified.
-        /// </summary>
-        /// <param name="logFilePath">Path of log file</param>
-        /// <param name="logFileName">File Name for log</param>
-        /// <param name="RemovePreviousDays">Remove log files older than number of days.  Specify '0' to not remove log files.</param>
-        public LogWriter(string logFilePath, string logFileName, int RemovePreviousDays)
+        public bool OpenLog()
         {
-            if (!Directory.Exists(logFilePath))
+            bool success = false;
+            try
             {
-                Directory.CreateDirectory(logFilePath);
-            }
-            if (RemovePreviousDays > 0)
-            { 
-                string[] files = Directory.GetFiles(logFilePath);
-                foreach (string file in files)
+                if (LogFilePath.Substring(LogFilePath.Length - 1) != "\\")
+                    LogFilePath = LogFilePath + "\\";
+
+                if (!Directory.Exists(LogFilePath))
                 {
-                    FileInfo info = new FileInfo(file);
-                    if (info.CreationTime < DateTime.Now.AddDays(-RemovePreviousDays))
+                    Directory.CreateDirectory(LogFilePath);
+                }
+
+                logWriter = new StreamWriter(LogFilePath + LogFileName);
+                success = true;
+            }
+            catch (Exception e)
+            { 
+                Console.WriteLine(e);
+                Console.WriteLine();
+            }
+            return success;
+        }
+
+        public void RemovePreviousLogFiles(int RemovePreviousDays)
+        {
+            if (RemovePreviousDays > 0)
+            {
+                try
+                {
+                    string[] files = Directory.GetFiles(LogFilePath);
+                    foreach (string file in files)
                     {
-                        info.Delete();
+                        FileInfo info = new FileInfo(file);
+                        if (info.CreationTime < DateTime.Now.AddDays(-RemovePreviousDays))
+                        {
+                            info.Delete();
+                        }
                     }
                 }
+                catch (Exception e)
+                {
+                    LogMessage(e.ToString());
+                    LogMessage();
+                    LogMessage("Unable to remove previous log files");
+                }
             }
-            logWriter = new StreamWriter(logFilePath + logFileName);
         }
 
         public void LogMessage(string msg)
@@ -54,27 +78,42 @@ namespace ApplicationProcessor
             logWriter.Flush();
         }
 
+        public void LogMessage()
+        {
+            logWriter.WriteLine();
+            Console.WriteLine();
+        }
+
         public void LogAllProperties(object objectToLog)
         {
-            LogMessage("");
-            LogMessage(string.Format("Reading all properties of the {0} object", objectToLog.ToString()));
-            LogMessage("");
-
-            foreach (PropertyInfo prop in objectToLog.GetType().GetProperties())
+            try
             {
-                if (prop.GetValue(objectToLog, null) != null)
-                {
-                    LogMessage(string.Format("Property Read: {0} - Value: {1}", prop.Name, prop.GetValue(objectToLog, null).ToString()));
-                }
-                else
-                { 
-                    LogMessage(string.Format("Property {0} does not have a value set", prop.Name));
-                }
-            }
+                LogMessage();
+                LogMessage(string.Format("Reading all properties of the {0} object", objectToLog.ToString()));
+                LogMessage();
 
-            LogMessage("");
-            LogMessage("Finished reading properties");
-            LogMessage("");
+                foreach (PropertyInfo prop in objectToLog.GetType().GetProperties())
+                {
+                    if (prop.GetValue(objectToLog, null) != null)
+                    {
+                        LogMessage(string.Format("Property Read: {0} - Value: {1}", prop.Name, prop.GetValue(objectToLog, null).ToString()));
+                    }
+                    else
+                    {
+                        LogMessage(string.Format("Property {0} does not have a value set", prop.Name));
+                    }
+                }
+
+                LogMessage();
+                LogMessage("Finished reading properties");
+                LogMessage();
+            }
+            catch (Exception e)
+            {
+                LogMessage(e.ToString());
+                LogMessage();
+                LogMessage("Unable to read all object properties");
+            }
         }
 
         public void CloseLog()

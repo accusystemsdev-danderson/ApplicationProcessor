@@ -287,10 +287,6 @@ namespace Config
                 labelParameter1.Text = "Search Text";
                 labelParameter2.Text = "Replacement Text";
             }   
-            else if (comboBoxAction.Text == "Next Collateral Number" )
-            {
-
-            }
             else
             {
                 comboBoxParameter1.Enabled = false;

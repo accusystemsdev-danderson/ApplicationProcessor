@@ -6,7 +6,7 @@
     <customerBranch>0</customerBranch>
     <customerOfficerCode>AKM</customerOfficerCode>
     <loan>
-      <loanNumber>APP_27</loanNumber>
+      <loanNumber>APP27</loanNumber>
       <customerNumber>111223333</customerNumber>
       <accountClass>loan</accountClass>
       <loanTypeCode>L_INDIRECT</loanTypeCode>
@@ -43,25 +43,80 @@
       </application>
     </loan>
     <loan>
-      <loanNumber>27_001</loanNumber>
+      <loanNumber>APP27_1</loanNumber>
       <customerNumber>111223333</customerNumber>
       <accountClass>loan</accountClass>
       <loanTypeCode>L_coll_titledIND</loanTypeCode>
-      <parentLoanNumber>27</parentLoanNumber>
+      <parentLoanNumber>APP27</parentLoanNumber>
       <loanStatusCode />
       <loanAmount />
       <loanOriginationDate />
-      <loanDescription>2013 Dodge Durango</loanDescription>
+      <loanDescription>2013 Dodge Durange</loanDescription>
+    </loan>
+  </customer>
+  <customer>
+    <customerNumber>121212121</customerNumber>
+    <customerName>Last2 First2 M</customerName>
+    <taxId>121212121</taxId>
+    <customerBranch>0</customerBranch>
+    <customerOfficerCode>AKM</customerOfficerCode>
+    <loan>
+      <loanNumber>APP</loanNumber>
+      <customerNumber>121212121</customerNumber>
+      <accountClass>loan</accountClass>
+      <loanTypeCode>L_INDIRECT</loanTypeCode>
+      <loanStatusCode />
+      <loanAmount />
+      <loanOriginationDate />
+      <loanDescription />
+      <borrowerType>C</borrowerType>
+      <owningCustomerNumber>131313131</owningCustomerNumber>
+      <application>
+        <applicationDate>7/20/2013</applicationDate>
+        <creditAnalysisStatus />
+        <requestedAmount>25000</requestedAmount>
+        <primaryCollateralValue />
+        <FICO />
+        <valuationDate />
+        <interestRate />
+        <probability />
+        <estimatedCloseDate />
+        <assignedLender
+          type="">12345</assignedLender>
+        <assignedAnalyst
+          type=""></assignedAnalyst>
+        <assignedLoanProcessor
+          type=""></assignedLoanProcessor>
+        <applicationLocked />
+        <approval>
+          <approvalStatus>APR1</approvalStatus>
+          <originatingUser>0b9b1643-0233-4708-af2e-83cfb02b5064</originatingUser>
+          <assignedApprover />
+          <assignedApprover
+            type=""></assignedApprover>
+        </approval>
+      </application>
+    </loan>
+    <loan>
+      <loanNumber>APP_1</loanNumber>
+      <customerNumber>121212121</customerNumber>
+      <accountClass>loan</accountClass>
+      <loanTypeCode>L_coll_titledIND</loanTypeCode>
+      <parentLoanNumber>APP</parentLoanNumber>
+      <loanStatusCode />
+      <loanAmount />
+      <loanOriginationDate />
+      <loanDescription>2013 Dodge Durange</loanDescription>
     </loan>
   </customer>
   <customer>
     <customerNumber>131313131</customerNumber>
-    <customerName>Last3 First3 D</customerName>
+    <customerName>Last3 First3 M</customerName>
     <taxId>131313131</taxId>
     <customerBranch>0</customerBranch>
     <customerOfficerCode>AKM</customerOfficerCode>
     <loan>
-      <loanNumber>APP_54321</loanNumber>
+      <loanNumber>APP</loanNumber>
       <customerNumber>131313131</customerNumber>
       <accountClass>loan</accountClass>
       <loanTypeCode>L_INDIRECT</loanTypeCode>
@@ -98,15 +153,15 @@
       </application>
     </loan>
     <loan>
-      <loanNumber>54321_001</loanNumber>
+      <loanNumber>APP_2</loanNumber>
       <customerNumber>131313131</customerNumber>
       <accountClass>loan</accountClass>
       <loanTypeCode>L_coll_titledIND</loanTypeCode>
-      <parentLoanNumber>54321</parentLoanNumber>
+      <parentLoanNumber>APP</parentLoanNumber>
       <loanStatusCode />
       <loanAmount />
       <loanOriginationDate />
-      <loanDescription>2013 Dodge Durango</loanDescription>
+      <loanDescription>2013 Dodge Durange</loanDescription>
     </loan>
   </customer>
 </AccuSystems>
