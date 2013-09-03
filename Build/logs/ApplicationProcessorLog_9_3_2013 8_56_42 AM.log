@@ -1,0 +1,119 @@
+9/3/2013 8:56:42 AM 13.0.4994.14300 version ApplicationProcessor, Version=13.0.4994.14300, Culture=neutral, PublicKeyToken=null started
+
+9/3/2013 8:56:42 AM Reading all properties of the ApplicationProcessor.Configuration object
+
+9/3/2013 8:56:42 AM Property Read: LogFolder - Value: logs\
+9/3/2013 8:56:42 AM Property Read: DaysToKeepLogs - Value: 14
+9/3/2013 8:56:42 AM Property Read: PathToDBXML - Value: c:\accusystems\config\db.xml
+9/3/2013 8:56:42 AM Property Read: FieldMapFile - Value: FieldMappings.xml
+9/3/2013 8:56:42 AM Property Read: OutputFile - Value: acculoan.xml
+9/3/2013 8:56:42 AM Property Read: RulesFile - Value: Rules.xml
+9/3/2013 8:56:42 AM Property Read: SourceDelimitedSQLXML - Value: SQL
+9/3/2013 8:56:42 AM Property Read: SourceSQLQueryFile - Value: SQLQuery.txt
+9/3/2013 8:56:42 AM Property Read: SourceSQLConnectionString - Value: Server=accusys-laptp10\accusystems;Database=testing;trusted_connection=yes
+9/3/2013 8:56:42 AM Property Read: SourceFile - Value: test.csv
+9/3/2013 8:56:42 AM Property Read: CollateralsYN - Value: Y
+9/3/2013 8:56:42 AM Property Read: ProcessMTEs - Value: N
+9/3/2013 8:56:42 AM Property Read: dbConnectionString - Value: metadata=res://*/AccuLoanDBModel.csdl|res://*/AccuLoanDBModel.ssdl|res://*/AccuLoanDBModel.msl;provider=System.Data.SqlClient;provider connection string='data source=accusys-laptp10\accusystems;initial catalog=acculoan;user id=accusystems;password=accusystems;MultipleActiveResultSets=True;App=EntityFramework'
+
+9/3/2013 8:56:42 AM Finished reading properties
+
+
+9/3/2013 8:56:42 AM Reading all properties of the ApplicationProcessor.FieldMapper object
+
+9/3/2013 8:56:42 AM Property Read: customerNameFieldName - Value: customerName
+9/3/2013 8:56:42 AM Property Read: customerNumberFieldName - Value: customerNumber
+9/3/2013 8:56:42 AM Property Read: taxIdFieldName - Value: taxId
+9/3/2013 8:56:42 AM Property Read: customerBranchFieldName - Value: customerBranch
+9/3/2013 8:56:42 AM Property Read: customerOfficerCodeFieldName - Value: customerOfficerCode
+9/3/2013 8:56:42 AM Property Read: loanNumberFieldName - Value: loanNumber
+9/3/2013 8:56:42 AM Property Read: collateralLoanNumberFieldName - Value: collateralLoanNumber
+9/3/2013 8:56:42 AM Property Read: collateralAddendaFieldName - Value: collateralAddenda
+9/3/2013 8:56:42 AM Property Read: parentLoanNumberFieldName - Value: parentLoanNumber
+9/3/2013 8:56:42 AM Property Read: accountClassFieldName - Value: accountClass
+9/3/2013 8:56:42 AM Property Read: loanTypeCodeFieldName - Value: loanTypeCode
+9/3/2013 8:56:42 AM Property Read: collateralLoanTypeCodeFieldName - Value: collateralLoanTypeCode
+9/3/2013 8:56:42 AM Property Read: loanStatusCodeFieldName - Value: loanStatusCode
+9/3/2013 8:56:42 AM Property Read: loanAmountFieldName - Value: loanAmount
+9/3/2013 8:56:42 AM Property Read: loanOriginationDateFieldName - Value: loanOriginationDate
+9/3/2013 8:56:42 AM Property Read: loanDescriptionFieldName - Value: loanDescription
+9/3/2013 8:56:42 AM Property Read: collateralDescriptionFieldName - Value: collateralDescription
+9/3/2013 8:56:42 AM Property Read: borrowerTypeFieldName - Value: borrowerType
+9/3/2013 8:56:42 AM Property Read: owningCustomerNumberFieldName - Value: owningCustomerNumber
+9/3/2013 8:56:42 AM Property Read: applicationDateFieldName - Value: applicationDate
+9/3/2013 8:56:42 AM Property Read: creditAnalysisStatusFieldName - Value: creditAnalysisStatus
+9/3/2013 8:56:42 AM Property Read: requestedAmountFieldName - Value: requestedAmount
+9/3/2013 8:56:42 AM Property Read: primaryCollateralValueFieldName - Value: primaryCollateralValue
+9/3/2013 8:56:42 AM Property Read: FICOFieldName - Value: FICO
+9/3/2013 8:56:42 AM Property Read: valuationDateFieldName - Value: valuationDate
+9/3/2013 8:56:42 AM Property Read: interestRateFieldName - Value: interestRate
+9/3/2013 8:56:42 AM Property Read: probabilityFieldName - Value: probability
+9/3/2013 8:56:42 AM Property Read: estimatedCloseDateFieldName - Value: estimatedCloseDate
+9/3/2013 8:56:42 AM Property Read: assignedLenderFieldName - Value: assignedLender
+9/3/2013 8:56:42 AM Property Read: assignedLenderTypeFieldName - Value: assignedLenderType
+9/3/2013 8:56:42 AM Property Read: assignedAnalystFieldName - Value: assignedAnalyst
+9/3/2013 8:56:42 AM Property Read: assignedAnalystTypeFieldName - Value: assignedAnalystType
+9/3/2013 8:56:42 AM Property Read: assignedLoanProcessorFieldName - Value: assignedLoanProcessor
+9/3/2013 8:56:42 AM Property Read: assignedLoanProcessorTypeFieldName - Value: assignedLoanProcessorType
+9/3/2013 8:56:42 AM Property Read: applicationLockedFieldName - Value: applicationLocked
+9/3/2013 8:56:42 AM Property Read: approvalStatusFieldName - Value: approvalStatus
+9/3/2013 8:56:42 AM Property Read: originatingUserFieldName - Value: originatingUser
+9/3/2013 8:56:42 AM Property Read: assignedApproverFieldName - Value: assignedApprover
+9/3/2013 8:56:42 AM Property Read: assignedApproverTypeFieldName - Value: assignedApproverType
+9/3/2013 8:56:42 AM Property Read: generic1FieldName - Value: generic1
+9/3/2013 8:56:42 AM Property Read: generic2FieldName - Value: generic2
+9/3/2013 8:56:42 AM Property Read: generic3FieldName - Value: generic3
+9/3/2013 8:56:42 AM Property Read: generic4FieldName - Value: generic4
+9/3/2013 8:56:42 AM Property Read: customerNameMappedField - Value: Last_Name
+9/3/2013 8:56:42 AM Property Read: customerNumberMappedField - Value: SSN
+9/3/2013 8:56:42 AM Property Read: taxIdMappedField - Value: SSN
+9/3/2013 8:56:42 AM Property Read: customerBranchMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: customerOfficerCodeMappedField - Value: Decision_Oficer_Name
+9/3/2013 8:56:42 AM Property Read: loanNumberMappedField - Value: Loan_Number
+9/3/2013 8:56:42 AM Property Read: collateralLoanNumberMappedField - Value: Loan_Number
+9/3/2013 8:56:42 AM Property Read: collateralAddendaMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: parentLoanNumberMappedField - Value: Loan_Number
+9/3/2013 8:56:42 AM Property Read: accountClassMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: loanTypeCodeMappedField - Value: Loan_Type
+9/3/2013 8:56:42 AM Property Read: collateralLoanTypeCodeMappedField - Value: Collateral_Type
+9/3/2013 8:56:42 AM Property Read: loanStatusCodeMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: loanAmountMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: loanOriginationDateMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: loanDescriptionMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: collateralDescriptionMappedField - Value: Description
+9/3/2013 8:56:42 AM Property Read: borrowerTypeMappedField - Value: Applicant_Type
+9/3/2013 8:56:42 AM Property Read: owningCustomerNumberMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: applicationDateMappedField - Value: Application_Date
+9/3/2013 8:56:42 AM Property Read: creditAnalysisStatusMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: requestedAmountMappedField - Value: Amt_Approved
+9/3/2013 8:56:42 AM Property Read: primaryCollateralValueMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: FICOMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: valuationDateMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: interestRateMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: probabilityMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: estimatedCloseDateMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: assignedLenderMappedField - Value: Decision_Officer
+9/3/2013 8:56:42 AM Property Read: assignedLenderTypeMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: assignedAnalystMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: assignedAnalystTypeMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: assignedLoanProcessorMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: assignedLoanProcessorTypeMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: applicationLockedMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: approvalStatusMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: originatingUserMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: assignedApproverMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: assignedApproverTypeMappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: generic1MappedField - Value: First_Name
+9/3/2013 8:56:42 AM Property Read: generic2MappedField - Value: Middle_Name
+9/3/2013 8:56:42 AM Property Read: generic3MappedField - Value: 
+9/3/2013 8:56:42 AM Property Read: generic4MappedField - Value: 
+
+9/3/2013 8:56:42 AM Finished reading properties
+
+9/3/2013 8:56:42 AM Retrieving Source Data
+9/3/2013 8:56:42 AM Mapping Source Data to MappedTable
+9/3/2013 8:56:42 AM Applying Rules
+9/3/2013 8:56:43 AM Skipping MTE processing
+9/3/2013 8:56:43 AM Setting owningCustomer Number
+9/3/2013 8:56:43 AM Wrong number of primary relationships for account APP123456 - primary relationships: 0
+9/3/2013 8:56:43 AM Writing XML File for Importer
