@@ -22,24 +22,57 @@ namespace ApplicationProcessor
         public string SourceFile { get; set; }
         public string CollateralsYN { get; set; }
         public string ProcessMTEs { get; set; }
+        public string dbConnectionString { get; set; }
 
 
         public void ReadConfiguration(string configFileName)
         {
             XElement xmlConfig = XElement.Load(configFileName);
             
-            LogFolder = xmlConfig.Element("LogFolder").Value;
-            DaysToKeepLogs = xmlConfig.Element("DaysToKeepLogs").Value;
-            PathToDBXML = xmlConfig.Element("PathToDBXML").Value;
-            FieldMapFile = xmlConfig.Element("FieldMapFile").Value;
-            OutputFile = xmlConfig.Element("OutputFile").Value;
-            RulesFile = xmlConfig.Element("RulesFile").Value;
-            SourceDelimitedSQLXML = xmlConfig.Element("SourceDelimitedSQLXML").Value;
-            SourceSQLQueryFile = xmlConfig.Element("SourceSQLQueryFile").Value;
-            SourceSQLConnectionString = xmlConfig.Element("SourceSQLConnectionString").Value;
-            SourceFile = xmlConfig.Element("SourceFile").Value;
-            CollateralsYN = xmlConfig.Element("CollateralsYN").Value;
-            ProcessMTEs = xmlConfig.Element("ProcessMTEs").Value;
+            LogFolder = Utils.ReadXMLElementValue(xmlConfig, "LogFolder", "Logs\\");
+            DaysToKeepLogs = Utils.ReadXMLElementValue(xmlConfig, "DaysToKeepLogs", "14");
+            PathToDBXML = Utils.ReadXMLElementValue(xmlConfig, "PathToDBXML", "..\\..\\config\\db.xml");
+            FieldMapFile = Utils.ReadXMLElementValue(xmlConfig, "FieldMapFile", "FieldMappings.xml");
+            OutputFile = Utils.ReadXMLElementValue(xmlConfig, "OutputFile", "..\\AccuAccountImporter\\acculoan.xml");
+            RulesFile = Utils.ReadXMLElementValue(xmlConfig, "RulesFile", "rules.xml");
+            SourceDelimitedSQLXML = Utils.ReadXMLElementValue(xmlConfig, "SourceDelimitedSQLXML", "");
+            SourceSQLQueryFile = Utils.ReadXMLElementValue(xmlConfig, "SourceSQLQueryFile", "");
+            SourceSQLConnectionString = Utils.ReadXMLElementValue(xmlConfig, "SourceSQLConnectionString", "");
+            SourceFile = Utils.ReadXMLElementValue(xmlConfig, "SourceFile", "");
+            CollateralsYN = Utils.ReadXMLElementValue(xmlConfig, "CollateralsYN", "N");
+            ProcessMTEs = Utils.ReadXMLElementValue(xmlConfig, "ProcessMTEs1", "N");
+
+        }
+
+        public bool SetupDBConnectionString()
+        {
+            bool success = false;
+            try
+            {
+                StringBuilder connectionString = new StringBuilder();
+                XElement dbXML = XElement.Load(PathToDBXML);
+                foreach (XElement source in dbXML.Elements("DBSource"))
+                {
+                    if (source.Element("application").Value.ToUpper() == "ACCULOAN")
+                    {
+                        connectionString.Append("metadata=res://*/AccuLoanDBModel.csdl|res://*/AccuLoanDBModel.ssdl|res://*/AccuLoanDBModel.msl;provider=System.Data.SqlClient;provider connection string='");
+                        connectionString.Append("data source=" + source.Element("server").Value + ";");
+                        connectionString.Append("initial catalog=" + source.Element("database").Value + ";");
+                        connectionString.Append("user id=" + source.Element("user_ID").Value + ";");
+                        connectionString.Append("password=" + source.Element("password").Value + ";");
+                        connectionString.Append("MultipleActiveResultSets=True;App=EntityFramework'");
+                    }
+
+                }
+                dbConnectionString = connectionString.ToString();
+                if (dbConnectionString != "")
+                    success = true;
+            }
+            catch (Exception)
+            {
+            }
+
+            return success;
         }
 
     }

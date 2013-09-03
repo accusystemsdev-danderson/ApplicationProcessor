@@ -6,6 +6,7 @@
   <customerOfficerCode>Decision_Oficer_Name</customerOfficerCode>
   <loanNumber>Loan_Number</loanNumber>
   <collateralLoanNumber>Loan_Number</collateralLoanNumber>
+  <collateralAddenda></collateralAddenda>
   <parentLoanNumber>Loan_Number</parentLoanNumber>
   <accountClass></accountClass>
   <loanTypeCode>Loan_Type</loanTypeCode>

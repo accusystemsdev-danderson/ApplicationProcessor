@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.IO;
 using System.Data.OleDb;
+using System.Reflection;
 
 
 
@@ -13,33 +14,62 @@ namespace ApplicationProcessor
 {
     class Program
     {
-        
-        public static string AppTitle = "AccuAccount - Application Processor: Decision Pro";
-        public static DateTime StartTime = DateTime.Now;
-        public static string LogFileName = string.Format("ApplicationProcessorLog_{0}.log", StartTime.ToString().Replace("/","_").Replace(":","_"));
-        public static string ConfigFileName = "config.xml";
 
         static void Main(string[] args)
         {
+                    
+            DateTime StartTime = DateTime.Now;
+            string LogFileName = string.Format("ApplicationProcessorLog_{0}.log", StartTime.ToString().Replace("/","_").Replace(":","_"));
+            string ConfigFileName = "config.xml";
+            
+
             //---------Read configuration
 
             Configuration Config = new Configuration();
             Config.ReadConfiguration(ConfigFileName);
             
 
-
             //----------Setup Logging
 
-            LogWriter logFile = new LogWriter(Config.LogFolder, LogFileName, int.Parse(Config.DaysToKeepLogs));
-            logFile.LogMessage(string.Format("{0} started", AppTitle));
+            LogWriter logFile = new LogWriter() 
+            { 
+                LogFilePath = Config.LogFolder, 
+                LogFileName = LogFileName, 
+            };
+
+
+            if (!logFile.OpenLog())
+            {
+                Console.WriteLine("Unable to setup log file at: " + Config.LogFolder + LogFileName);
+                Console.WriteLine("Press Enter to Exit");
+                Console.ReadLine();
+                return;
+            };
+
+            logFile.LogMessage(string.Format("{0} version {1} started", Assembly.GetExecutingAssembly().GetName().Name, Assembly.GetExecutingAssembly().GetName().Version));
+
+            logFile.LogMessage("Removing Previous Log Files");
+            logFile.RemovePreviousLogFiles(int.Parse(Config.DaysToKeepLogs));
+
+            //---------Get DB connection string from db.xml
+
+            if (!Config.SetupDBConnectionString())
+            {
+                logFile.LogMessage("Unable to get database configuration from db.xml file at: " + Config.PathToDBXML);
+                return;
+            }
+            
             logFile.LogAllProperties(Config);
 
 
             
             //---------Setup field name mapping
 
-            FieldMapper fieldMap = new FieldMapper();
-            fieldMap.ReadFieldMappings(Config.FieldMapFile);
+            FieldMapper fieldMap = new FieldMapper() 
+            { 
+                xmlMappingFile = Config.FieldMapFile 
+            };
+            fieldMap.ReadFieldMappings();
             logFile.LogAllProperties(fieldMap);
             
 
@@ -51,10 +81,14 @@ namespace ApplicationProcessor
 
             FileProcessor fileProcessor = new FileProcessor()
             {
-                DataSource = (DataSources)Enum.Parse(typeof(DataSources), Config.SourceDelimitedSQLXML, true),
-                Config = Config
+                Config = Config,
+                logFile = logFile
             };
-            DataTable sourceData = fileProcessor.FillDataTable();
+            DataTable sourceData = new DataTable();
+            if (!fileProcessor.FillDataTable(out sourceData))
+            {
+                return;
+            };
             
 
 
@@ -74,11 +108,13 @@ namespace ApplicationProcessor
             {
                 TableToProcess = mappedData,
                 logFile = logFile,
-                RulesFile = Config.RulesFile,
                 FieldMap = fieldMap,
                 Config = Config
             };
-            ruleProcessor.ProcessRules();
+            if (!ruleProcessor.ProcessRules())
+            {
+                return;
+            }
 
 
 
@@ -94,7 +130,10 @@ namespace ApplicationProcessor
                     TableToProcess = mappedData,
                     FieldMap = fieldMap
                 };
-                MTE.processMTEs();
+                if (!MTE.processMTEs())
+                {
+                    return;
+                }
             }
             else
                 logFile.LogMessage("Skipping MTE processing");
@@ -112,14 +151,24 @@ namespace ApplicationProcessor
             //----------Write ProcessedData File
 
             logFile.LogMessage("Writing XML File for Importer");
-            ProcessedDataWriter processedDataWriter = new ProcessedDataWriter();
-            //processedDataWriter.WriteProcessedData(mappedData, Config.OutputFile);
-            processedDataWriter.WriteXMLData(mappedData, Config.OutputFile, Config.CollateralsYN, fieldMap);
+            ProcessedDataWriter processedDataWriter = new ProcessedDataWriter() 
+            { 
+                Config = Config, 
+                FieldMap = fieldMap, 
+                LogFile = logFile 
+            };
+
+            processedDataWriter.WriteXMLData(mappedData);
 
 
 
-            //----------Close Connections
+            //----------Finish up, Close Connections
             
+            DateTime finishedTime = DateTime.Now;
+            TimeSpan elapsedTime = finishedTime - StartTime;
+
+            logFile.LogMessage();
+            logFile.LogMessage("Finished at " + finishedTime.ToShortTimeString() + " Elapsed Time: " + elapsedTime.ToString());
             logFile.CloseLog();
             Console.ReadLine();
 

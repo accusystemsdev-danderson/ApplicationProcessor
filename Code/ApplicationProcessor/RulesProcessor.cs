@@ -14,17 +14,20 @@ namespace ApplicationProcessor
     class RulesProcessor
     {
         public DataTable TableToProcess { get; set; }
-        public string RulesFile { get; set; }
         public LogWriter logFile { get; set; }
         public FieldMapper FieldMap { get; set; }
         public Configuration Config { get; set; }
-
-        public void ProcessRules()
+        
+        public bool ProcessRules()
         {
-            DataTable rulesToProcess = loadDataTableFromRulesFile();
+            bool success = false;
+            DataTable rulesToProcess = new DataTable();
+            if (!loadDataTableFromRulesFile(out rulesToProcess))
+            {
+                return success;
+            }
             List<int> rowsToRemove = new List<int>();
 
-            //foreach (DataRow row in TableToProcess.Rows)
             for (int i=0; i < TableToProcess.Rows.Count; i++)
             {
                 DataRow row = TableToProcess.Rows[i];
@@ -33,7 +36,17 @@ namespace ApplicationProcessor
                     bool removeRecordFromRule = false;
                     if (ruleMatches(row, rule))
                     {
-                        processAction(row, rule, out removeRecordFromRule);
+                        try
+                        {
+                            processAction(row, rule, TableToProcess, out removeRecordFromRule);
+                        }
+                        catch (Exception e)
+                        {
+                            logFile.LogMessage(e.ToString());
+                            logFile.LogMessage();
+                            logFile.LogMessage("Unable to process rules at datarow " + (i + 1).ToString());
+                            return success;
+                        }
                     }
 
 
@@ -44,10 +57,7 @@ namespace ApplicationProcessor
 
                 }
 
-                bool removeRecordFromRequiredFields = false;
-                verifyRequiredFields(row, out removeRecordFromRequiredFields);
-
-                if (removeRecordFromRequiredFields)
+                if (!verifyRequiredFields(row))
                 {
                     if (!rowsToRemove.Contains(i))
                         rowsToRemove.Add(i);
@@ -59,39 +69,51 @@ namespace ApplicationProcessor
                 TableToProcess.Rows[rowsToRemove[i]].Delete();
             }
             TableToProcess.AcceptChanges();
-        
+            success = true;
+
+            return success;
         }
 
-        private DataTable loadDataTableFromRulesFile()
+        private bool  loadDataTableFromRulesFile(out DataTable dataTable)
         {
-            XElement xml = XElement.Load(RulesFile);
+            bool success = false;
+            dataTable = new DataTable();
 
-            DataTable dataTable = new DataTable();
-
-            dataTable.Columns.Add("Field");
-            dataTable.Columns.Add("Operator");
-            dataTable.Columns.Add("Value");
-            dataTable.Columns.Add("Action");
-            dataTable.Columns.Add("Parameter1");
-            dataTable.Columns.Add("Parameter2");
-            dataTable.Columns.Add("Parameter3");
-
-            foreach (XElement element in xml.Elements("Rule"))
+            try
             {
-                DataRow newRow = dataTable.NewRow();
-                newRow["Field"] = element.Attribute("Field").Value;
-                newRow["Operator"] = element.Attribute("Operator").Value;
-                newRow["Value"] = element.Attribute("Value").Value;
-                newRow["Action"] = element.Attribute("Action").Value;
-                newRow["Parameter1"] = element.Attribute("Parameter1").Value;
-                newRow["Parameter2"] = element.Attribute("Parameter2").Value;
-                newRow["Parameter3"] = element.Attribute("Parameter3").Value;
+                XElement xml = XElement.Load(Config.RulesFile);
 
-                dataTable.Rows.Add(newRow);
+                dataTable.Columns.Add("Field");
+                dataTable.Columns.Add("Operator");
+                dataTable.Columns.Add("Value");
+                dataTable.Columns.Add("Action");
+                dataTable.Columns.Add("Parameter1");
+                dataTable.Columns.Add("Parameter2");
+                dataTable.Columns.Add("Parameter3");
+
+                foreach (XElement element in xml.Elements("Rule"))
+                {
+                    DataRow newRow = dataTable.NewRow();
+                    newRow["Field"] = element.Attribute("Field").Value;
+                    newRow["Operator"] = element.Attribute("Operator").Value;
+                    newRow["Value"] = element.Attribute("Value").Value;
+                    newRow["Action"] = element.Attribute("Action").Value;
+                    newRow["Parameter1"] = element.Attribute("Parameter1").Value;
+                    newRow["Parameter2"] = element.Attribute("Parameter2").Value;
+                    newRow["Parameter3"] = element.Attribute("Parameter3").Value;
+
+                    dataTable.Rows.Add(newRow);
+                }
+                success = true;
+            }
+            catch (Exception e)
+            {
+                logFile.LogMessage(e.ToString());
+                logFile.LogMessage();
+                logFile.LogMessage("Unable to read rules file");
             }
 
-            return dataTable;
-
+            return success;
 
         }
 
@@ -147,7 +169,7 @@ namespace ApplicationProcessor
             return match;
         }
 
-        private void processAction(DataRow row, DataRow rule, out bool removeRecord)
+        private void processAction(DataRow row, DataRow rule, DataTable dataTable, out bool removeRecord)
         {
             removeRecord = false;
             string field = rule["Field"].ToString();
@@ -192,6 +214,21 @@ namespace ApplicationProcessor
                 case "Convert to short date":
                     row[field] = DateTime.Parse(row[field].ToString()).ToShortDateString().ToString();
                     break;
+                case "Next Collateral Number":
+                    int nextCollateral = 1;
+                    Guid loanId;
+                    bool loanExists = getLoanId(row[FieldMap.loanNumberFieldName].ToString(), 
+                        row[FieldMap.customerNumberFieldName].ToString(), 
+                        row[FieldMap.loanTypeCodeFieldName].ToString(), 
+                        row[FieldMap.accountClassFieldName].ToString(),
+                        out loanId);
+                    if (loanExists)
+                        nextCollateral = getNextCollateral(loanId);
+                    int collateralFromTable = getHighCollateralInTable(dataTable, row[FieldMap.loanNumberFieldName].ToString());
+                    if (collateralFromTable >= nextCollateral)
+                        nextCollateral = collateralFromTable + 1;
+                    row[field] = nextCollateral.ToString();                        
+                    break;
                 default:
                     break;
                 
@@ -199,9 +236,9 @@ namespace ApplicationProcessor
 
         }
 
-        private void verifyRequiredFields(DataRow row, out bool removeRecord)
+        private bool verifyRequiredFields(DataRow row)
         {
-            removeRecord = false;
+            bool fieldsVerified = false;
             StringBuilder logMessage = new StringBuilder();
             
             logMessage.Append("Missing Fields: ");
@@ -215,14 +252,18 @@ namespace ApplicationProcessor
             if (row[FieldMap.loanTypeCodeFieldName].ToString() == "") logMessage.Append(FieldMap.loanTypeCodeFieldName + " ");
             if (row[FieldMap.originatingUserFieldName].ToString() == "") logMessage.Append(FieldMap.originatingUserFieldName + " ");
 
-            if (logMessage.ToString() != "Missing Fields: ")
+            if (logMessage.ToString() == "Missing Fields: ")
             {
-                removeRecord = true;
+                fieldsVerified = true;
+            }
+            else
+            {
                 if (row[FieldMap.loanNumberFieldName].ToString() != "")
                     logMessage.Append("for account number " + row[FieldMap.loanNumberFieldName].ToString() + " ");
                 logFile.LogMessage("Skipping Record: " + logMessage);
             }
-
+            
+            return fieldsVerified;
         }
 
         private string lookupFromDB(string lookupValue, string lookupTable, string lookupField, string returnField)
@@ -259,6 +300,108 @@ namespace ApplicationProcessor
             }
             return connectionString.ToString();
 
+        }
+
+        private bool getLoanId(string loanNumber, string customerNumber, string loanTypeCode, string accountClass, out Guid loanId)
+        {
+            loanId = new Guid();
+            AcculoanDBEntities db = new AcculoanDBEntities(Config.dbConnectionString);
+            bool found = false;
+
+            //get duplication mode
+            string dupMode = (from p in db.accusystemsProperties
+                           where p.propertyKey == "accuimporter.LoanDuplicationMode"
+                           select p.propertyValue).FirstOrDefault().ToString();
+            switch (dupMode)
+            {
+                case "None":
+                    var loans0 = from l in db.loans
+                                 where l.loanNumber == loanNumber
+                                 select l;
+                    if (loans0.Count() == 1)
+                    {
+                        loanId = loans0.FirstOrDefault().loanId;
+                        found = true;
+                    }
+                    break;
+                case "CustomerAndLoan":
+                    var loans1 = from l in db.loans
+                             where l.loanNumber == loanNumber
+                             from c in db.customers
+                             where c.customerNumber == customerNumber
+                             select l;
+                    if (loans1.Count() == 1)
+                    {
+                        loanId = loans1.FirstOrDefault().loanId;
+                        found = true;
+                    }
+                    break;
+
+                case "CustomerAndLoanAndAccountClass":
+                    var loans2 = from l in db.loans
+                             where l.loanNumber == loanNumber
+                             from c in db.customers
+                             where c.customerNumber == customerNumber
+                             from ac in db.accountClasses
+                             where ac.accountClassName == accountClass
+                             select l;
+                    if (loans2.Count() == 1)
+                    {
+                        loanId = loans2.FirstOrDefault().loanId;
+                        found = true;
+                    }
+                    break;
+
+                case "CustomerAndLoanAndLoanTypeAndAccountClass":
+                    var loans3 = from l in db.loans
+                                 where l.loanNumber == loanNumber
+                                 from c in db.customers
+                                 where c.customerNumber == customerNumber
+                                 from lt in db.loanTypes
+                                 where lt.loanTypeCode == loanTypeCode
+                                 from ac in db.accountClasses
+                                 where ac.accountClassName == accountClass
+                                 select l;
+                    if (loans3.Count() == 1)
+                    {
+                        loanId = loans3.FirstOrDefault().loanId;
+                        found = true;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+            return found;
+
+        }
+
+        private int getNextCollateral(Guid loanId)
+        {
+            AcculoanDBEntities db = new AcculoanDBEntities(Config.dbConnectionString);
+            int nextCollateral = 1;
+
+            var collaterals = from c in db.collaterals
+                              where c.parentLoanId == loanId
+                              orderby c.collateralSequence descending
+                              select c;
+            if (collaterals.Count() > 0)
+                nextCollateral = (int)collaterals.FirstOrDefault().collateralSequence + 1;
+            return nextCollateral;
+        }
+
+        private int getHighCollateralInTable(DataTable dataTable, string loanNumber)
+        {
+            int highCollateral = 0;
+            DataRow[] collateralRows = dataTable.Select(FieldMap.loanNumberFieldName + " = '" + loanNumber + "'", FieldMap.collateralAddendaFieldName + " Desc" );
+            if (collateralRows.Count() > 0)
+            {
+                string topCollateral = collateralRows[0][FieldMap.collateralAddendaFieldName].ToString();
+                if (topCollateral == "") topCollateral = "0";
+                highCollateral = int.Parse(topCollateral);
+            }
+
+            return highCollateral;
         }
     }
 }

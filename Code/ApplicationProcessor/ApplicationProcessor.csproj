@@ -397,6 +397,7 @@
     <Compile Include="userProfile.cs">
       <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="AccuLoanDBModel.edmx">
@@ -419,9 +420,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Schema.ini">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="test.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

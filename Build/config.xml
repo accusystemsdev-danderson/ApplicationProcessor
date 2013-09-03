@@ -1,11 +1,11 @@
 <AccuAccountApplicationInterfaceProperties>
-  <LogFolder>logs\</LogFolder>
+  <LogFolder>Logs\</LogFolder>
   <DaysToKeepLogs>14</DaysToKeepLogs>
   <PathToDBXML>c:\accusystems\config\db.xml</PathToDBXML>
   <FieldMapFile>FieldMappings.xml</FieldMapFile>
   <OutputFile>acculoan.xml</OutputFile>
   <RulesFile>Rules.xml</RulesFile>
-  <SourceDelimitedSQLXML>SQL</SourceDelimitedSQLXML>
+  <SourceDelimitedSQLXML>delimited</SourceDelimitedSQLXML>
   <SourceFile>test.csv</SourceFile>
   <CollateralsYN>Y</CollateralsYN>
   <ProcessMTEs>N</ProcessMTEs>

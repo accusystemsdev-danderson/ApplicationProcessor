@@ -9,6 +9,8 @@ namespace ApplicationProcessor
 {
     class FieldMapper
     {
+        public string xmlMappingFile { get; set; }
+
         public string customerNameFieldName { get; set; }
         public string customerNumberFieldName { get; set; }
         public string taxIdFieldName { get; set; }
@@ -16,6 +18,7 @@ namespace ApplicationProcessor
         public string customerOfficerCodeFieldName { get; set; }
         public string loanNumberFieldName { get; set; }
         public string collateralLoanNumberFieldName { get; set; }
+        public string collateralAddendaFieldName { get; set; }
         public string parentLoanNumberFieldName { get; set; }
         public string accountClassFieldName { get; set; }
         public string loanTypeCodeFieldName { get; set; }
@@ -51,7 +54,7 @@ namespace ApplicationProcessor
         public string generic2FieldName { get; set; }
         public string generic3FieldName { get; set; }
         public string generic4FieldName { get; set; }
-
+        
 
         public string customerNameMappedField { get; set; }
         public string customerNumberMappedField { get; set; }
@@ -60,6 +63,7 @@ namespace ApplicationProcessor
         public string customerOfficerCodeMappedField { get; set; }
         public string loanNumberMappedField { get; set; }
         public string collateralLoanNumberMappedField { get; set; }
+        public string collateralAddendaMappedField { get; set; }
         public string parentLoanNumberMappedField { get; set; }
         public string accountClassMappedField { get; set; }
         public string loanTypeCodeMappedField { get; set; }
@@ -95,10 +99,9 @@ namespace ApplicationProcessor
         public string generic2MappedField { get; set; }
         public string generic3MappedField { get; set; }
         public string generic4MappedField { get; set; }
+        
 
-
-
-        public void ReadFieldMappings(string xmlMappingFile)
+        public void ReadFieldMappings()
         {
             customerNameFieldName = "customerName";
             customerNumberFieldName = "customerNumber";
@@ -107,6 +110,7 @@ namespace ApplicationProcessor
             customerOfficerCodeFieldName = "customerOfficerCode";
             loanNumberFieldName = "loanNumber";
             collateralLoanNumberFieldName = "collateralLoanNumber";
+            collateralAddendaFieldName = "collateralAddenda";
             parentLoanNumberFieldName = "parentLoanNumber";
             accountClassFieldName = "accountClass";
             loanTypeCodeFieldName = "loanTypeCode";
@@ -142,53 +146,54 @@ namespace ApplicationProcessor
             generic2FieldName = "generic2";
             generic3FieldName = "generic3";
             generic4FieldName = "generic4";
-
+            
 
             XElement xmlMap = XElement.Load(xmlMappingFile);
 
-            customerNameMappedField = xmlMap.Element(customerNameFieldName).Value;
-            customerNumberMappedField = xmlMap.Element(customerNumberFieldName).Value;
-            taxIdMappedField = xmlMap.Element(taxIdFieldName).Value;
-            customerBranchMappedField = xmlMap.Element(customerBranchFieldName).Value;
-            customerOfficerCodeMappedField = xmlMap.Element(customerOfficerCodeFieldName).Value;
-            loanNumberMappedField = xmlMap.Element(loanNumberFieldName).Value;
-            collateralLoanNumberMappedField = xmlMap.Element(collateralLoanNumberFieldName).Value;
-            parentLoanNumberMappedField = xmlMap.Element(parentLoanNumberFieldName).Value;
-            accountClassMappedField = xmlMap.Element(accountClassFieldName).Value;
-            loanTypeCodeMappedField = xmlMap.Element(loanTypeCodeFieldName).Value;
-            collateralLoanTypeCodeMappedField = xmlMap.Element(collateralLoanTypeCodeFieldName).Value;
-            loanStatusCodeMappedField = xmlMap.Element(loanStatusCodeFieldName).Value;
-            loanAmountMappedField = xmlMap.Element(loanAmountFieldName).Value;
-            loanOriginationDateMappedField = xmlMap.Element(loanOriginationDateFieldName).Value;
-            loanDescriptionMappedField = xmlMap.Element(loanDescriptionFieldName).Value;
-            collateralDescriptionMappedField = xmlMap.Element(collateralDescriptionFieldName).Value;
-            borrowerTypeMappedField = xmlMap.Element(borrowerTypeFieldName).Value;
-            owningCustomerNumberMappedField = xmlMap.Element(owningCustomerNumberFieldName).Value;
-            applicationDateMappedField = xmlMap.Element(applicationDateFieldName).Value;
-            creditAnalysisStatusMappedField = xmlMap.Element(creditAnalysisStatusFieldName).Value;
-            requestedAmountMappedField = xmlMap.Element(requestedAmountFieldName).Value;
-            primaryCollateralValueMappedField = xmlMap.Element(primaryCollateralValueFieldName).Value;
-            FICOMappedField = xmlMap.Element(FICOFieldName).Value;
-            valuationDateMappedField = xmlMap.Element(valuationDateFieldName).Value;
-            interestRateMappedField = xmlMap.Element(interestRateFieldName).Value;
-            probabilityMappedField = xmlMap.Element(probabilityFieldName).Value;
-            estimatedCloseDateMappedField = xmlMap.Element(estimatedCloseDateFieldName).Value;
-            assignedLenderMappedField = xmlMap.Element(assignedLenderFieldName).Value;
-            assignedLenderTypeMappedField = xmlMap.Element(assignedLenderTypeFieldName).Value;
-            assignedAnalystMappedField = xmlMap.Element(assignedAnalystFieldName).Value;
-            assignedAnalystTypeMappedField = xmlMap.Element(assignedAnalystTypeFieldName).Value;
-            assignedLoanProcessorMappedField = xmlMap.Element(assignedLoanProcessorFieldName).Value;
-            assignedLoanProcessorTypeMappedField = xmlMap.Element(assignedLoanProcessorTypeFieldName).Value;
-            applicationLockedMappedField = xmlMap.Element(applicationLockedFieldName).Value;
-            approvalStatusMappedField = xmlMap.Element(approvalStatusFieldName).Value;
-            originatingUserMappedField = xmlMap.Element(originatingUserFieldName).Value;
-            assignedApproverMappedField = xmlMap.Element(assignedApproverFieldName).Value;
-            assignedApproverTypeMappedField = xmlMap.Element(assignedApproverTypeFieldName).Value;
-            generic1MappedField = xmlMap.Element(generic1FieldName).Value;
-            generic2MappedField = xmlMap.Element(generic2FieldName).Value;
-            generic3MappedField = xmlMap.Element(generic3FieldName).Value;
-            generic4MappedField = xmlMap.Element(generic4FieldName).Value;
-
+            customerNameMappedField = Utils.ReadXMLElementValue(xmlMap, customerNameFieldName, "");
+            customerNumberMappedField = Utils.ReadXMLElementValue(xmlMap, customerNumberFieldName, "");
+            taxIdMappedField = Utils.ReadXMLElementValue(xmlMap, taxIdFieldName, "");
+            customerBranchMappedField = Utils.ReadXMLElementValue(xmlMap, customerBranchFieldName, "");
+            customerOfficerCodeMappedField = Utils.ReadXMLElementValue(xmlMap, customerOfficerCodeFieldName, "");
+            loanNumberMappedField = Utils.ReadXMLElementValue(xmlMap, loanNumberFieldName, "");
+            collateralLoanNumberMappedField = Utils.ReadXMLElementValue(xmlMap, collateralLoanNumberFieldName, "");
+            collateralAddendaMappedField = Utils.ReadXMLElementValue(xmlMap, collateralAddendaFieldName, "");
+            parentLoanNumberMappedField = Utils.ReadXMLElementValue(xmlMap, parentLoanNumberFieldName, "");
+            accountClassMappedField = Utils.ReadXMLElementValue(xmlMap, accountClassFieldName, "");
+            loanTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, loanTypeCodeFieldName, "");
+            collateralLoanTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, collateralLoanTypeCodeFieldName, "");
+            loanStatusCodeMappedField = Utils.ReadXMLElementValue(xmlMap, loanStatusCodeFieldName, "");
+            loanAmountMappedField = Utils.ReadXMLElementValue(xmlMap, loanAmountFieldName, "");
+            loanOriginationDateMappedField = Utils.ReadXMLElementValue(xmlMap, loanOriginationDateFieldName, "");
+            loanDescriptionMappedField = Utils.ReadXMLElementValue(xmlMap, loanDescriptionFieldName, "");
+            collateralDescriptionMappedField = Utils.ReadXMLElementValue(xmlMap, collateralDescriptionFieldName, "");
+            borrowerTypeMappedField = Utils.ReadXMLElementValue(xmlMap, borrowerTypeFieldName, "");
+            owningCustomerNumberMappedField = Utils.ReadXMLElementValue(xmlMap, owningCustomerNumberFieldName, "");
+            applicationDateMappedField = Utils.ReadXMLElementValue(xmlMap, applicationDateFieldName, "");
+            creditAnalysisStatusMappedField = Utils.ReadXMLElementValue(xmlMap, creditAnalysisStatusFieldName, "");
+            requestedAmountMappedField = Utils.ReadXMLElementValue(xmlMap, requestedAmountFieldName, "");
+            primaryCollateralValueMappedField = Utils.ReadXMLElementValue(xmlMap, primaryCollateralValueFieldName, "");
+            FICOMappedField = Utils.ReadXMLElementValue(xmlMap, FICOFieldName, "");
+            valuationDateMappedField = Utils.ReadXMLElementValue(xmlMap, valuationDateFieldName, "");
+            interestRateMappedField = Utils.ReadXMLElementValue(xmlMap, interestRateFieldName, "");
+            probabilityMappedField = Utils.ReadXMLElementValue(xmlMap, probabilityFieldName, "");
+            estimatedCloseDateMappedField = Utils.ReadXMLElementValue(xmlMap, estimatedCloseDateFieldName, "");
+            assignedLenderMappedField = Utils.ReadXMLElementValue(xmlMap, assignedLenderFieldName, "");
+            assignedLenderTypeMappedField = Utils.ReadXMLElementValue(xmlMap, assignedLenderTypeFieldName, "");
+            assignedAnalystMappedField = Utils.ReadXMLElementValue(xmlMap, assignedAnalystFieldName, "");
+            assignedAnalystTypeMappedField = Utils.ReadXMLElementValue(xmlMap, assignedAnalystTypeFieldName, "");
+            assignedLoanProcessorMappedField = Utils.ReadXMLElementValue(xmlMap, assignedLoanProcessorFieldName, "");
+            assignedLoanProcessorTypeMappedField = Utils.ReadXMLElementValue(xmlMap, assignedLoanProcessorTypeFieldName, "");
+            applicationLockedMappedField = Utils.ReadXMLElementValue(xmlMap, applicationLockedFieldName, "");
+            approvalStatusMappedField = Utils.ReadXMLElementValue(xmlMap, approvalStatusFieldName, "");
+            originatingUserMappedField = Utils.ReadXMLElementValue(xmlMap, originatingUserFieldName, "");
+            assignedApproverMappedField = Utils.ReadXMLElementValue(xmlMap, assignedApproverFieldName, "");
+            assignedApproverTypeMappedField = Utils.ReadXMLElementValue(xmlMap, assignedApproverTypeFieldName, "");
+            generic1MappedField = Utils.ReadXMLElementValue(xmlMap, generic1FieldName, "");
+            generic2MappedField = Utils.ReadXMLElementValue(xmlMap, generic2FieldName, "");
+            generic3MappedField = Utils.ReadXMLElementValue(xmlMap, generic3FieldName, "");
+            generic4MappedField = Utils.ReadXMLElementValue(xmlMap, generic4FieldName, "");
+            
         }
     
     }

@@ -13,40 +13,52 @@ namespace ApplicationProcessor
 {
     class FileProcessor
     {
-        public DataSources DataSource { get; set; }
         public Configuration Config { get; set; }
+        public LogWriter logFile { get; set; }
 
-        public DataTable FillDataTable()
+        public bool FillDataTable(out DataTable dataTable)
         {
-            DataTable dataTable = new DataTable();
-            switch (DataSource)
+            dataTable = new DataTable();
+            bool success = false;
+
+            try
             {
-                case DataSources.delimited:
-                    string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\\;Extended Properties=\"Text;HDR=YES;FMT=Delimited\";";
-                    OleDbConnection fileConn = new OleDbConnection(connectionString);
-                    OleDbDataAdapter fileAdapter = new OleDbDataAdapter("select * from " + Config.SourceFile, fileConn);
-                    fileAdapter.Fill(dataTable);
-                    break;
+                DataSources dataSource = (DataSources)Enum.Parse(typeof(DataSources), Config.SourceDelimitedSQLXML, true);
+                switch (dataSource)
+                {
+                    case DataSources.delimited:
+                        string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\\;Extended Properties=\"Text;HDR=YES;FMT=Delimited\";";
+                        OleDbConnection fileConn = new OleDbConnection(connectionString);
+                        OleDbDataAdapter fileAdapter = new OleDbDataAdapter("select * from " + Config.SourceFile, fileConn);
+                        fileAdapter.Fill(dataTable);
+                        break;
 
-                case DataSources.SQL:
-                    string dbConnectionString = Config.SourceSQLConnectionString;
-                    string sqlQuery = File.ReadAllText(Config.SourceSQLQueryFile);
-                    SqlConnection connection = new SqlConnection(dbConnectionString);
-                    connection.Open();
-                    SqlDataAdapter dadapter = new SqlDataAdapter();
-                    dadapter.SelectCommand = new SqlCommand(sqlQuery, connection);
-                    dadapter.Fill(dataTable);
-                    connection.Close();
-                    break;
+                    case DataSources.SQL:
+                        string dbConnectionString = Config.SourceSQLConnectionString;
+                        string sqlQuery = File.ReadAllText(Config.SourceSQLQueryFile);
+                        SqlConnection connection = new SqlConnection(dbConnectionString);
+                        connection.Open();
+                        SqlDataAdapter dadapter = new SqlDataAdapter();
+                        dadapter.SelectCommand = new SqlCommand(sqlQuery, connection);
+                        dadapter.Fill(dataTable);
+                        connection.Close();
+                        break;
 
-                case DataSources.XML:
-                    break;
-                default:
-                    break;
+                    case DataSources.XML:
+                        break;
+                    default:
+                        break;
+                }
+                success = true;
+            }
+            catch (Exception e)
+            {
+                logFile.LogMessage(e.ToString());
+                logFile.LogMessage();
+                logFile.LogMessage("Unable to retrieve source data");
             }
 
-
-            return dataTable;
+            return success;
         }
 
         public DataTable LoadDataTableFromMappedFields(DataTable sourceTable, FieldMapper fieldMap)
@@ -85,7 +97,6 @@ namespace ApplicationProcessor
         {
             List<int> rowsToRemove = new List<int>();
 
-            //foreach (DataRow row in sourceTable.Rows)
             for (int i = 0; i < sourceTable.Rows.Count; i++)
             {
                 DataRow row = sourceTable.Rows[i];
