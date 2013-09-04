@@ -82,9 +82,9 @@ namespace Config
             List<string> operators = new List<string>() { "=", "!=", "<", "<=", ">", ">=", "Has Value", "Has no Value", "Always" };
             comboBoxOperator.Items.AddRange(operators.ToArray());
             
-            List<string> Actions = new List<string>() { "Set Value to:", "Set Value to field:", "Skip Record", 
+            List<string> Actions = new List<string>() { "Set Value to:", "Set Value to field:", "Set Other Field to:", "Skip Record", 
                 "Combine fields with space", "Combine fields no space", "Append field with text", "Prepend field with text",
-                "Replace text", "Lookup Code from DB", "Convert to short date", "Next Collateral Number" };
+                "Replace text", "Lookup Code from DB", "Convert to short date", "Next Collateral Number", };
             comboBoxAction.Items.AddRange(Actions.ToArray());
         
         }
@@ -243,6 +243,14 @@ namespace Config
                 labelParameter1.Text = "Assigned field";
                 comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
             }
+            else if (comboBoxAction.Text == "Set Other Field to:")
+            {
+                comboBoxParameter1.Enabled = true;
+                comboBoxParameter2.Enabled = true;
+                labelParameter1.Text = "Field to Set";
+                labelParameter2.Text = "Value";
+                comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
+            }
             else if (comboBoxAction.Text == "Combine fields with space")
             {
                 comboBoxParameter1.Enabled = true;
@@ -286,7 +294,7 @@ namespace Config
                 comboBoxParameter2.Enabled = true;
                 labelParameter1.Text = "Search Text";
                 labelParameter2.Text = "Replacement Text";
-            }   
+            }
             else
             {
                 comboBoxParameter1.Enabled = false;

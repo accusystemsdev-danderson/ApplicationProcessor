@@ -187,6 +187,9 @@ namespace ApplicationProcessor
                 case "Set Value to field:":
                     row[field] = row[parameter1].ToString();
                     break;
+                case "Set Other Field to:":
+                    row[parameter1] = parameter2;
+                    break;
                 case "Skip Record":
                     logFile.LogMessage("Skipping Record");
                     //logFile.LogMessage(string.Format("Skipping record - Customer Number: {0} - Account Number: {1}.  {2} {3}",
@@ -393,7 +396,8 @@ namespace ApplicationProcessor
         private int getHighCollateralInTable(DataTable dataTable, string loanNumber)
         {
             int highCollateral = 0;
-            DataRow[] collateralRows = dataTable.Select(FieldMap.loanNumberFieldName + " = '" + loanNumber + "'", FieldMap.collateralAddendaFieldName + " Desc" );
+            DataRow[] collateralRows = dataTable.Select(FieldMap.loanNumberFieldName + " = '" + loanNumber + 
+                "' AND " + FieldMap.borrowerTypeFieldName + " = ''", FieldMap.collateralAddendaFieldName + " Desc" );
             if (collateralRows.Count() > 0)
             {
                 string topCollateral = collateralRows[0][FieldMap.collateralAddendaFieldName].ToString();

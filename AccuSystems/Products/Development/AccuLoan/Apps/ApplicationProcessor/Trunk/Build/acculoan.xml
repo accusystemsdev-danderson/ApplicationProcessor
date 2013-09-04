@@ -61,7 +61,7 @@
     <customerBranch>0</customerBranch>
     <customerOfficerCode>AKM</customerOfficerCode>
     <loan>
-      <loanNumber>APP</loanNumber>
+      <loanNumber>APP12</loanNumber>
       <customerNumber>121212121</customerNumber>
       <accountClass>loan</accountClass>
       <loanTypeCode>L_INDIRECT</loanTypeCode>
@@ -97,17 +97,6 @@
         </approval>
       </application>
     </loan>
-    <loan>
-      <loanNumber>APP_1</loanNumber>
-      <customerNumber>121212121</customerNumber>
-      <accountClass>loan</accountClass>
-      <loanTypeCode>L_coll_titledIND</loanTypeCode>
-      <parentLoanNumber>APP</parentLoanNumber>
-      <loanStatusCode />
-      <loanAmount />
-      <loanOriginationDate />
-      <loanDescription>2013 Dodge Durange</loanDescription>
-    </loan>
   </customer>
   <customer>
     <customerNumber>131313131</customerNumber>
@@ -116,7 +105,7 @@
     <customerBranch>0</customerBranch>
     <customerOfficerCode>AKM</customerOfficerCode>
     <loan>
-      <loanNumber>APP</loanNumber>
+      <loanNumber>APP12</loanNumber>
       <customerNumber>131313131</customerNumber>
       <accountClass>loan</accountClass>
       <loanTypeCode>L_INDIRECT</loanTypeCode>
@@ -153,11 +142,11 @@
       </application>
     </loan>
     <loan>
-      <loanNumber>APP_2</loanNumber>
+      <loanNumber>APP12_1</loanNumber>
       <customerNumber>131313131</customerNumber>
       <accountClass>loan</accountClass>
       <loanTypeCode>L_coll_titledIND</loanTypeCode>
-      <parentLoanNumber>APP</parentLoanNumber>
+      <parentLoanNumber>APP12</parentLoanNumber>
       <loanStatusCode />
       <loanAmount />
       <loanOriginationDate />

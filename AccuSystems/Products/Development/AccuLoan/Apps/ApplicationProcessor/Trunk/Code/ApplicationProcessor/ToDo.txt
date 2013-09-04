@@ -1,9 +1,10 @@
 ﻿Multiple Collaterals
 Next available Collateral Rule
-Error Handling
 Logging
 Comments
 Verify MTE processing
+post processing script
+
 
 
 
