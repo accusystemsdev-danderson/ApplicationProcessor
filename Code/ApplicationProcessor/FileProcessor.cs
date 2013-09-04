@@ -93,20 +93,22 @@ namespace ApplicationProcessor
             return newTable;
         }
 
-        public void setOwningCustomer (DataTable sourceTable, LogWriter log, FieldMapper fieldMap)
+        public void setOwningCustomer (DataTable sourceTable, FieldMapper fieldMap)
         {
             List<int> rowsToRemove = new List<int>();
 
             for (int i = 0; i < sourceTable.Rows.Count; i++)
             {
                 DataRow row = sourceTable.Rows[i];
-                
+
                 DataRow[] primaryRows = sourceTable.Select("loanNumber = '" + row[fieldMap.loanNumberFieldName].ToString() + "' AND borrowerType = ''");
-                if (primaryRows.Count() != 1)
+                var distinctPrimaries = (from p in primaryRows
+                                        select p[fieldMap.customerNumberFieldName]).Distinct().ToList().Count();
+                if (distinctPrimaries != 1)
                 {
                     rowsToRemove.Add(i);
-                    log.LogMessage(string.Format("Wrong number of primary relationships for account {0} - primary relationships: {1}",
-                        row[fieldMap.loanNumberFieldName].ToString(), primaryRows.Count()));
+                    logFile.LogMessage(string.Format("Wrong number of primary relationships for account {0} - primary relationships: {1}",
+                        row[fieldMap.loanNumberFieldName].ToString(), distinctPrimaries.ToString()));
                 }
                 else if (row[fieldMap.borrowerTypeFieldName].ToString() != "")
                 {

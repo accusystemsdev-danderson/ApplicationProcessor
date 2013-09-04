@@ -144,7 +144,7 @@ namespace ApplicationProcessor
 
             logFile.LogMessage("Setting owningCustomer Number");
 
-            fileProcessor.setOwningCustomer(mappedData, logFile, fieldMap);
+            fileProcessor.setOwningCustomer(mappedData, fieldMap);
             
 
 
