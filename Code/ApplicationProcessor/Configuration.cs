@@ -63,12 +63,11 @@ namespace ApplicationProcessor
                 {
                     if (source.Element("application").Value.ToUpper() == "ACCULOAN")
                     {
-                        connectionString.Append("metadata=res://*/AccuLoanDBModel.csdl|res://*/AccuLoanDBModel.ssdl|res://*/AccuLoanDBModel.msl;provider=System.Data.SqlClient;provider connection string='");
                         connectionString.Append("data source=" + source.Element("server").Value + ";");
                         connectionString.Append("initial catalog=" + source.Element("database").Value + ";");
                         connectionString.Append("user id=" + source.Element("user_ID").Value + ";");
                         connectionString.Append("password=" + source.Element("password").Value + ";");
-                        connectionString.Append("MultipleActiveResultSets=True;App=EntityFramework'");
+                        connectionString.Append("MultipleActiveResultSets=True");
                     }
                 }
                 dbConnectionString = connectionString.ToString();

@@ -71,36 +71,35 @@ namespace ApplicationProcessor
                 xmlMappingFile = Config.FieldMapFile 
             };
             fieldMap.ReadFieldMappings();
-            //logFile.LogAllProperties(fieldMap);
-            
+                        
 
             //----------Get Source Data
 
             logFile.LogMessage("Retrieving Source Data");
 
-            Processor applicationProcessor = new Processor()
+            Processor appProcessor = new Processor()
             {
                 Config = Config,
                 LogFile = logFile,
                 FieldMap = fieldMap
             };
             DataTable sourceData = new DataTable();
-            if (!applicationProcessor.FillDataTable(out sourceData))
+            if (!appProcessor.FillDataTable(out sourceData))
             {
                 return;
             };
             #endregion
 
             #region writeTestData
-            //----------Testing Source Data Retreival
+            //----------Testing Source Data Retreival.  Write data to file and exit.
 
             if (Config.TestSourceModeYN.ToUpper() == "Y")
             {
                 logFile.LogMessage("Writing Source Data to TestSourceData.txt");
-                applicationProcessor.WriteDataTableToFile(sourceData, "TestSourceData.txt");
+                appProcessor.WriteDataTableToFile(sourceData, "TestSourceData.txt");
                 Console.WriteLine();
                 Console.WriteLine();
-                Console.WriteLine("Source data written to \"TestSourceData.txt\".  Press any key to continue..");
+                Console.WriteLine("Source data written to \"TestSourceData.txt\".  Press any key to exit..");
                 Console.WriteLine();
                 Console.ReadLine();
                 return;
@@ -112,7 +111,7 @@ namespace ApplicationProcessor
 
             logFile.LogMessage("Mapping Source Data to MappedTable");
 
-            DataTable mappedData = applicationProcessor.LoadDataTableFromMappedFields(sourceData, fieldMap);
+            DataTable mappedData = appProcessor.LoadDataTableFromMappedFields(sourceData, fieldMap);
 
           
             //----------Process Rules
@@ -157,7 +156,7 @@ namespace ApplicationProcessor
 
             logFile.LogMessage("Setting owningCustomer Number");
 
-            applicationProcessor.setOwningCustomer(mappedData, fieldMap);
+            appProcessor.setOwningCustomer(mappedData, fieldMap);
             #endregion
 
             #region writeData
@@ -165,13 +164,13 @@ namespace ApplicationProcessor
 
             logFile.LogMessage("Writing XML File for Importer");
 
-            if (!applicationProcessor.WriteXMLData(mappedData))
+            if (!appProcessor.WriteXMLData(mappedData))
             {
                 logFile.LogMessage("Unable to write XML File");
                 return;
             }
 
-            applicationProcessor.WriteAccountsProcessedLogFile();
+            appProcessor.WriteAccountsProcessedLogFile();
             #endregion
 
             #region finalProcesses
@@ -179,7 +178,7 @@ namespace ApplicationProcessor
             if (Config.PostProcessingQueryYN == "Y")
             {
                 logFile.LogMessage("Running Post Processing Query");
-                applicationProcessor.RunPostProcessingQuery();
+                appProcessor.RunPostProcessingQuery();
             }
             
             DateTime finishedTime = DateTime.Now;

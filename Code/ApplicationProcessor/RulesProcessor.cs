@@ -7,6 +7,7 @@ using System.Data;
 using System.Xml.Linq;
 using System.Reflection;
 using System.Data.SqlClient;
+using AccuAccount.Data;
 
 
 namespace ApplicationProcessor
@@ -18,22 +19,23 @@ namespace ApplicationProcessor
         public FieldMapper FieldMap { get; set; }
         public Configuration Config { get; set; }
 
-        private AcculoanDBEntities db;
+        private DataContext db;
         
         public bool ProcessRules()
         {
-            bool success = false;
-            db = new AcculoanDBEntities(Config.dbConnectionString);
+                db = new DataContext(Config.dbConnectionString);
 
             DataTable rulesToProcess = new DataTable();
             if (!loadDataTableFromRulesFile(out rulesToProcess))
             {
-                return success;
+                logFile.LogMessage("Unable to read rules file.");
+                return false;
             }
             List<int> rowsToRemove = new List<int>();
 
             for (int i=0; i < TableToProcess.Rows.Count; i++)
             {
+                //--------- check each row of data against all rules
                 DataRow row = TableToProcess.Rows[i];
                 foreach (DataRow rule in rulesToProcess.Rows)
                 {
@@ -49,7 +51,7 @@ namespace ApplicationProcessor
                             logFile.LogMessage(e.ToString());
                             logFile.LogMessage();
                             logFile.LogMessage("Unable to process rules at datarow " + (i + 1).ToString());
-                            return success;
+                            return false;
                         }
                     }
 
@@ -60,14 +62,14 @@ namespace ApplicationProcessor
                     }
 
                 }
-
+                //--------Check that all required fields have values
                 if (!verifyRequiredFields(row))
                 {
                     if (!rowsToRemove.Contains(i))
                         rowsToRemove.Add(i);
                 }
-
-                if (Config.ProcessExistingAccounts.ToUpper() == "N")
+                //--------According to config setting - check to see if the account number already exists in the acculoan database.  If it exists, don't process the record.
+                if (Config.ProcessExistingAccounts.ToUpper() != "Y")
                 { 
                     if (accountExistsInDatabase(row[FieldMap.loanNumberFieldName].ToString()))
                         if (!rowsToRemove.Contains(i))
@@ -75,19 +77,18 @@ namespace ApplicationProcessor
                 }
 
             }
+            //----------Delete records marked for removal
             for (int i = rowsToRemove.Count - 1; i >= 0; i--)
             {
                 TableToProcess.Rows[rowsToRemove[i]].Delete();
             }
             TableToProcess.AcceptChanges();
-            success = true;
-
-            return success;
+            
+            return true;
         }
 
         private bool  loadDataTableFromRulesFile(out DataTable dataTable)
         {
-            bool success = false;
             dataTable = new DataTable();
 
             try
@@ -115,16 +116,17 @@ namespace ApplicationProcessor
 
                     dataTable.Rows.Add(newRow);
                 }
-                success = true;
+                
             }
             catch (Exception e)
             {
                 logFile.LogMessage(e.ToString());
                 logFile.LogMessage();
                 logFile.LogMessage("Unable to read rules file");
+                return false;
             }
 
-            return success;
+            return true;
 
         }
 
@@ -290,9 +292,8 @@ namespace ApplicationProcessor
 
         private string lookupFromDB(string lookupValue, string lookupTable, string lookupField, string returnField)
         {
-            string dbConnectionString = setupDBConnectionString();
             string sqlQuery = "Select " + returnField + " from [" + lookupTable + "] where " + lookupField + " = '" + lookupValue + "'";
-            SqlConnection connection = new SqlConnection(dbConnectionString);
+            SqlConnection connection = new SqlConnection(Config.dbConnectionString);
             connection.Open();
             SqlDataAdapter dadapter = new SqlDataAdapter();
             dadapter.SelectCommand = new SqlCommand(sqlQuery, connection);
@@ -304,89 +305,68 @@ namespace ApplicationProcessor
             return result.ToString();
         }
 
-        private string setupDBConnectionString()
-        {
-            StringBuilder connectionString = new StringBuilder();
-
-            XElement xml = XElement.Load(Config.PathToDBXML);
-            foreach (XElement setting in xml.Elements("DBSource"))
-            {
-                if (setting.Element("application").Value.ToUpper() == "ACCULOAN")
-                {
-                    connectionString.Append("data source=" + setting.Element("server").Value + ";");
-                    connectionString.Append("initial catalog=" + setting.Element("database").Value + ";");
-                    connectionString.Append("user id=" + setting.Element("user_ID").Value + ";");
-                    connectionString.Append("password=" + setting.Element("password").Value + ";");
-                }
-
-            }
-            return connectionString.ToString();
-
-        }
-
         private bool getLoanId(string loanNumber, string customerNumber, string loanTypeCode, string accountClass, out Guid loanId)
         {
             loanId = new Guid();
-            AcculoanDBEntities db = new AcculoanDBEntities(Config.dbConnectionString);
             bool found = false;
 
             //get duplication mode
-            string dupMode = (from p in db.accusystemsProperties
-                           where p.propertyKey == "accuimporter.LoanDuplicationMode"
-                           select p.propertyValue).FirstOrDefault().ToString();
+            string dupMode = (from p in db.AccuSystemsProperties
+                           where p.PropertyKey == "accuimporter.LoanDuplicationMode"
+                           select p.PropertyValue).FirstOrDefault().ToString();
             switch (dupMode)
             {
                 case "None":
-                    var loans0 = from l in db.loans
-                                 where l.loanNumber == loanNumber
+                    var loans0 = from l in db.Loans
+                                 where l.LoanNumber == loanNumber
                                  select l;
                     if (loans0.Count() == 1)
                     {
-                        loanId = loans0.FirstOrDefault().loanId;
+                        loanId = loans0.FirstOrDefault().LoanId;
                         found = true;
                     }
                     break;
                 case "CustomerAndLoan":
-                    var loans1 = from l in db.loans
-                             where l.loanNumber == loanNumber
-                             from c in db.customers
-                             where c.customerNumber == customerNumber
+                    var loans1 = from l in db.Loans
+                             where l.LoanNumber == loanNumber
+                             from c in db.Customers
+                             where c.CustomerNumber == customerNumber
                              select l;
                     if (loans1.Count() == 1)
                     {
-                        loanId = loans1.FirstOrDefault().loanId;
+                        loanId = loans1.FirstOrDefault().LoanId;
                         found = true;
                     }
                     break;
 
                 case "CustomerAndLoanAndAccountClass":
-                    var loans2 = from l in db.loans
-                             where l.loanNumber == loanNumber
-                             from c in db.customers
-                             where c.customerNumber == customerNumber
-                             from ac in db.accountClasses
-                             where ac.accountClassName == accountClass
+                    var loans2 = from l in db.Loans
+                             where l.LoanNumber == loanNumber
+                             from c in db.Customers
+                             where c.CustomerNumber == customerNumber
+                             from ac in db.AccountClasses
+                             where ac.AccountClassName == accountClass
                              select l;
                     if (loans2.Count() == 1)
                     {
-                        loanId = loans2.FirstOrDefault().loanId;
+                        loanId = loans2.FirstOrDefault().LoanId;
                         found = true;
                     }
                     break;
 
                 case "CustomerAndLoanAndLoanTypeAndAccountClass":
-                    var loans3 = from l in db.loans
-                                 where l.loanNumber == loanNumber
-                                 from c in db.customers
-                                 where c.customerNumber == customerNumber
-                                 from lt in db.loanTypes
-                                 where lt.loanTypeCode == loanTypeCode
-                                 from ac in db.accountClasses
-                                 where ac.accountClassName == accountClass
+                    var loans3 = from l in db.Loans
+                                 where l.LoanNumber == loanNumber
+                                 from c in db.Customers
+                                 where c.CustomerNumber == customerNumber
+                                 from lt in db.LoanTypes
+                                 where lt.LoanTypeCode == loanTypeCode
+                                 from ac in db.AccountClasses
+                                 where ac.AccountClassName == accountClass
                                  select l;
                     if (loans3.Count() == 1)
                     {
-                        loanId = loans3.FirstOrDefault().loanId;
+                        loanId = loans3.FirstOrDefault().LoanId;
                         found = true;
                     }
                     break;
@@ -400,15 +380,14 @@ namespace ApplicationProcessor
 
         private int getNextCollateral(Guid loanId)
         {
-            AcculoanDBEntities db = new AcculoanDBEntities(Config.dbConnectionString);
             int nextCollateral = 1;
 
-            var collaterals = from c in db.collaterals
-                              where c.parentLoanId == loanId
-                              orderby c.collateralSequence descending
+            var collaterals = from c in db.Collaterals
+                              where c.ParentLoanId == loanId
+                              orderby c.CollateralSequence descending
                               select c;
             if (collaterals.Count() > 0)
-                nextCollateral = (int)collaterals.FirstOrDefault().collateralSequence + 1;
+                nextCollateral = (int)collaterals.FirstOrDefault().CollateralSequence + 1;
             return nextCollateral;
         }
 
@@ -430,9 +409,9 @@ namespace ApplicationProcessor
         private int getCollateralPaddingSize()
         {
             int paddingSize = 0;
-            string paddingSizeString = (from p in db.accusystemsProperties
-                               where p.propertyKey == "accuaccount.collateralPadSize"
-                               select p.propertyValue).FirstOrDefault();
+            string paddingSizeString = (from p in db.AccuSystemsProperties
+                               where p.PropertyKey == "accuaccount.collateralPadSize"
+                               select p.PropertyValue).FirstOrDefault();
             try
             {
                 paddingSize = int.Parse(paddingSizeString);
@@ -446,8 +425,8 @@ namespace ApplicationProcessor
 
         private bool accountExistsInDatabase(string accountNumber)
         {
-            int accounts = (from l in db.loans
-                            where l.loanNumber == accountNumber
+            int accounts = (from l in db.Loans
+                            where l.LoanNumber == accountNumber
                             select l).Count();
 
 

@@ -1,15 +1,33 @@
 <ApplicationRules>
   <Rule
     Sequence="1"
-    Field="customerBranch"
-    Operator="Has no Value"
+    Field="loanBranch"
+    Operator="Always"
     Value=""
     Action="Set Value to:"
-    Parameter1="0"
+    Parameter1="DP"
     Parameter2=""
     Parameter3="" />
   <Rule
     Sequence="2"
+    Field="customerStatus"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="active"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="3"
+    Field="customerBranch"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="DP"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="4"
     Field="borrowerType"
     Operator="="
     Value="Borrower"
@@ -18,25 +36,61 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="3"
+    Sequence="5"
     Field="borrowerType"
     Operator="="
     Value="Co-Borrower"
     Action="Set Value to:"
-    Parameter1="C"
+    Parameter1="L_021"
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="4"
-    Field="loanNumber"
-    Operator="Has no Value"
+    Sequence="6"
+    Field="borrowerType"
+    Operator="="
+    Value="Co-Signer"
+    Action="Set Value to:"
+    Parameter1="L_060"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="7"
+    Field="borrowerType"
+    Operator="="
+    Value="Guarantor"
+    Action="Set Value to:"
+    Parameter1="L_062"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="8"
+    Field="borrowerType"
+    Operator="="
+    Value="Owner"
+    Action="Set Value to:"
+    Parameter1="L_GR"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="9"
+    Field="customerName"
+    Operator="Always"
     Value=""
-    Action="Skip Record"
-    Parameter1=""
-    Parameter2=""
+    Action="Combine fields with space"
+    Parameter1="customerName"
+    Parameter2="customerFirstName"
     Parameter3="" />
   <Rule
-    Sequence="5"
+    Sequence="10"
+    Field="customerName"
+    Operator="Always"
+    Value=""
+    Action="Combine fields with space"
+    Parameter1="customerName"
+    Parameter2="customerMiddleName"
+    Parameter3="" />
+  <Rule
+    Sequence="11"
     Field="loanNumber"
     Operator="Always"
     Value=""
@@ -45,25 +99,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="6"
-    Field="customerName"
-    Operator="Always"
-    Value=""
-    Action="Combine fields with space"
-    Parameter1="customerName"
-    Parameter2="generic1"
-    Parameter3="" />
-  <Rule
-    Sequence="7"
-    Field="customerName"
-    Operator="Always"
-    Value=""
-    Action="Combine fields with space"
-    Parameter1="customerName"
-    Parameter2="generic2"
-    Parameter3="" />
-  <Rule
-    Sequence="8"
+    Sequence="12"
     Field="parentLoanNumber"
     Operator="Always"
     Value=""
@@ -72,7 +108,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="9"
+    Sequence="13"
     Field="accountClass"
     Operator="Always"
     Value=""
@@ -81,43 +117,25 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="10"
+    Sequence="14"
     Field="originatingUser"
     Operator="Always"
     Value=""
     Action="Set Value to:"
-    Parameter1="admin"
+    Parameter1="dpro"
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="11"
-    Field="originatingUser"
+    Sequence="15"
+    Field="loanOfficerCode"
     Operator="Always"
     Value=""
-    Action="Lookup Code from DB"
-    Parameter1="user"
-    Parameter2="userLogin"
-    Parameter3="userId" />
-  <Rule
-    Sequence="12"
-    Field="customerOfficerCode"
-    Operator="Always"
-    Value=""
-    Action="Replace text"
-    Parameter1="_"
+    Action="Set Value to:"
+    Parameter1="DPO"
     Parameter2=" "
     Parameter3="" />
   <Rule
-    Sequence="13"
-    Field="customerOfficerCode"
-    Operator="Always"
-    Value=""
-    Action="Lookup Code from DB"
-    Parameter1="loanOfficer"
-    Parameter2="officerName"
-    Parameter3="officerCode" />
-  <Rule
-    Sequence="14"
+    Sequence="16"
     Field="approvalStatus"
     Operator="Always"
     Value=""
@@ -126,7 +144,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="15"
+    Sequence="17"
     Field="applicationDate"
     Operator="Always"
     Value=""
@@ -135,7 +153,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="16"
+    Sequence="18"
     Field="collateralAddenda"
     Operator="Always"
     Value=""
@@ -144,7 +162,16 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="17"
+    Sequence="19"
+    Field="collateralAddenda"
+    Operator="Always"
+    Value=""
+    Action="Pad Collateral Addenda"
+    Parameter1=""
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="20"
     Field="collateralLoanNumber"
     Operator="Always"
     Value=""
@@ -153,7 +180,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="18"
+    Sequence="21"
     Field="collateralLoanNumber"
     Operator="Always"
     Value=""
@@ -162,7 +189,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="19"
+    Sequence="22"
     Field="collateralLoanNumber"
     Operator="Always"
     Value=""
@@ -170,4 +197,49 @@
     Parameter1="collateralLoanNumber"
     Parameter2="collateralAddenda"
     Parameter3="" />
+  <Rule
+    Sequence="23"
+    Field="assignedLender"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="Lenders and Assistants"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="24"
+    Field="assignedLenderType"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="group"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="25"
+    Field="customerTypeCode"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="test"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="26"
+    Field="loanStatusCode"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="APP1"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="27"
+    Field="loanTypeCode"
+    Operator="Always"
+    Value=""
+    Action="Lookup Code from DB"
+    Parameter1="loanType"
+    Parameter2="loanTypeCode"
+    Parameter3="loanTypeId" />
 </ApplicationRules>
