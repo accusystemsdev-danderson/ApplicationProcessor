@@ -1,14 +1,19 @@
 <AccuAccountApplicationInterfaceProperties>
   <LogFolder>Logs\</LogFolder>
   <DaysToKeepLogs>14</DaysToKeepLogs>
-  <PathToDBXML>c:\accusystems\config\db.xml</PathToDBXML>
   <FieldMapFile>FieldMappings.xml</FieldMapFile>
-  <OutputFile>acculoan.xml</OutputFile>
   <RulesFile>Rules.xml</RulesFile>
-  <SourceDelimitedSQLXML>delimited</SourceDelimitedSQLXML>
+  <PathToDBXML>c:\accusystems\config\db.xml</PathToDBXML>
+  <OutputFile>acculoan.xml</OutputFile>
+  <SourceDelimitedSQLXML>Delimited</SourceDelimitedSQLXML>
   <SourceFile>test.csv</SourceFile>
-  <CollateralsYN>Y</CollateralsYN>
-  <ProcessMTEs>N</ProcessMTEs>
   <SourceSQLQueryFile>SQLQuery.txt</SourceSQLQueryFile>
   <SourceSQLConnectionString>Server=accusys-laptp10\accusystems;Database=testing;trusted_connection=yes</SourceSQLConnectionString>
+  <CollateralsYN>Y</CollateralsYN>
+  <ProcessMTEs>Y</ProcessMTEs>
+  <PostProcessingQueryYN>N</PostProcessingQueryYN>
+  <PostProcessingSQLQueryFile>post.sql</PostProcessingSQLQueryFile>
+  <TestSourceModeYN>N</TestSourceModeYN>
+  <AccountsProcessedLogFile>Accounts.txt</AccountsProcessedLogFile>
+  <ProcessExistingAccounts>Y</ProcessExistingAccounts>
 </AccuAccountApplicationInterfaceProperties>
