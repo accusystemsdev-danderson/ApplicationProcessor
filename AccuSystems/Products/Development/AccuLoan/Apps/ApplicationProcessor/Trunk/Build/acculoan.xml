@@ -1,21 +1,52 @@
 <AccuSystems>
   <customer>
     <customerNumber>111223333</customerNumber>
-    <customerName>Last1 First1 M</customerName>
     <taxId>111223333</taxId>
-    <customerBranch>0</customerBranch>
-    <customerOfficerCode>AKM</customerOfficerCode>
+    <customerName>Last1 First1 M</customerName>
+    <businessName />
+    <customerFirstName>First1</customerFirstName>
+    <customerMiddleName>M</customerMiddleName>
+    <customerLastName>Last1</customerLastName>
+    <customerTypeCode>test</customerTypeCode>
+    <bankCode>016</bankCode>
+    <employee />
+    <customerBranch>DP</customerBranch>
+    <customerOfficerCode />
+    <address1 />
+    <address2 />
+    <city />
+    <state />
+    <zipCode />
+    <homePhone />
+    <workPhone />
+    <mobilePhone />
+    <fax />
+    <email />
+    <classificationCode />
+    <customerStatus>active</customerStatus>
     <loan>
-      <loanNumber>APP27</loanNumber>
+      <loanNumber>APP000000072</loanNumber>
       <customerNumber>111223333</customerNumber>
       <accountClass>loan</accountClass>
+      <loanStatusCode>APP1</loanStatusCode>
+      <loanOfficerCode>DPO</loanOfficerCode>
       <loanTypeCode>L_INDIRECT</loanTypeCode>
-      <loanStatusCode />
+      <loanClosed />
       <loanAmount />
       <loanOriginationDate />
       <loanDescription />
       <borrowerType />
       <owningCustomerNumber />
+      <loanBranch>DP</loanBranch>
+      <coreClassCode />
+      <coreCollCode />
+      <coreCollateralCode />
+      <corePurposeCode />
+      <coreTypeCode />
+      <commitmentAmount />
+      <coreNaicsCode />
+      <loanMaturityDate />
+      <loanClassificationCode />
       <application>
         <applicationDate>7/20/2013</applicationDate>
         <creditAnalysisStatus />
@@ -27,7 +58,7 @@
         <probability />
         <estimatedCloseDate />
         <assignedLender
-          type="">12345</assignedLender>
+          type="group">Lenders and Assistants</assignedLender>
         <assignedAnalyst
           type=""></assignedAnalyst>
         <assignedLoanProcessor
@@ -35,7 +66,7 @@
         <applicationLocked />
         <approval>
           <approvalStatus>APR1</approvalStatus>
-          <originatingUser>0b9b1643-0233-4708-af2e-83cfb02b5064</originatingUser>
+          <originatingUser>dpro</originatingUser>
           <assignedApprover />
           <assignedApprover
             type=""></assignedApprover>
@@ -43,34 +74,78 @@
       </application>
     </loan>
     <loan>
-      <loanNumber>APP27_1</loanNumber>
+      <loanNumber>APP000000072_003</loanNumber>
       <customerNumber>111223333</customerNumber>
       <accountClass>loan</accountClass>
+      <loanStatusCode>APP1</loanStatusCode>
+      <loanOfficerCode>DPO</loanOfficerCode>
       <loanTypeCode>L_coll_titledIND</loanTypeCode>
-      <parentLoanNumber>APP27</parentLoanNumber>
-      <loanStatusCode />
+      <loanClosed />
       <loanAmount />
       <loanOriginationDate />
+      <borrowerType />
+      <parentLoanNumber>APP000000072</parentLoanNumber>
       <loanDescription>2013 Dodge Durange</loanDescription>
+      <loanBranch>DP</loanBranch>
+      <coreClassCode />
+      <coreCollCode />
+      <coreCollateralCode />
+      <corePurposeCode />
+      <coreTypeCode />
+      <commitmentAmount />
+      <coreNaicsCode />
+      <loanMaturityDate />
+      <loanClassificationCode />
     </loan>
   </customer>
   <customer>
     <customerNumber>121212121</customerNumber>
-    <customerName>Last2 First2 M</customerName>
     <taxId>121212121</taxId>
-    <customerBranch>0</customerBranch>
-    <customerOfficerCode>AKM</customerOfficerCode>
+    <customerName>Last2 First2 M</customerName>
+    <businessName />
+    <customerFirstName>First2</customerFirstName>
+    <customerMiddleName>M</customerMiddleName>
+    <customerLastName>Last2</customerLastName>
+    <customerTypeCode>test</customerTypeCode>
+    <bankCode>016</bankCode>
+    <employee />
+    <customerBranch>DP</customerBranch>
+    <customerOfficerCode />
+    <address1 />
+    <address2 />
+    <city />
+    <state />
+    <zipCode />
+    <homePhone />
+    <workPhone />
+    <mobilePhone />
+    <fax />
+    <email />
+    <classificationCode />
+    <customerStatus>active</customerStatus>
     <loan>
       <loanNumber>APP12</loanNumber>
       <customerNumber>121212121</customerNumber>
       <accountClass>loan</accountClass>
+      <loanStatusCode>APP1</loanStatusCode>
+      <loanOfficerCode>DPO</loanOfficerCode>
       <loanTypeCode>L_INDIRECT</loanTypeCode>
-      <loanStatusCode />
+      <loanClosed />
       <loanAmount />
       <loanOriginationDate />
       <loanDescription />
-      <borrowerType>C</borrowerType>
+      <borrowerType>L_021</borrowerType>
       <owningCustomerNumber>131313131</owningCustomerNumber>
+      <loanBranch>DP</loanBranch>
+      <coreClassCode />
+      <coreCollCode />
+      <coreCollateralCode />
+      <corePurposeCode />
+      <coreTypeCode />
+      <commitmentAmount />
+      <coreNaicsCode />
+      <loanMaturityDate />
+      <loanClassificationCode />
       <application>
         <applicationDate>7/20/2013</applicationDate>
         <creditAnalysisStatus />
@@ -82,7 +157,7 @@
         <probability />
         <estimatedCloseDate />
         <assignedLender
-          type="">12345</assignedLender>
+          type="group">Lenders and Assistants</assignedLender>
         <assignedAnalyst
           type=""></assignedAnalyst>
         <assignedLoanProcessor
@@ -90,7 +165,7 @@
         <applicationLocked />
         <approval>
           <approvalStatus>APR1</approvalStatus>
-          <originatingUser>0b9b1643-0233-4708-af2e-83cfb02b5064</originatingUser>
+          <originatingUser>dpro</originatingUser>
           <assignedApprover />
           <assignedApprover
             type=""></assignedApprover>
@@ -100,21 +175,52 @@
   </customer>
   <customer>
     <customerNumber>131313131</customerNumber>
-    <customerName>Last3 First3 M</customerName>
     <taxId>131313131</taxId>
-    <customerBranch>0</customerBranch>
-    <customerOfficerCode>AKM</customerOfficerCode>
+    <customerName>Last3 First3 M</customerName>
+    <businessName />
+    <customerFirstName>First3</customerFirstName>
+    <customerMiddleName>M</customerMiddleName>
+    <customerLastName>Last3</customerLastName>
+    <customerTypeCode>test</customerTypeCode>
+    <bankCode>016</bankCode>
+    <employee />
+    <customerBranch>DP</customerBranch>
+    <customerOfficerCode />
+    <address1 />
+    <address2 />
+    <city />
+    <state />
+    <zipCode />
+    <homePhone />
+    <workPhone />
+    <mobilePhone />
+    <fax />
+    <email />
+    <classificationCode />
+    <customerStatus>active</customerStatus>
     <loan>
       <loanNumber>APP12</loanNumber>
       <customerNumber>131313131</customerNumber>
       <accountClass>loan</accountClass>
+      <loanStatusCode>APP1</loanStatusCode>
+      <loanOfficerCode>DPO</loanOfficerCode>
       <loanTypeCode>L_INDIRECT</loanTypeCode>
-      <loanStatusCode />
+      <loanClosed />
       <loanAmount />
       <loanOriginationDate />
       <loanDescription />
       <borrowerType />
       <owningCustomerNumber />
+      <loanBranch>DP</loanBranch>
+      <coreClassCode />
+      <coreCollCode />
+      <coreCollateralCode />
+      <corePurposeCode />
+      <coreTypeCode />
+      <commitmentAmount />
+      <coreNaicsCode />
+      <loanMaturityDate />
+      <loanClassificationCode />
       <application>
         <applicationDate>7/20/2013</applicationDate>
         <creditAnalysisStatus />
@@ -126,7 +232,7 @@
         <probability />
         <estimatedCloseDate />
         <assignedLender
-          type="">12345</assignedLender>
+          type="group">Lenders and Assistants</assignedLender>
         <assignedAnalyst
           type=""></assignedAnalyst>
         <assignedLoanProcessor
@@ -134,7 +240,7 @@
         <applicationLocked />
         <approval>
           <approvalStatus>APR1</approvalStatus>
-          <originatingUser>0b9b1643-0233-4708-af2e-83cfb02b5064</originatingUser>
+          <originatingUser>dpro</originatingUser>
           <assignedApprover />
           <assignedApprover
             type=""></assignedApprover>
@@ -142,15 +248,28 @@
       </application>
     </loan>
     <loan>
-      <loanNumber>APP12_1</loanNumber>
+      <loanNumber>APP12_003</loanNumber>
       <customerNumber>131313131</customerNumber>
       <accountClass>loan</accountClass>
+      <loanStatusCode>APP1</loanStatusCode>
+      <loanOfficerCode>DPO</loanOfficerCode>
       <loanTypeCode>L_coll_titledIND</loanTypeCode>
-      <parentLoanNumber>APP12</parentLoanNumber>
-      <loanStatusCode />
+      <loanClosed />
       <loanAmount />
       <loanOriginationDate />
+      <borrowerType />
+      <parentLoanNumber>APP12</parentLoanNumber>
       <loanDescription>2013 Dodge Durange</loanDescription>
+      <loanBranch>DP</loanBranch>
+      <coreClassCode />
+      <coreCollCode />
+      <coreCollateralCode />
+      <corePurposeCode />
+      <coreTypeCode />
+      <commitmentAmount />
+      <coreNaicsCode />
+      <loanMaturityDate />
+      <loanClassificationCode />
     </loan>
   </customer>
 </AccuSystems>

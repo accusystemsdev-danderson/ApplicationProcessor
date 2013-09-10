@@ -268,7 +268,7 @@
       <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FieldMapper.cs" />
-    <Compile Include="FileProcessor.cs" />
+    <Compile Include="Processor.cs" />
     <Compile Include="GroupsCustomer.cs">
       <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
     </Compile>
@@ -328,7 +328,6 @@
     <Compile Include="PolicyDefinition.cs">
       <DependentUpon>AccuLoanDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ProcessedDataWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="purposeCode.cs">

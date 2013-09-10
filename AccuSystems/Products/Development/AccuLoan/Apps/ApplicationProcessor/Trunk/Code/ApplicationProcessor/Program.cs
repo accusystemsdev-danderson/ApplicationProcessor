@@ -21,10 +21,11 @@ namespace ApplicationProcessor
             DateTime StartTime = DateTime.Now;
             string LogFileName = string.Format("ApplicationProcessorLog_{0}.log", StartTime.ToString().Replace("/","_").Replace(":","_"));
             string ConfigFileName = "config.xml";
-            
+
+            #region initialize
 
             //---------Read configuration
-
+            
             Configuration Config = new Configuration();
             Config.ReadConfiguration(ConfigFileName);
             
@@ -36,7 +37,6 @@ namespace ApplicationProcessor
                 LogFilePath = Config.LogFolder, 
                 LogFileName = LogFileName, 
             };
-
 
             if (!logFile.OpenLog())
             {
@@ -51,8 +51,9 @@ namespace ApplicationProcessor
             logFile.LogMessage("Removing Previous Log Files");
             logFile.RemovePreviousLogFiles(int.Parse(Config.DaysToKeepLogs));
 
-            //---------Get DB connection string from db.xml
 
+            //---------Get DB connection string from db.xml
+            
             if (!Config.SetupDBConnectionString())
             {
                 logFile.LogMessage("Unable to get database configuration from db.xml file at: " + Config.PathToDBXML);
@@ -60,9 +61,9 @@ namespace ApplicationProcessor
             }
             
             logFile.LogAllProperties(Config);
+            #endregion
 
-
-            
+            #region getSourceData
             //---------Setup field name mapping
 
             FieldMapper fieldMap = new FieldMapper() 
@@ -70,36 +71,50 @@ namespace ApplicationProcessor
                 xmlMappingFile = Config.FieldMapFile 
             };
             fieldMap.ReadFieldMappings();
-            logFile.LogAllProperties(fieldMap);
+            //logFile.LogAllProperties(fieldMap);
             
-
-
 
             //----------Get Source Data
 
             logFile.LogMessage("Retrieving Source Data");
 
-            FileProcessor fileProcessor = new FileProcessor()
+            Processor applicationProcessor = new Processor()
             {
                 Config = Config,
-                logFile = logFile
+                LogFile = logFile,
+                FieldMap = fieldMap
             };
             DataTable sourceData = new DataTable();
-            if (!fileProcessor.FillDataTable(out sourceData))
+            if (!applicationProcessor.FillDataTable(out sourceData))
             {
                 return;
             };
-            
+            #endregion
 
+            #region writeTestData
+            //----------Testing Source Data Retreival
 
+            if (Config.TestSourceModeYN.ToUpper() == "Y")
+            {
+                logFile.LogMessage("Writing Source Data to TestSourceData.txt");
+                applicationProcessor.WriteDataTableToFile(sourceData, "TestSourceData.txt");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Source data written to \"TestSourceData.txt\".  Press any key to continue..");
+                Console.WriteLine();
+                Console.ReadLine();
+                return;
+            }
+            #endregion
+
+            #region processData
             //----------Load sourceData by Mapped Fields
 
             logFile.LogMessage("Mapping Source Data to MappedTable");
 
-            DataTable mappedData = fileProcessor.LoadDataTableFromMappedFields(sourceData, fieldMap);
+            DataTable mappedData = applicationProcessor.LoadDataTableFromMappedFields(sourceData, fieldMap);
 
           
-
             //----------Process Rules
 
             logFile.LogMessage("Applying Rules");
@@ -115,8 +130,7 @@ namespace ApplicationProcessor
             {
                 return;
             }
-
-
+            
 
             //----------Check MTEs
 
@@ -138,31 +152,35 @@ namespace ApplicationProcessor
             else
                 logFile.LogMessage("Skipping MTE processing");
 
-
-
+            
             //---------Set Owning Customer
 
             logFile.LogMessage("Setting owningCustomer Number");
 
-            fileProcessor.setOwningCustomer(mappedData, fieldMap);
-            
+            applicationProcessor.setOwningCustomer(mappedData, fieldMap);
+            #endregion
 
-
+            #region writeData
             //----------Write ProcessedData File
 
             logFile.LogMessage("Writing XML File for Importer");
-            ProcessedDataWriter processedDataWriter = new ProcessedDataWriter() 
-            { 
-                Config = Config, 
-                FieldMap = fieldMap, 
-                LogFile = logFile 
-            };
 
-            processedDataWriter.WriteXMLData(mappedData);
+            if (!applicationProcessor.WriteXMLData(mappedData))
+            {
+                logFile.LogMessage("Unable to write XML File");
+                return;
+            }
 
+            applicationProcessor.WriteAccountsProcessedLogFile();
+            #endregion
 
+            #region finalProcesses
 
-            //----------Finish up, Close Connections
+            if (Config.PostProcessingQueryYN == "Y")
+            {
+                logFile.LogMessage("Running Post Processing Query");
+                applicationProcessor.RunPostProcessingQuery();
+            }
             
             DateTime finishedTime = DateTime.Now;
             TimeSpan elapsedTime = finishedTime - StartTime;
@@ -170,8 +188,7 @@ namespace ApplicationProcessor
             logFile.LogMessage();
             logFile.LogMessage("Finished at " + finishedTime.ToShortTimeString() + " Elapsed Time: " + elapsedTime.ToString());
             logFile.CloseLog();
-            Console.ReadLine();
-
+            #endregion
         }
     }
 }
