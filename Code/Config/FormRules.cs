@@ -84,7 +84,7 @@ namespace Config
             
             List<string> Actions = new List<string>() { "Set Value to:", "Set Value to field:", "Set Other Field to:", "Skip Record", 
                 "Combine fields with space", "Combine fields no space", "Append field with text", "Prepend field with text",
-                "Replace text", "Lookup Code from DB", "Convert to short date", "Next Collateral Number", };
+                "Replace text", "Lookup Code from DB", "Convert to short date", "Next Collateral Number", "Pad Collateral Addenda"};
             comboBoxAction.Items.AddRange(Actions.ToArray());
         
         }
@@ -231,79 +231,74 @@ namespace Config
 
         private void comboBoxAction_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxAction.Text == "Set Value to:")
+            switch (comboBoxAction.Text)
             {
-                comboBoxParameter1.Enabled = true;
-                comboBoxParameter2.Enabled = false;
-                labelParameter1.Text = "Assigned Value";
+                case "Set Value to:":
+                    comboBoxParameter1.Enabled = true;
+                    comboBoxParameter2.Enabled = false;
+                    labelParameter1.Text = "Assigned Value";
+                    break;
+                case "Set Value to field:":
+                    comboBoxParameter1.Enabled = true;
+                    labelParameter1.Text = "Assigned field";
+                    comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
+                    break;
+                case "Set Other Field to:":
+                    comboBoxParameter1.Enabled = true;
+                    comboBoxParameter2.Enabled = true;
+                    labelParameter1.Text = "Field to Set";
+                    labelParameter2.Text = "Value";
+                    comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
+                    break;
+                case "Combine fields with space":
+                    comboBoxParameter1.Enabled = true;
+                    comboBoxParameter2.Enabled = true;
+                    labelParameter1.Text = "Combined field 1";
+                    labelParameter2.Text = "Combined field 2";
+                    comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
+                    comboBoxParameter2.Items.AddRange(fieldNames.ToArray());
+                    break;
+
+                case "Combine fields no space":
+                    comboBoxParameter1.Enabled = true;
+                    comboBoxParameter2.Enabled = true;
+                    labelParameter1.Text = "Combined field 1";
+                    labelParameter2.Text = "Combined field 2";
+                    comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
+                    comboBoxParameter2.Items.AddRange(fieldNames.ToArray());
+                    break;
+                case "Append field with text":
+                    comboBoxParameter1.Enabled = true;
+                    labelParameter1.Text = "Text to append";
+                    break;
+                case "Prepend field with text":
+                    comboBoxParameter1.Enabled = true;
+                    labelParameter1.Text = "Text to prepend";
+                    break;
+                case "Lookup Code from DB":
+                    comboBoxParameter1.Enabled = true;
+                    comboBoxParameter2.Enabled = true;
+                    comboBoxParameter3.Enabled = true;
+                    labelParameter1.Text = "Lookup Table";
+                    labelParameter2.Text = "Lookup Field";
+                    labelParameter3.Text = "Result Field";
+                    break;
+                case "Replace text":
+                    comboBoxParameter1.Enabled = true;
+                    comboBoxParameter2.Enabled = true;
+                    labelParameter1.Text = "Search Text";
+                    labelParameter2.Text = "Replacement Text";
+                    break;
+                default:           
+                    comboBoxParameter1.Enabled = false;
+                    comboBoxParameter2.Enabled = false;
+                    comboBoxParameter3.Enabled = false;
+                    labelParameter1.Text = "Parameter 1";
+                    labelParameter2.Text = "Parameter 2";
+                    labelParameter3.Text = "Parameter 3";
+                    break;
             }
-            else if (comboBoxAction.Text == "Set Value to field:")
-            {
-                comboBoxParameter1.Enabled = true;
-                labelParameter1.Text = "Assigned field";
-                comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
-            }
-            else if (comboBoxAction.Text == "Set Other Field to:")
-            {
-                comboBoxParameter1.Enabled = true;
-                comboBoxParameter2.Enabled = true;
-                labelParameter1.Text = "Field to Set";
-                labelParameter2.Text = "Value";
-                comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
-            }
-            else if (comboBoxAction.Text == "Combine fields with space")
-            {
-                comboBoxParameter1.Enabled = true;
-                comboBoxParameter2.Enabled = true;
-                labelParameter1.Text = "Combined field 1";
-                labelParameter2.Text = "Combined field 2";
-                comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
-                comboBoxParameter2.Items.AddRange(fieldNames.ToArray());
-            }
-            else if (comboBoxAction.Text == "Combine fields no space")
-            {
-                comboBoxParameter1.Enabled = true;
-                comboBoxParameter2.Enabled = true;
-                labelParameter1.Text = "Combined field 1";
-                labelParameter2.Text = "Combined field 2";
-                comboBoxParameter1.Items.AddRange(fieldNames.ToArray());
-                comboBoxParameter2.Items.AddRange(fieldNames.ToArray());
-            }
-            else if (comboBoxAction.Text == "Append field with text")
-            {
-                comboBoxParameter1.Enabled = true;
-                labelParameter1.Text = "Text to append";
-            }
-            else if (comboBoxAction.Text == "Prepend field with text")
-            {
-                comboBoxParameter1.Enabled = true;
-                labelParameter1.Text = "Text to prepend";
-            }
-            else if (comboBoxAction.Text == "Lookup Code from DB")
-            {
-                comboBoxParameter1.Enabled = true;
-                comboBoxParameter2.Enabled = true;
-                comboBoxParameter3.Enabled = true;
-                labelParameter1.Text = "Lookup Table";
-                labelParameter2.Text = "Lookup Field";
-                labelParameter3.Text = "Result Field";
-            }
-            else if (comboBoxAction.Text == "Replace text")
-            {
-                comboBoxParameter1.Enabled = true;
-                comboBoxParameter2.Enabled = true;
-                labelParameter1.Text = "Search Text";
-                labelParameter2.Text = "Replacement Text";
-            }
-            else
-            {
-                comboBoxParameter1.Enabled = false;
-                comboBoxParameter2.Enabled = false;
-                comboBoxParameter3.Enabled = false;
-                labelParameter1.Text = "Parameter 1";
-                labelParameter2.Text = "Parameter 2";
-                labelParameter3.Text = "Parameter 3";
-            }
+
 
         }
 

@@ -17,10 +17,14 @@ namespace ApplicationProcessor
         public LogWriter logFile { get; set; }
         public FieldMapper FieldMap { get; set; }
         public Configuration Config { get; set; }
+
+        private AcculoanDBEntities db;
         
         public bool ProcessRules()
         {
             bool success = false;
+            db = new AcculoanDBEntities(Config.dbConnectionString);
+
             DataTable rulesToProcess = new DataTable();
             if (!loadDataTableFromRulesFile(out rulesToProcess))
             {
@@ -61,6 +65,13 @@ namespace ApplicationProcessor
                 {
                     if (!rowsToRemove.Contains(i))
                         rowsToRemove.Add(i);
+                }
+
+                if (Config.ProcessExistingAccounts.ToUpper() == "N")
+                { 
+                    if (accountExistsInDatabase(row[FieldMap.loanNumberFieldName].ToString()))
+                        if (!rowsToRemove.Contains(i))
+                            rowsToRemove.Add(i);
                 }
 
             }
@@ -128,11 +139,11 @@ namespace ApplicationProcessor
             switch (oper)
             {
                 case "=":
-                    if (fieldToCheck == value)
+                    if (fieldToCheck.ToUpper() == value.ToUpper())
                         match = true;
                     break;
                 case "!=":
-                    if (fieldToCheck != value)
+                    if (fieldToCheck.ToUpper() != value.ToUpper())
                         match = true;
                     break;
                 case "<":
@@ -191,9 +202,8 @@ namespace ApplicationProcessor
                     row[parameter1] = parameter2;
                     break;
                 case "Skip Record":
-                    logFile.LogMessage("Skipping Record");
-                    //logFile.LogMessage(string.Format("Skipping record - Customer Number: {0} - Account Number: {1}.  {2} {3}",
-                    //        row["CustomerNumber"], row["ApplicationNumber"], field, action));
+                    logFile.LogMessage(string.Format("Skipping record - Customer Number: {0} - Account Number: {1}.  {2} {3}",
+                            row[FieldMap.customerNumberFieldName], row[FieldMap.loanNumberFieldName], field, action));
                     removeRecord = true;
                     break;
                 case "Combine fields with space":
@@ -232,6 +242,14 @@ namespace ApplicationProcessor
                         nextCollateral = collateralFromTable + 1;
                     row[field] = nextCollateral.ToString();                        
                     break;
+                case "Pad Collateral Addenda":
+                    string originalValue = row[field].ToString();
+                    int collateralPaddingSize = getCollateralPaddingSize();
+                    if (collateralPaddingSize > originalValue.Length)
+                    {
+                        row[field] = int.Parse(originalValue).ToString("D" + collateralPaddingSize.ToString());
+                    }
+                    break;
                 default:
                     break;
                 
@@ -248,6 +266,7 @@ namespace ApplicationProcessor
             if (row[FieldMap.customerNumberFieldName].ToString() == "") logMessage.Append(FieldMap.customerNumberFieldName + " ");
             if (row[FieldMap.customerNameFieldName].ToString() == "") logMessage.Append(FieldMap.customerNameFieldName + " ");
             if (row[FieldMap.customerBranchFieldName].ToString() == "") logMessage.Append(FieldMap.customerBranchFieldName + " ");
+            if (row[FieldMap.loanBranchFieldName].ToString() == "") logMessage.Append(FieldMap.loanBranchFieldName + " ");
             if (row[FieldMap.loanNumberFieldName].ToString() == "") logMessage.Append(FieldMap.loanNumberFieldName + " ");
             if (row[FieldMap.accountClassFieldName].ToString() == "") logMessage.Append(FieldMap.accountClassFieldName + " ");
             // if (row[FieldMap.borrowerTypeFieldName].ToString() == "") logMessage.Append(FieldMap.borrowerTypeFieldName + " ");
@@ -406,6 +425,39 @@ namespace ApplicationProcessor
             }
 
             return highCollateral;
+        }
+
+        private int getCollateralPaddingSize()
+        {
+            int paddingSize = 0;
+            string paddingSizeString = (from p in db.accusystemsProperties
+                               where p.propertyKey == "accuaccount.collateralPadSize"
+                               select p.propertyValue).FirstOrDefault();
+            try
+            {
+                paddingSize = int.Parse(paddingSizeString);
+            }
+            catch
+            {
+            }
+            return paddingSize;
+
+        }
+
+        private bool accountExistsInDatabase(string accountNumber)
+        {
+            int accounts = (from l in db.loans
+                            where l.loanNumber == accountNumber
+                            select l).Count();
+
+
+            if (accounts > 0)
+            {
+                logFile.LogMessage("accountNumber " + accountNumber + " already exists");
+                return true;
+            }
+            else
+                return false;
         }
     }
 }

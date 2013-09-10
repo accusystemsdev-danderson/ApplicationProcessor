@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.Data.SqlClient;
 
 namespace ApplicationProcessor
 {
@@ -27,5 +28,18 @@ namespace ApplicationProcessor
 
             return elementValue;
         }
+
+        public static int ExecuteSQLQuery(string connectionString, string query)
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Connection.Open();
+            int rowsAffected = command.ExecuteNonQuery();
+            command.Connection.Close();
+
+            return rowsAffected;
+        }
+
     }
 }

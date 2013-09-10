@@ -229,6 +229,7 @@
             // 
             // buttonEditRule
             // 
+            this.buttonEditRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEditRule.Location = new System.Drawing.Point(894, 26);
             this.buttonEditRule.Name = "buttonEditRule";
             this.buttonEditRule.Size = new System.Drawing.Size(75, 23);

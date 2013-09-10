@@ -45,7 +45,7 @@ namespace ApplicationProcessor
 
                 //Check to see if any customers exist that share the same taxID, but under a different name
                 int DupTaxIDs = (from M in db.customers
-                                 where M.TaxId == customerTaxID && M.customerName != customerName
+                                 where M.TaxId == customerTaxID && M.customerName.ToUpper() != customerName.ToUpper()
                                  select M).Count();
 
                 if (DupTaxIDs > 0)
@@ -61,6 +61,7 @@ namespace ApplicationProcessor
                     {
                         addPrimaryRecordToMTEList(customerTaxID);
                         addCurrentRecordToMTEList(customerName, customerNumber, customerTaxID);
+
                     }
 
                     else
@@ -73,11 +74,11 @@ namespace ApplicationProcessor
                             //if an MTE record already exists for the current customer name, assign the appropriate appendage.
                             //if no MTE record exists, create one.
                             
-                            if (mteRecord.CustomerName == customerName)
+                            if (mteRecord.CustomerName.ToUpper() == customerName.ToUpper())
                             {
                                 currentRecordExits = true;
 
-                                //appendages of '*' indate the primary name, no changes made.  Null appendages have not been resolved - skip record?
+                                //appendages of '*' indate the primary name, no changes made.  Null appendages have not been resolved.
                                 if (mteRecord.Appendage != "*" && mteRecord.Appendage != null)
                                 {
                                     //appendages of '-' indicate an additional name for a single customer, replace the current name with the primary MTE record
@@ -87,10 +88,23 @@ namespace ApplicationProcessor
                                                               where N.CustomerNumber == customerNumber && N.Appendage == "*"
                                                               select N.CustomerName).FirstOrDefault().ToString();
                                         row[FieldMap.customerNameFieldName] = primaryName;
-                                    //appendages of any other single character indicate an additional customer, append the character to the customer number
                                     }
+                                    
+                                    //appendages of any other single character indicate an additional customer, append the character to the customer number
                                     else if (Regex.IsMatch(mteRecord.Appendage, "[0-9a-zA-Z]"))
-                                        row[FieldMap.customerNumberFieldName] = customerNumber + "_" + mteRecord.Appendage;
+                                    {
+                                        row[FieldMap.customerNumberFieldName] = customerNumber + "-" + mteRecord.Appendage;
+                                    }
+
+                                    //appendages with '-' followed by another single character indicate an additional name for a secondary customer, replace the current name and customer number
+                                    else if (Regex.IsMatch(mteRecord.Appendage, "-[0-9a-zA-Z"))
+                                    {
+                                        string primaryName = (from N in db.MTE_List
+                                                              where N.CustomerNumber == customerNumber && N.Appendage == mteRecord.Appendage.Replace("-", "")
+                                                              select N.CustomerName).FirstOrDefault().ToString();
+                                        row[FieldMap.customerNameFieldName] = primaryName;
+                                        row[FieldMap.customerNumberFieldName] = customerNumber + "-" + mteRecord.Appendage;
+                                    }
 
                                 }
                             }
