@@ -21,7 +21,7 @@ namespace ApplicationProcessor
 
         public bool processMTEs()
         {
-            db = new DataContext(Config.dbConnectionString);
+            db = new DataContext();
             bool success = false;
             try
             {

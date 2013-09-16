@@ -23,7 +23,7 @@ namespace ApplicationProcessor
         
         public bool ProcessRules()
         {
-                db = new DataContext(Config.dbConnectionString);
+            db = new DataContext();
 
             DataTable rulesToProcess = new DataTable();
             if (!loadDataTableFromRulesFile(out rulesToProcess))
