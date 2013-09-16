@@ -30,7 +30,7 @@
       <accountClass>loan</accountClass>
       <loanStatusCode>APP1</loanStatusCode>
       <loanOfficerCode>DPO</loanOfficerCode>
-      <loanTypeCode>577aa835-ed1f-4ecb-9f7d-00c05f9d8472</loanTypeCode>
+      <loanTypeCode>L_INDIRECT</loanTypeCode>
       <loanClosed />
       <loanAmount />
       <loanOriginationDate />
@@ -66,7 +66,7 @@
         <applicationLocked />
         <approval>
           <approvalStatus>APR1</approvalStatus>
-          <originatingUser>dpro</originatingUser>
+          <originatingUser>DPImport</originatingUser>
           <assignedApprover />
           <assignedApprover
             type=""></assignedApprover>
@@ -129,7 +129,7 @@
       <accountClass>loan</accountClass>
       <loanStatusCode>APP1</loanStatusCode>
       <loanOfficerCode>DPO</loanOfficerCode>
-      <loanTypeCode>577aa835-ed1f-4ecb-9f7d-00c05f9d8472</loanTypeCode>
+      <loanTypeCode>L_INDIRECT</loanTypeCode>
       <loanClosed />
       <loanAmount />
       <loanOriginationDate />
@@ -165,7 +165,7 @@
         <applicationLocked />
         <approval>
           <approvalStatus>APR1</approvalStatus>
-          <originatingUser>dpro</originatingUser>
+          <originatingUser>DPImport</originatingUser>
           <assignedApprover />
           <assignedApprover
             type=""></assignedApprover>
@@ -204,7 +204,7 @@
       <accountClass>loan</accountClass>
       <loanStatusCode>APP1</loanStatusCode>
       <loanOfficerCode>DPO</loanOfficerCode>
-      <loanTypeCode>577aa835-ed1f-4ecb-9f7d-00c05f9d8472</loanTypeCode>
+      <loanTypeCode>L_INDIRECT</loanTypeCode>
       <loanClosed />
       <loanAmount />
       <loanOriginationDate />
@@ -240,7 +240,7 @@
         <applicationLocked />
         <approval>
           <approvalStatus>APR1</approvalStatus>
-          <originatingUser>dpro</originatingUser>
+          <originatingUser>DPImport</originatingUser>
           <assignedApprover />
           <assignedApprover
             type=""></assignedApprover>

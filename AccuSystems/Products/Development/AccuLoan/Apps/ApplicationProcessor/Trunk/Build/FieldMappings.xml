@@ -26,7 +26,7 @@
   <loanNumber>Loan_Number</loanNumber>
   <collateralLoanNumber>Loan_Number</collateralLoanNumber>
   <collateralAddenda></collateralAddenda>
-  <parentLoanNumber>Loan_Number</parentLoanNumber>
+  <parentLoanNumber></parentLoanNumber>
   <accountClass></accountClass>
   <loanOfficerCode></loanOfficerCode>
   <loanTypeCode>Loan_Type</loanTypeCode>
