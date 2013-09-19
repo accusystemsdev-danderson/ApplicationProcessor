@@ -227,6 +227,7 @@ namespace ApplicationProcessor
 
                             {
                                 XMLOut.WriteStartElement("application");
+                                XMLOut.WriteElementString("applicationNumber", accountRow[FieldMap.loanNumberFieldName].ToString());
                                 XMLOut.WriteElementString(FieldMap.applicationDateFieldName, accountRow[FieldMap.applicationDateFieldName].ToString());
                                 XMLOut.WriteElementString(FieldMap.creditAnalysisStatusFieldName, accountRow[FieldMap.creditAnalysisStatusFieldName].ToString());
                                 XMLOut.WriteElementString(FieldMap.requestedAmountFieldName, accountRow[FieldMap.requestedAmountFieldName].ToString());
@@ -254,7 +255,6 @@ namespace ApplicationProcessor
                                     XMLOut.WriteStartElement("approval");
                                     XMLOut.WriteElementString(FieldMap.approvalStatusFieldName, accountRow[FieldMap.approvalStatusFieldName].ToString());
                                     XMLOut.WriteElementString(FieldMap.originatingUserFieldName, accountRow[FieldMap.originatingUserFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.assignedApproverFieldName, accountRow[FieldMap.assignedApproverFieldName].ToString());
                                     XMLOut.WriteStartElement(FieldMap.assignedApproverFieldName);
                                     XMLOut.WriteAttributeString("type", accountRow[FieldMap.assignedApproverTypeFieldName].ToString());
                                     XMLOut.WriteValue(accountRow[FieldMap.assignedApproverFieldName].ToString());

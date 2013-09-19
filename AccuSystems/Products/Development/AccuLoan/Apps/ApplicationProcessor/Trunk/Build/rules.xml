@@ -122,7 +122,7 @@
     Operator="Always"
     Value=""
     Action="Set Value to:"
-    Parameter1="DPImport"
+    Parameter1="Test"
     Parameter2=""
     Parameter3="" />
   <Rule
@@ -199,24 +199,6 @@
     Parameter3="" />
   <Rule
     Sequence="23"
-    Field="assignedLender"
-    Operator="Always"
-    Value=""
-    Action="Set Value to:"
-    Parameter1="Lenders and Assistants"
-    Parameter2=""
-    Parameter3="" />
-  <Rule
-    Sequence="24"
-    Field="assignedLenderType"
-    Operator="Always"
-    Value=""
-    Action="Set Value to:"
-    Parameter1="group"
-    Parameter2=""
-    Parameter3="" />
-  <Rule
-    Sequence="25"
     Field="customerTypeCode"
     Operator="Always"
     Value=""
@@ -225,12 +207,21 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="26"
+    Sequence="24"
     Field="loanStatusCode"
     Operator="Always"
     Value=""
     Action="Set Value to:"
     Parameter1="APP1"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="25"
+    Field="bankCode"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="0"
     Parameter2=""
     Parameter3="" />
 </ApplicationRules>
