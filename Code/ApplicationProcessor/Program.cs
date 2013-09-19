@@ -29,13 +29,8 @@ namespace ApplicationProcessor
 
             #region initialize
 
-            //---------Read configuration
-            
             Configuration Config = new Configuration();
             Config.ReadConfiguration(ConfigFileName);
-            
-
-            //----------Setup Logging
 
             LogWriter logFile = new LogWriter() 
             { 
@@ -57,8 +52,6 @@ namespace ApplicationProcessor
             logFile.RemovePreviousLogFiles(int.Parse(Config.DaysToKeepLogs));
 
 
-            //---------Get DB connection string from db.xml
-            
             if (!Config.SetupDBConnectionString())
             {
                 logFile.LogMessage("Unable to get database configuration from db.xml file at: " + Config.PathToDBXML);
@@ -69,16 +62,12 @@ namespace ApplicationProcessor
             #endregion
 
             #region getSourceData
-            //---------Setup field name mapping
 
             FieldMapper fieldMap = new FieldMapper() 
             { 
-                xmlMappingFile = Config.FieldMapFile 
+                XmlMappingFile = Config.FieldMapFile 
             };
             fieldMap.ReadFieldMappings();
-                        
-
-            //----------Get Source Data
 
             logFile.LogMessage("Retrieving Source Data");
 
@@ -96,7 +85,6 @@ namespace ApplicationProcessor
             #endregion
 
             #region writeTestData
-            //----------Testing Source Data Retreival.  Write data to file and exit.
 
             if (Config.TestSourceModeYN.ToUpper() == "Y")
             {
@@ -112,21 +100,17 @@ namespace ApplicationProcessor
             #endregion
 
             #region processData
-            //----------Load sourceData by Mapped Fields
-
+            
             logFile.LogMessage("Mapping Source Data to MappedTable");
 
-            DataTable mappedData = appProcessor.LoadDataTableFromMappedFields(sourceData, fieldMap);
-
-          
-            //----------Process Rules
+            DataTable mappedData = appProcessor.LoadDataTableFromMappedFields(sourceData);
 
             logFile.LogMessage("Applying Rules");
 
             RulesProcessor ruleProcessor = new RulesProcessor()
             {
                 TableToProcess = mappedData,
-                logFile = logFile,
+                LogFile = logFile,
                 FieldMap = fieldMap,
                 Config = Config
             };
@@ -135,9 +119,6 @@ namespace ApplicationProcessor
                 return;
             }
             
-
-            //----------Check MTEs
-
             if (Config.ProcessMTEs == "Y")
             {
                 logFile.LogMessage("Processing MTEs");
@@ -148,7 +129,7 @@ namespace ApplicationProcessor
                     TableToProcess = mappedData,
                     FieldMap = fieldMap
                 };
-                if (!MTE.processMTEs())
+                if (!MTE.ProcessMTEs())
                 {
                     return;
                 }
@@ -156,17 +137,13 @@ namespace ApplicationProcessor
             else
                 logFile.LogMessage("Skipping MTE processing");
 
-            
-            //---------Set Owning Customer
-
             logFile.LogMessage("Setting owningCustomer Number");
 
-            appProcessor.setOwningCustomer(mappedData, fieldMap);
+            appProcessor.SetOwningCustomer(mappedData);
             #endregion
 
             #region writeData
-            //----------Write ProcessedData File
-
+            
             logFile.LogMessage("Writing XML File for Importer");
 
             if (!appProcessor.WriteXMLData(mappedData))
@@ -176,6 +153,7 @@ namespace ApplicationProcessor
             }
 
             appProcessor.WriteAccountsProcessedLogFile();
+            
             #endregion
 
             #region runImporter
@@ -196,7 +174,7 @@ namespace ApplicationProcessor
             logFile.LogMessage("Writing Application Records To Database");
             ApplicationRecordsWriter appWriter = new ApplicationRecordsWriter()
             {
-                logFile = logFile
+                LogFile = logFile
             };
             appWriter.InsertLoanApplicationRecords(Config.OutputFile);
             #endregion

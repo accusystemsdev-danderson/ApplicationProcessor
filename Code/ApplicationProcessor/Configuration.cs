@@ -1,13 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
+﻿//-----------------------------------------------------------------------------
+// <copyright file="Program.cs" company="AccuSystems LLC">
+//     Copyright (c) AccuSystems.  All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------------
 
 namespace ApplicationProcessor
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Xml.Linq;
+
+    /// <summary>
+    /// Provides information about configuration settings
+    /// </summary>
     class Configuration
     {
         public string LogFolder { get; set; }
@@ -30,6 +38,10 @@ namespace ApplicationProcessor
         public string AccountsProcessedLogFile { get; set; }
         public string ImporterPath { get; set; }
         
+        /// <summary>
+        /// Reads in configuration settings from the configuration file
+        /// </summary>
+        /// <param name="configFileName">The File Name of the configuration file</param>
         public void ReadConfiguration(string configFileName)
         {
             XElement xmlConfig = XElement.Load(configFileName);
@@ -54,6 +66,10 @@ namespace ApplicationProcessor
             ImporterPath = Utils.ReadXMLElementValue(xmlConfig, "ImporterPath", "..\\accuaccountimporter");
         }
 
+        /// <summary>
+        /// Builds a database connection string from the db.xml file using the PathToDBXML configration
+        /// </summary>
+        /// <returns>True if no exceptions are thrown</returns>
         public bool SetupDBConnectionString()
         {
             bool success = false;

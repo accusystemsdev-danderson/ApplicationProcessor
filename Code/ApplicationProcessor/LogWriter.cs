@@ -1,22 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Reflection;
+﻿//-----------------------------------------------------------------------------
+// <copyright file="Program.cs" company="AccuSystems LLC">
+//     Copyright (c) AccuSystems.  All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------------
 
 namespace ApplicationProcessor
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// Provides file based logging
+    /// </summary>
     class LogWriter : IDisposable
     {
+        private StreamWriter logWriter;
+        
         public string LogFileName { get; set; }
         public string LogFilePath { get; set; }
-        private StreamWriter logWriter;
-
+        
+        /// <summary>
+        /// Creates log directory and log file.  Opens log file for writing
+        /// </summary>
+        /// <returns>True upon successfull creation and opening of log file</returns>
         public bool OpenLog()
         {
-            bool success = false;
             try
             {
                 if (LogFilePath.Substring(LogFilePath.Length - 1) != "\\")
@@ -28,16 +41,20 @@ namespace ApplicationProcessor
                 }
 
                 logWriter = new StreamWriter(LogFilePath + LogFileName);
-                success = true;
+                return true;
             }
             catch (Exception e)
             { 
                 Console.WriteLine(e);
                 Console.WriteLine();
+                return false;
             }
-            return success;
         }
 
+        /// <summary>
+        /// Removes all log files in the LogFilePath folder older than the number of days specified
+        /// </summary>
+        /// <param name="RemovePreviousDays">Number of days to keep log files</param>
         public void RemovePreviousLogFiles(int RemovePreviousDays)
         {
             if (RemovePreviousDays > 0)
@@ -63,6 +80,10 @@ namespace ApplicationProcessor
             }
         }
 
+        /// <summary>
+        /// Writes a string message and a time stamp to the current log file
+        /// </summary>
+        /// <param name="msg">The string message to log</param>
         public void LogMessage(string msg)
         {
             if (msg != "")
@@ -78,12 +99,19 @@ namespace ApplicationProcessor
             logWriter.Flush();
         }
 
+        /// <summary>
+        /// Writes a blank line to the log file
+        /// </summary>
         public void LogMessage()
         {
             logWriter.WriteLine();
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Reads all properties of a given object and writes them to the log file
+        /// </summary>
+        /// <param name="objectToLog">The object to read properties from</param>
         public void LogAllProperties(object objectToLog)
         {
             try
@@ -116,11 +144,17 @@ namespace ApplicationProcessor
             }
         }
 
+        /// <summary>
+        /// Closes the log file
+        /// </summary>
         public void CloseLog()
         {
             logWriter.Close();
         }
 
+        /// <summary>
+        /// Implements the IDisposable method.
+        /// </summary>
         public void Dispose()
         {
             CloseLog();
