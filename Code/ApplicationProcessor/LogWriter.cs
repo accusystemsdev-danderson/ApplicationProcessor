@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace ApplicationProcessor
 {
-    class LogWriter
+    class LogWriter : IDisposable
     {
         public string LogFileName { get; set; }
         public string LogFilePath { get; set; }
@@ -120,6 +120,10 @@ namespace ApplicationProcessor
         {
             logWriter.Close();
         }
-        
+
+        public void Dispose()
+        {
+            CloseLog();
+        }
     }
 }

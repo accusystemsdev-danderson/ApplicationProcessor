@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.IO;
-using System.Data.OleDb;
-using System.Reflection;
-
-
+﻿//-----------------------------------------------------------------------------
+// <copyright file="Program.cs" company="AccuSystems LLC">
+//     Copyright (c) AccuSystems.  All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------------
 
 namespace ApplicationProcessor
 {
-    using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Validation;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.OleDb;
     using System.Diagnostics;
-    using System.Xml.Linq;
-    using AccuAccount.Data;
+    using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text;
+    using System.Threading.Tasks;
 
     class Program
     {
@@ -179,6 +178,29 @@ namespace ApplicationProcessor
             appProcessor.WriteAccountsProcessedLogFile();
             #endregion
 
+            #region runImporter
+
+            logFile.LogMessage("Starting Importer");
+            
+            Process importer = new Process();
+            importer.StartInfo.FileName = Path.Combine(Config.ImporterPath, "accuaccount.importer.exe");
+            importer.StartInfo.WorkingDirectory = Config.ImporterPath;
+            importer.Start();
+            importer.WaitForExit();
+            logFile.LogMessage("Importer Complete");
+            
+            #endregion
+
+            #region insertApplicationRecord
+
+            logFile.LogMessage("Writing Application Records To Database");
+            ApplicationRecordsWriter appWriter = new ApplicationRecordsWriter()
+            {
+                logFile = logFile
+            };
+            appWriter.InsertLoanApplicationRecords(Config.OutputFile);
+            #endregion
+
             #region finalProcesses
 
             if (Config.PostProcessingQueryYN == "Y")
@@ -196,86 +218,6 @@ namespace ApplicationProcessor
             #endregion
         }
 
-        private static void InsertLoanApplicationRecords()
-        {
-            XDocument document = XDocument.Load("");
 
-            foreach (XElement applicationXml in document.Descendants("application"))
-            {
-                InsertLoanApplicationRecord(applicationXml);
-            }
-        }
-
-        private static void InsertLoanApplicationRecord(XElement applicationXml)
-        {
-            LoanApplication application = new LoanApplication
-            {
-                ApplicationDate = DateTime.Parse(applicationXml.Element("applicationDate").Value),
-                CreditAnalysisStatusId = GetCreditAnalysisStatusId(applicationXml.Element("creditAnalysisStatus").Value),
-            };
-
-            decimal requestedAmount;
-            bool parsed = decimal.TryParse(applicationXml.Element("requestedAmount").Value,
-                                           out requestedAmount);
-
-            if (parsed)
-            {
-                application.RequestedAmount = requestedAmount;
-            }
-
-            decimal primaryCollateralValue;
-            parsed = decimal.TryParse(applicationXml.Element("primaryCollateralValue").Value,
-                out primaryCollateralValue);
-
-            if (parsed)
-            {
-                application.PrimaryCollateralValue = primaryCollateralValue;
-            }
-
-            using (DataContext db = new DataContext())
-            {
-                db.LoanApplications.Add(application);
-
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var error in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in error.ValidationErrors)
-                        {
-                            Debug.Print("Message: {0}, Column: {1}",
-                                validationError.ErrorMessage,
-                                validationError.PropertyName);
-                        }
-                    }
-                }
-                catch (DbUpdateException ex)
-                {
-                    
-                }
-            }
-        }
-
-        private static Guid? GetCreditAnalysisStatusId(string creditAnalysisStatusCode)
-        {
-            using (DataContext db = new DataContext())
-            {
-                var creditAnalysisStatus = db.CreditAnalysisStatuses
-                    .SingleOrDefault(p => p.CreditAnalysisStatusCode.Equals(creditAnalysisStatusCode, 
-                        StringComparison.OrdinalIgnoreCase));
-
-                if (creditAnalysisStatus != null)
-                {
-                    return creditAnalysisStatus.CreditAnalysisStatusId;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
     }
 }

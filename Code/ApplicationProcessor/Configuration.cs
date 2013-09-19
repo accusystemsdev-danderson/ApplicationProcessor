@@ -28,6 +28,7 @@ namespace ApplicationProcessor
         public string dbConnectionString { get; set; }
         public string ProcessExistingAccounts { get; set; }
         public string AccountsProcessedLogFile { get; set; }
+        public string ImporterPath { get; set; }
         
         public void ReadConfiguration(string configFileName)
         {
@@ -50,6 +51,7 @@ namespace ApplicationProcessor
             ProcessMTEs = Utils.ReadXMLElementValue(xmlConfig, "ProcessMTEs", "N");
             ProcessExistingAccounts = Utils.ReadXMLElementValue(xmlConfig, "ProcessExistingAccounts", "N");
             AccountsProcessedLogFile = Utils.ReadXMLElementValue(xmlConfig, "AccountsProcessedLogFile", "Accounts.txt");
+            ImporterPath = Utils.ReadXMLElementValue(xmlConfig, "ImporterPath", "..\\accuaccountimporter");
         }
 
         public bool SetupDBConnectionString()

@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationRecordsWriter.cs" />
     <Compile Include="RulesProcessor.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="FieldMapper.cs" />
@@ -81,9 +82,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Schema.ini">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="config_template.xml">
