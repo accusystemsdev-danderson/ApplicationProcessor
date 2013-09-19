@@ -1,34 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Xml.Linq;
-using System.Reflection;
-using System.Data.SqlClient;
-using AccuAccount.Data;
-
+﻿//-----------------------------------------------------------------------------
+// <copyright file="Program.cs" company="AccuSystems LLC">
+//     Copyright (c) AccuSystems.  All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------------
 
 namespace ApplicationProcessor
 {
+    using AccuAccount.Data;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Data.SqlClient;
+    using System.Linq;
+    using System.Reflection;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Xml.Linq;
+
+    /// <summary>
+    /// Applies data rules to source data
+    /// </summary>
     class RulesProcessor
     {
+        private DataContext db;
+
         public DataTable TableToProcess { get; set; }
-        public LogWriter logFile { get; set; }
+        public LogWriter LogFile { get; set; }
         public FieldMapper FieldMap { get; set; }
         public Configuration Config { get; set; }
 
-        private DataContext db;
-        
+        /// <summary>
+        /// Applies data rules to source data in TableToProcess
+        /// </summary>
+        /// <returns>True on successfull processing</returns>
         public bool ProcessRules()
         {
             db = new DataContext();
 
             DataTable rulesToProcess = new DataTable();
-            if (!loadDataTableFromRulesFile(out rulesToProcess))
+            if (!LoadDataTableFromRulesFile(out rulesToProcess))
             {
-                logFile.LogMessage("Unable to read rules file.");
+                LogFile.LogMessage("Unable to read rules file.");
                 return false;
             }
             List<int> rowsToRemove = new List<int>();
@@ -40,17 +52,17 @@ namespace ApplicationProcessor
                 foreach (DataRow rule in rulesToProcess.Rows)
                 {
                     bool removeRecordFromRule = false;
-                    if (ruleMatches(row, rule))
+                    if (RuleMatches(row, rule))
                     {
                         try
                         {
-                            processAction(row, rule, TableToProcess, out removeRecordFromRule);
+                            ProcessAction(row, rule, TableToProcess, out removeRecordFromRule);
                         }
                         catch (Exception e)
                         {
-                            logFile.LogMessage(e.ToString());
-                            logFile.LogMessage();
-                            logFile.LogMessage("Unable to process rules at datarow " + (i + 1).ToString());
+                            LogFile.LogMessage(e.ToString());
+                            LogFile.LogMessage();
+                            LogFile.LogMessage("Unable to process rules at datarow " + (i + 1).ToString());
                             return false;
                         }
                     }
@@ -63,7 +75,7 @@ namespace ApplicationProcessor
 
                 }
                 //--------Check that all required fields have values
-                if (!verifyRequiredFields(row))
+                if (!VerifyRequiredFields(row))
                 {
                     if (!rowsToRemove.Contains(i))
                         rowsToRemove.Add(i);
@@ -71,7 +83,7 @@ namespace ApplicationProcessor
                 //--------According to config setting - check to see if the account number already exists in the acculoan database.  If it exists, don't process the record.
                 if (Config.ProcessExistingAccounts.ToUpper() != "Y")
                 { 
-                    if (accountExistsInDatabase(row[FieldMap.loanNumberFieldName].ToString()))
+                    if (AccountExistsInDatabase(row[FieldMap.LoanNumberFieldName].ToString()))
                         if (!rowsToRemove.Contains(i))
                             rowsToRemove.Add(i);
                 }
@@ -87,7 +99,12 @@ namespace ApplicationProcessor
             return true;
         }
 
-        private bool  loadDataTableFromRulesFile(out DataTable dataTable)
+        /// <summary>
+        /// Loads rules from XML file into DataTable
+        /// </summary>
+        /// <param name="dataTable">Rules DataTable</param>
+        /// <returns>True on successfull processing</returns>
+        private bool  LoadDataTableFromRulesFile(out DataTable dataTable)
         {
             dataTable = new DataTable();
 
@@ -120,9 +137,9 @@ namespace ApplicationProcessor
             }
             catch (Exception e)
             {
-                logFile.LogMessage(e.ToString());
-                logFile.LogMessage();
-                logFile.LogMessage("Unable to read rules file");
+                LogFile.LogMessage(e.ToString());
+                LogFile.LogMessage();
+                LogFile.LogMessage("Unable to read rules file");
                 return false;
             }
 
@@ -130,7 +147,13 @@ namespace ApplicationProcessor
 
         }
 
-        private bool ruleMatches(DataRow row, DataRow rule)
+        /// <summary>
+        /// Checks to see if a rule is applicable to a give DataRow
+        /// </summary>
+        /// <param name="row">The DataRow being processed</param>
+        /// <param name="rule">The rule to check</param>
+        /// <returns>True if the rule applies to the current record</returns>
+        private bool RuleMatches(DataRow row, DataRow rule)
         {
             bool match = false;
             string field = rule["field"].ToString();
@@ -182,7 +205,14 @@ namespace ApplicationProcessor
             return match;
         }
 
-        private void processAction(DataRow row, DataRow rule, DataTable dataTable, out bool removeRecord)
+        /// <summary>
+        /// Applies the rule logic to the current record
+        /// </summary>
+        /// <param name="row">The DataRow being processed</param>
+        /// <param name="rule">The rule to apply</param>
+        /// <param name="dataTable">The Source dataTable</param>
+        /// <param name="removeRecord">Flag to indicate that the current record should not be processed</param>
+        private void ProcessAction(DataRow row, DataRow rule, DataTable dataTable, out bool removeRecord)
         {
             removeRecord = false;
             string field = rule["Field"].ToString();
@@ -204,8 +234,8 @@ namespace ApplicationProcessor
                     row[parameter1] = parameter2;
                     break;
                 case "Skip Record":
-                    logFile.LogMessage(string.Format("Skipping record - Customer Number: {0} - Account Number: {1}.  {2} {3}",
-                            row[FieldMap.customerNumberFieldName], row[FieldMap.loanNumberFieldName], field, action));
+                    LogFile.LogMessage(string.Format("Skipping record - Customer Number: {0} - Account Number: {1}.  {2} {3}",
+                            row[FieldMap.CustomerNumberFieldName], row[FieldMap.LoanNumberFieldName], field, action));
                     removeRecord = true;
                     break;
                 case "Combine fields with space":
@@ -224,7 +254,7 @@ namespace ApplicationProcessor
                     row[field] = row[field].ToString().Replace(parameter1, parameter2);
                     break;
                 case "Lookup Code from DB":
-                    row[field] = lookupFromDB(row[field].ToString(), parameter1, parameter2, parameter3);
+                    row[field] = LookupFromDB(row[field].ToString(), parameter1, parameter2, parameter3);
                     break;
                 case "Convert to short date":
                     row[field] = DateTime.Parse(row[field].ToString()).ToShortDateString().ToString();
@@ -232,21 +262,21 @@ namespace ApplicationProcessor
                 case "Next Collateral Number":
                     int nextCollateral = 1;
                     Guid loanId;
-                    bool loanExists = getLoanId(row[FieldMap.loanNumberFieldName].ToString(), 
-                        row[FieldMap.customerNumberFieldName].ToString(), 
-                        row[FieldMap.loanTypeCodeFieldName].ToString(), 
-                        row[FieldMap.accountClassFieldName].ToString(),
+                    bool loanExists = GetLoanId(row[FieldMap.LoanNumberFieldName].ToString(), 
+                        row[FieldMap.CustomerNumberFieldName].ToString(), 
+                        row[FieldMap.LoanTypeCodeFieldName].ToString(), 
+                        row[FieldMap.AccountClassFieldName].ToString(),
                         out loanId);
                     if (loanExists)
-                        nextCollateral = getNextCollateral(loanId);
-                    int collateralFromTable = getHighCollateralInTable(dataTable, row[FieldMap.loanNumberFieldName].ToString());
+                        nextCollateral = GetNextCollateral(loanId);
+                    int collateralFromTable = GetHighCollateralInTable(dataTable, row[FieldMap.LoanNumberFieldName].ToString());
                     if (collateralFromTable >= nextCollateral)
                         nextCollateral = collateralFromTable + 1;
                     row[field] = nextCollateral.ToString();                        
                     break;
                 case "Pad Collateral Addenda":
                     string originalValue = row[field].ToString();
-                    int collateralPaddingSize = getCollateralPaddingSize();
+                    int collateralPaddingSize = GetCollateralPaddingSize();
                     if (collateralPaddingSize > originalValue.Length)
                     {
                         row[field] = int.Parse(originalValue).ToString("D" + collateralPaddingSize.ToString());
@@ -259,22 +289,27 @@ namespace ApplicationProcessor
 
         }
 
-        private bool verifyRequiredFields(DataRow row)
+        /// <summary>
+        /// Validates required fields for the current record
+        /// </summary>
+        /// <param name="row">The record to be processed</param>
+        /// <returns>True if all fields are successfully validated</returns>
+        private bool VerifyRequiredFields(DataRow row)
         {
             bool fieldsVerified = false;
             StringBuilder logMessage = new StringBuilder();
             
             logMessage.Append("Missing Fields: ");
-            if (row[FieldMap.customerNumberFieldName].ToString() == "") logMessage.Append(FieldMap.customerNumberFieldName + " ");
-            if (row[FieldMap.customerNameFieldName].ToString() == "") logMessage.Append(FieldMap.customerNameFieldName + " ");
-            if (row[FieldMap.customerBranchFieldName].ToString() == "") logMessage.Append(FieldMap.customerBranchFieldName + " ");
-            if (row[FieldMap.loanBranchFieldName].ToString() == "") logMessage.Append(FieldMap.loanBranchFieldName + " ");
-            if (row[FieldMap.loanNumberFieldName].ToString() == "") logMessage.Append(FieldMap.loanNumberFieldName + " ");
-            if (row[FieldMap.accountClassFieldName].ToString() == "") logMessage.Append(FieldMap.accountClassFieldName + " ");
+            if (row[FieldMap.CustomerNumberFieldName].ToString() == "") logMessage.Append(FieldMap.CustomerNumberFieldName + " ");
+            if (row[FieldMap.CustomerNameFieldName].ToString() == "") logMessage.Append(FieldMap.CustomerNameFieldName + " ");
+            if (row[FieldMap.CustomerBranchFieldName].ToString() == "") logMessage.Append(FieldMap.CustomerBranchFieldName + " ");
+            if (row[FieldMap.LoanBranchFieldName].ToString() == "") logMessage.Append(FieldMap.LoanBranchFieldName + " ");
+            if (row[FieldMap.LoanNumberFieldName].ToString() == "") logMessage.Append(FieldMap.LoanNumberFieldName + " ");
+            if (row[FieldMap.AccountClassFieldName].ToString() == "") logMessage.Append(FieldMap.AccountClassFieldName + " ");
             // if (row[FieldMap.borrowerTypeFieldName].ToString() == "") logMessage.Append(FieldMap.borrowerTypeFieldName + " ");
             // borrowertype cannot be checked for a value because a primary borrower type is defined as blank.
-            if (row[FieldMap.loanTypeCodeFieldName].ToString() == "") logMessage.Append(FieldMap.loanTypeCodeFieldName + " ");
-            if (row[FieldMap.originatingUserFieldName].ToString() == "") logMessage.Append(FieldMap.originatingUserFieldName + " ");
+            if (row[FieldMap.LoanTypeCodeFieldName].ToString() == "") logMessage.Append(FieldMap.LoanTypeCodeFieldName + " ");
+            if (row[FieldMap.OriginatingUserFieldName].ToString() == "") logMessage.Append(FieldMap.OriginatingUserFieldName + " ");
 
             if (logMessage.ToString() == "Missing Fields: ")
             {
@@ -282,15 +317,23 @@ namespace ApplicationProcessor
             }
             else
             {
-                if (row[FieldMap.loanNumberFieldName].ToString() != "")
-                    logMessage.Append("for account number " + row[FieldMap.loanNumberFieldName].ToString() + " ");
-                logFile.LogMessage("Skipping Record: " + logMessage);
+                if (row[FieldMap.LoanNumberFieldName].ToString() != "")
+                    logMessage.Append("for account number " + row[FieldMap.LoanNumberFieldName].ToString() + " ");
+                LogFile.LogMessage("Skipping Record: " + logMessage);
             }
             
             return fieldsVerified;
         }
 
-        private string lookupFromDB(string lookupValue, string lookupTable, string lookupField, string returnField)
+        /// <summary>
+        /// Retrieves a given field from the AccuAccount database.
+        /// </summary>
+        /// <param name="lookupValue">The value to lookup</param>
+        /// <param name="lookupTable">The database search table</param>
+        /// <param name="lookupField">The database search field</param>
+        /// <param name="returnField">The database field to retrieve</param>
+        /// <returns>The database value in the returnField field</returns>
+        private string LookupFromDB(string lookupValue, string lookupTable, string lookupField, string returnField)
         {
             string sqlQuery = "Select " + returnField + " from [" + lookupTable + "] where " + lookupField + " = '" + lookupValue + "'";
             SqlConnection connection = new SqlConnection(Config.dbConnectionString);
@@ -305,7 +348,16 @@ namespace ApplicationProcessor
             return result.ToString();
         }
 
-        private bool getLoanId(string loanNumber, string customerNumber, string loanTypeCode, string accountClass, out Guid loanId)
+        /// <summary>
+        /// Looks up the loan id from the AccuAccount database
+        /// </summary>
+        /// <param name="loanNumber">The LoanNumber to lookup</param>
+        /// <param name="customerNumber">The Customer Number for the loan</param>
+        /// <param name="loanTypeCode">The LoanTypeCode for the loan</param>
+        /// <param name="accountClass">The AccountClass for the loan</param>
+        /// <param name="loanId">The corresponding loanid</param>
+        /// <returns>True on successfull completion</returns>
+        private bool GetLoanId(string loanNumber, string customerNumber, string loanTypeCode, string accountClass, out Guid loanId)
         {
             loanId = new Guid();
             bool found = false;
@@ -378,7 +430,12 @@ namespace ApplicationProcessor
 
         }
 
-        private int getNextCollateral(Guid loanId)
+        /// <summary>
+        /// Gets the next collateral number for a loan
+        /// </summary>
+        /// <param name="loanId">The LoanId to lookup</param>
+        /// <returns>The next collateral number for the loan</returns>
+        private int GetNextCollateral(Guid loanId)
         {
             int nextCollateral = 1;
 
@@ -391,14 +448,20 @@ namespace ApplicationProcessor
             return nextCollateral;
         }
 
-        private int getHighCollateralInTable(DataTable dataTable, string loanNumber)
+        /// <summary>
+        /// Gets the highest collateral number for a loan in the DataTable
+        /// </summary>
+        /// <param name="dataTable">The source DataTable</param>
+        /// <param name="loanNumber">The LoanNumber to lookup</param>
+        /// <returns>The highest collateral number in the database for the LoanNumber</returns>
+        private int GetHighCollateralInTable(DataTable dataTable, string loanNumber)
         {
             int highCollateral = 0;
-            DataRow[] collateralRows = dataTable.Select(FieldMap.loanNumberFieldName + " = '" + loanNumber + 
-                "' AND " + FieldMap.borrowerTypeFieldName + " = ''", FieldMap.collateralAddendaFieldName + " Desc" );
+            DataRow[] collateralRows = dataTable.Select(FieldMap.LoanNumberFieldName + " = '" + loanNumber + 
+                "' AND " + FieldMap.BorrowerTypeFieldName + " = ''", FieldMap.CollateralAddendaFieldName + " Desc" );
             if (collateralRows.Count() > 0)
             {
-                string topCollateral = collateralRows[0][FieldMap.collateralAddendaFieldName].ToString();
+                string topCollateral = collateralRows[0][FieldMap.CollateralAddendaFieldName].ToString();
                 if (topCollateral == "") topCollateral = "0";
                 highCollateral = int.Parse(topCollateral);
             }
@@ -406,7 +469,11 @@ namespace ApplicationProcessor
             return highCollateral;
         }
 
-        private int getCollateralPaddingSize()
+        /// <summary>
+        /// Gets the CollateralPaddingSize setting from the AccuAccount database
+        /// </summary>
+        /// <returns>The CollateralPaddingSize</returns>
+        private int GetCollateralPaddingSize()
         {
             int paddingSize = 0;
             string paddingSizeString = (from p in db.AccuSystemsProperties
@@ -423,7 +490,12 @@ namespace ApplicationProcessor
 
         }
 
-        private bool accountExistsInDatabase(string accountNumber)
+        /// <summary>
+        /// Check to see if an AccountNumber exists in the AccuAccount database
+        /// </summary>
+        /// <param name="accountNumber">The Account Number to check</param>
+        /// <returns>True if the account number exists in the database</returns>
+        private bool AccountExistsInDatabase(string accountNumber)
         {
             int accounts = (from l in db.Loans
                             where l.LoanNumber == accountNumber
@@ -432,7 +504,7 @@ namespace ApplicationProcessor
 
             if (accounts > 0)
             {
-                logFile.LogMessage("accountNumber " + accountNumber + " already exists");
+                LogFile.LogMessage("accountNumber " + accountNumber + " already exists");
                 return true;
             }
             else

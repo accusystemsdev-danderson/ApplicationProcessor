@@ -1,329 +1,338 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿//-----------------------------------------------------------------------------
+// <copyright file="Program.cs" company="AccuSystems LLC">
+//     Copyright (c) AccuSystems.  All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------------
+
 
 namespace ApplicationProcessor
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Xml.Linq;
+
     class FieldMapper
     {
-        public string xmlMappingFile { get; set; }
+        public string XmlMappingFile { get; set; }
 
-        public string customerNumberFieldName { get; set; }
-        public string taxIdFieldName { get; set; }
-        public string customerNameFieldName { get; set; }
-        public string businessNameFieldName { get; set; }
-        public string customerFirstNameFieldName { get; set; }
-        public string customerMiddleNameFieldName { get; set; }
-        public string customerLastNameFieldName { get; set; }
-        public string customerTypeCodeFieldName { get; set; }
-        public string bankCodeFieldName { get; set; }
-        public string employeeFieldName { get; set; }
-        public string customerBranchFieldName { get; set; }
-        public string customerOfficerCodeFieldName { get; set; }
-        public string address1FieldName { get; set; }
-        public string address2FieldName { get; set; }
-        public string cityFieldName { get; set; }
-        public string stateFieldName { get; set; }
-        public string zipCodeFieldName { get; set; }
-        public string homePhoneFieldName { get; set; }
-        public string workPhoneFieldName { get; set; }
-        public string mobilePhoneFieldName { get; set; }
-        public string faxFieldName { get; set; }
-        public string emailFieldName { get; set; }
-        public string classificationCodeFieldName { get; set; }
-        public string customerStatusFieldName { get; set; }
-        public string loanNumberFieldName { get; set; }
-        public string collateralLoanNumberFieldName { get; set; }
-        public string collateralAddendaFieldName { get; set; }
-        public string parentLoanNumberFieldName { get; set; }
-        public string accountClassFieldName { get; set; }
-        public string loanOfficerCodeFieldName { get; set; }
-        public string loanTypeCodeFieldName { get; set; }
-        public string collateralLoanTypeCodeFieldName { get; set; }
-        public string loanStatusCodeFieldName { get; set; }
-        public string loanClosedFieldName { get; set; }
-        public string loanAmountFieldName { get; set; }
-        public string loanOriginationDateFieldName { get; set; }
-        public string loanDescriptionFieldName { get; set; }
-        public string collateralDescriptionFieldName { get; set; }
-        public string borrowerTypeFieldName { get; set; }
-        public string owningCustomerNumberFieldName { get; set; }
-        public string loanBranchFieldName { get; set; }
-        public string coreClassCodeFieldName { get; set; }
-        public string coreCollCodeFieldName { get; set; }
-        public string coreCollateralCodeFieldName { get; set; }
-        public string corePurposeCodeFieldName { get; set; }
-        public string coreTypeCodeFieldName { get; set; }
-        public string commitmentAmountFieldName { get; set; }
-        public string coreNaicsCodeFieldName { get; set; }
-        public string loanMaturityDateFieldName { get; set; }
-        public string loanClassificationCodeFieldName { get; set; }
-        public string applicationDateFieldName { get; set; }
-        public string creditAnalysisStatusFieldName { get; set; }
-        public string requestedAmountFieldName { get; set; }
-        public string primaryCollateralValueFieldName { get; set; }
+        public string CustomerNumberFieldName { get; set; }
+        public string TaxIdFieldName { get; set; }
+        public string CustomerNameFieldName { get; set; }
+        public string BusinessNameFieldName { get; set; }
+        public string CustomerFirstNameFieldName { get; set; }
+        public string CustomerMiddleNameFieldName { get; set; }
+        public string CustomerLastNameFieldName { get; set; }
+        public string CustomerTypeCodeFieldName { get; set; }
+        public string BankCodeFieldName { get; set; }
+        public string EmployeeFieldName { get; set; }
+        public string CustomerBranchFieldName { get; set; }
+        public string CustomerOfficerCodeFieldName { get; set; }
+        public string Address1FieldName { get; set; }
+        public string Address2FieldName { get; set; }
+        public string CityFieldName { get; set; }
+        public string StateFieldName { get; set; }
+        public string ZipCodeFieldName { get; set; }
+        public string HomePhoneFieldName { get; set; }
+        public string WorkPhoneFieldName { get; set; }
+        public string MobilePhoneFieldName { get; set; }
+        public string FaxFieldName { get; set; }
+        public string EmailFieldName { get; set; }
+        public string ClassificationCodeFieldName { get; set; }
+        public string CustomerStatusFieldName { get; set; }
+        public string LoanNumberFieldName { get; set; }
+        public string CollateralLoanNumberFieldName { get; set; }
+        public string CollateralAddendaFieldName { get; set; }
+        public string ParentLoanNumberFieldName { get; set; }
+        public string AccountClassFieldName { get; set; }
+        public string LoanOfficerCodeFieldName { get; set; }
+        public string LoanTypeCodeFieldName { get; set; }
+        public string CollateralLoanTypeCodeFieldName { get; set; }
+        public string LoanStatusCodeFieldName { get; set; }
+        public string LoanClosedFieldName { get; set; }
+        public string LoanAmountFieldName { get; set; }
+        public string LoanOriginationDateFieldName { get; set; }
+        public string LoanDescriptionFieldName { get; set; }
+        public string CollateralDescriptionFieldName { get; set; }
+        public string BorrowerTypeFieldName { get; set; }
+        public string OwningCustomerNumberFieldName { get; set; }
+        public string LoanBranchFieldName { get; set; }
+        public string CoreClassCodeFieldName { get; set; }
+        public string CoreCollCodeFieldName { get; set; }
+        public string CoreCollateralCodeFieldName { get; set; }
+        public string CorePurposeCodeFieldName { get; set; }
+        public string CoreTypeCodeFieldName { get; set; }
+        public string CommitmentAmountFieldName { get; set; }
+        public string CoreNaicsCodeFieldName { get; set; }
+        public string LoanMaturityDateFieldName { get; set; }
+        public string LoanClassificationCodeFieldName { get; set; }
+        public string ApplicationDateFieldName { get; set; }
+        public string CreditAnalysisStatusFieldName { get; set; }
+        public string RequestedAmountFieldName { get; set; }
+        public string PrimaryCollateralValueFieldName { get; set; }
         public string FICOFieldName { get; set; }
-        public string valuationDateFieldName { get; set; }
-        public string interestRateFieldName { get; set; }
-        public string probabilityFieldName { get; set; }
-        public string estimatedCloseDateFieldName { get; set; }
-        public string assignedLenderFieldName { get; set; }
-        public string assignedLenderTypeFieldName { get; set; }
-        public string assignedAnalystFieldName { get; set; }
-        public string assignedAnalystTypeFieldName { get; set; }
-        public string assignedLoanProcessorFieldName { get; set; }
-        public string assignedLoanProcessorTypeFieldName { get; set; }
-        public string applicationLockedFieldName { get; set; }
-        public string approvalStatusFieldName { get; set; }
-        public string originatingUserFieldName { get; set; }
-        public string assignedApproverFieldName { get; set; }
-        public string assignedApproverTypeFieldName { get; set; }
+        public string ValuationDateFieldName { get; set; }
+        public string InterestRateFieldName { get; set; }
+        public string ProbabilityFieldName { get; set; }
+        public string EstimatedCloseDateFieldName { get; set; }
+        public string AssignedLenderFieldName { get; set; }
+        public string AssignedLenderTypeFieldName { get; set; }
+        public string AssignedAnalystFieldName { get; set; }
+        public string AssignedAnalystTypeFieldName { get; set; }
+        public string AssignedLoanProcessorFieldName { get; set; }
+        public string AssignedLoanProcessorTypeFieldName { get; set; }
+        public string ApplicationLockedFieldName { get; set; }
+        public string ApprovalStatusFieldName { get; set; }
+        public string OriginatingUserFieldName { get; set; }
+        public string AssignedApproverFieldName { get; set; }
+        public string AssignedApproverTypeFieldName { get; set; }
 
-        public string postProcessingFieldFieldName { get; set; } //used for building a list of processed accounts to use in post processing query
-        public string generic1FieldName { get; set; } // generic fields can be used in rule processing but are not exported to xml
-        public string generic2FieldName { get; set; }
-        public string generic3FieldName { get; set; }
-        public string generic4FieldName { get; set; }
+        public string PostProcessingFieldFieldName { get; set; } //used for building a list of processed accounts to use in post processing query
+        public string Generic1FieldName { get; set; } // generic fields can be used in rule processing but are not exported to xml
+        public string Generic2FieldName { get; set; }
+        public string Generic3FieldName { get; set; }
+        public string Generic4FieldName { get; set; }
         
 
-        public string customerNumberMappedField { get; set; }
-        public string taxIdMappedField { get; set; }
-        public string customerNameMappedField { get; set; }
-        public string businessNameMappedField { get; set; }
-        public string customerFirstNameMappedField { get; set; }
-        public string customerMiddleNameMappedField { get; set; }
-        public string customerLastNameMappedField { get; set; }
-        public string customerTypeCodeMappedField { get; set; }
-        public string bankCodeMappedField { get; set; }
-        public string employeeMappedField { get; set; }
-        public string customerBranchMappedField { get; set; }
-        public string customerOfficerCodeMappedField { get; set; }
-        public string address1MappedField { get; set; }
-        public string address2MappedField { get; set; }
-        public string cityMappedField { get; set; }
-        public string stateMappedField { get; set; }
-        public string zipCodeMappedField { get; set; }
-        public string homePhoneMappedField { get; set; }
-        public string workPhoneMappedField { get; set; }
-        public string mobilePhoneMappedField { get; set; }
-        public string faxMappedField { get; set; }
-        public string emailMappedField { get; set; }
-        public string classificationCodeMappedField { get; set; }
-        public string customerStatusMappedField { get; set; }
-        public string loanNumberMappedField { get; set; }
-        public string collateralLoanNumberMappedField { get; set; }
-        public string collateralAddendaMappedField { get; set; }
-        public string parentLoanNumberMappedField { get; set; }
-        public string accountClassMappedField { get; set; }
-        public string loanOfficerCodeMappedField { get; set; }
+        public string CustomerNumberMappedField { get; set; }
+        public string TaxIdMappedField { get; set; }
+        public string CustomerNameMappedField { get; set; }
+        public string BusinessNameMappedField { get; set; }
+        public string CustomerFirstNameMappedField { get; set; }
+        public string CustomerMiddleNameMappedField { get; set; }
+        public string CustomerLastNameMappedField { get; set; }
+        public string CustomerTypeCodeMappedField { get; set; }
+        public string BankCodeMappedField { get; set; }
+        public string EmployeeMappedField { get; set; }
+        public string CustomerBranchMappedField { get; set; }
+        public string CustomerOfficerCodeMappedField { get; set; }
+        public string Address1MappedField { get; set; }
+        public string Address2MappedField { get; set; }
+        public string CityMappedField { get; set; }
+        public string StateMappedField { get; set; }
+        public string ZipCodeMappedField { get; set; }
+        public string HomePhoneMappedField { get; set; }
+        public string WorkPhoneMappedField { get; set; }
+        public string MobilePhoneMappedField { get; set; }
+        public string FaxMappedField { get; set; }
+        public string EmailMappedField { get; set; }
+        public string ClassificationCodeMappedField { get; set; }
+        public string CustomerStatusMappedField { get; set; }
+        public string LoanNumberMappedField { get; set; }
+        public string CollateralLoanNumberMappedField { get; set; }
+        public string CollateralAddendaMappedField { get; set; }
+        public string ParentLoanNumberMappedField { get; set; }
+        public string AccountClassMappedField { get; set; }
+        public string LoanOfficerCodeMappedField { get; set; }
         public string loanTypeCodeMappedField { get; set; }
-        public string collateralLoanTypeCodeMappedField { get; set; }
-        public string loanStatusCodeMappedField { get; set; }
-        public string loanClosedMappedField { get; set; }
-        public string loanAmountMappedField { get; set; }
-        public string loanOriginationDateMappedField { get; set; }
-        public string loanDescriptionMappedField { get; set; }
-        public string collateralDescriptionMappedField { get; set; }
-        public string borrowerTypeMappedField { get; set; }
-        public string owningCustomerNumberMappedField { get; set; }
-        public string loanBranchMappedField { get; set; }
-        public string coreClassCodeMappedField { get; set; }
-        public string coreCollCodeMappedField { get; set; }
-        public string coreCollateralCodeMappedField { get; set; }
-        public string corePurposeCodeMappedField { get; set; }
-        public string coreTypeCodeMappedField { get; set; }
-        public string commitmentAmountMappedField { get; set; }
-        public string coreNaicsCodeMappedField { get; set; }
-        public string loanMaturityDateMappedField { get; set; }
-        public string loanClassificationCodeMappedField { get; set; }
-        public string applicationDateMappedField { get; set; }
-        public string creditAnalysisStatusMappedField { get; set; }
-        public string requestedAmountMappedField { get; set; }
-        public string primaryCollateralValueMappedField { get; set; }
+        public string CollateralLoanTypeCodeMappedField { get; set; }
+        public string LoanStatusCodeMappedField { get; set; }
+        public string LoanClosedMappedField { get; set; }
+        public string LoanAmountMappedField { get; set; }
+        public string LoanOriginationDateMappedField { get; set; }
+        public string LoanDescriptionMappedField { get; set; }
+        public string CollateralDescriptionMappedField { get; set; }
+        public string BorrowerTypeMappedField { get; set; }
+        public string OwningCustomerNumberMappedField { get; set; }
+        public string LoanBranchMappedField { get; set; }
+        public string CoreClassCodeMappedField { get; set; }
+        public string CoreCollCodeMappedField { get; set; }
+        public string CoreCollateralCodeMappedField { get; set; }
+        public string CorePurposeCodeMappedField { get; set; }
+        public string CoreTypeCodeMappedField { get; set; }
+        public string CommitmentAmountMappedField { get; set; }
+        public string CoreNaicsCodeMappedField { get; set; }
+        public string LoanMaturityDateMappedField { get; set; }
+        public string LoanClassificationCodeMappedField { get; set; }
+        public string ApplicationDateMappedField { get; set; }
+        public string CreditAnalysisStatusMappedField { get; set; }
+        public string RequestedAmountMappedField { get; set; }
+        public string PrimaryCollateralValueMappedField { get; set; }
         public string FICOMappedField { get; set; }
-        public string valuationDateMappedField { get; set; }
-        public string interestRateMappedField { get; set; }
-        public string probabilityMappedField { get; set; }
-        public string estimatedCloseDateMappedField { get; set; }
-        public string assignedLenderMappedField { get; set; }
-        public string assignedLenderTypeMappedField { get; set; }
-        public string assignedAnalystMappedField { get; set; }
-        public string assignedAnalystTypeMappedField { get; set; }
-        public string assignedLoanProcessorMappedField { get; set; }
-        public string assignedLoanProcessorTypeMappedField { get; set; }
-        public string applicationLockedMappedField { get; set; }
-        public string approvalStatusMappedField { get; set; }
-        public string originatingUserMappedField { get; set; }
-        public string assignedApproverMappedField { get; set; }
-        public string assignedApproverTypeMappedField { get; set; }
+        public string ValuationDateMappedField { get; set; }
+        public string InterestRateMappedField { get; set; }
+        public string ProbabilityMappedField { get; set; }
+        public string EstimatedCloseDateMappedField { get; set; }
+        public string AssignedLenderMappedField { get; set; }
+        public string AssignedLenderTypeMappedField { get; set; }
+        public string AssignedAnalystMappedField { get; set; }
+        public string AssignedAnalystTypeMappedField { get; set; }
+        public string AssignedLoanProcessorMappedField { get; set; }
+        public string AssignedLoanProcessorTypeMappedField { get; set; }
+        public string ApplicationLockedMappedField { get; set; }
+        public string ApprovalStatusMappedField { get; set; }
+        public string OriginatingUserMappedField { get; set; }
+        public string AssignedApproverMappedField { get; set; }
+        public string AssignedApproverTypeMappedField { get; set; }
 
-        public string postProcessingFieldMappedField { get; set; }
-        public string generic1MappedField { get; set; }
-        public string generic2MappedField { get; set; }
-        public string generic3MappedField { get; set; }
-        public string generic4MappedField { get; set; }
+        public string PostProcessingFieldMappedField { get; set; }
+        public string Generic1MappedField { get; set; }
+        public string Generic2MappedField { get; set; }
+        public string Generic3MappedField { get; set; }
+        public string Generic4MappedField { get; set; }
         
-
+        /// <summary>
+        /// Reads field name mappings from XmlMappingFile
+        /// </summary>
         public void ReadFieldMappings()
         {
-            customerNumberFieldName = "customerNumber";
-            taxIdFieldName = "taxId";
-            customerNameFieldName = "customerName";
-            businessNameFieldName = "businessName";
-            customerFirstNameFieldName = "customerFirstName";
-            customerMiddleNameFieldName = "customerMiddleName";
-            customerLastNameFieldName = "customerLastName";
-            customerTypeCodeFieldName = "customerTypeCode";
-            bankCodeFieldName = "bankCode";
-            employeeFieldName = "employee";
-            customerBranchFieldName = "customerBranch";
-            customerOfficerCodeFieldName = "customerOfficerCode";
-            address1FieldName = "address1";
-            address2FieldName = "address2";
-            cityFieldName = "city";
-            stateFieldName = "state";
-            zipCodeFieldName = "zipCode";
-            homePhoneFieldName = "homePhone";
-            workPhoneFieldName = "workPhone";
-            mobilePhoneFieldName = "mobilePhone";
-            faxFieldName = "fax";
-            emailFieldName = "email";
-            classificationCodeFieldName = "classificationCode";
-            customerStatusFieldName = "customerStatus";
-            loanNumberFieldName = "loanNumber";
-            collateralLoanNumberFieldName = "collateralLoanNumber";
-            collateralAddendaFieldName = "collateralAddenda";
-            parentLoanNumberFieldName = "parentLoanNumber";
-            accountClassFieldName = "accountClass";
-            loanOfficerCodeFieldName = "loanOfficerCode";
-            loanTypeCodeFieldName = "loanTypeCode";
-            collateralLoanTypeCodeFieldName = "collateralLoanTypeCode";
-            loanStatusCodeFieldName = "loanStatusCode";
-            loanClosedFieldName = "loanClosed";
-            loanAmountFieldName = "loanAmount";
-            loanOriginationDateFieldName = "loanOriginationDate";
-            loanDescriptionFieldName = "loanDescription";
-            collateralDescriptionFieldName = "collateralDescription";
-            borrowerTypeFieldName = "borrowerType";
-            owningCustomerNumberFieldName = "owningCustomerNumber";
-            loanBranchFieldName = "loanBranch";
-            coreClassCodeFieldName = "coreClassCode";
-            coreCollCodeFieldName = "coreCollCode";
-            coreCollateralCodeFieldName = "coreCollateralCode";
-            corePurposeCodeFieldName = "corePurposeCode";
-            coreTypeCodeFieldName = "coreTypeCode";
-            commitmentAmountFieldName = "commitmentAmount";
-            coreNaicsCodeFieldName = "coreNaicsCode";
-            loanMaturityDateFieldName = "loanMaturityDate";
-            loanClassificationCodeFieldName = "loanClassificationCode";
-            applicationDateFieldName = "applicationDate";
-            creditAnalysisStatusFieldName = "creditAnalysisStatus";
-            requestedAmountFieldName = "requestedAmount";
-            primaryCollateralValueFieldName = "primaryCollateralValue";
+            CustomerNumberFieldName = "customerNumber";
+            TaxIdFieldName = "taxId";
+            CustomerNameFieldName = "customerName";
+            BusinessNameFieldName = "businessName";
+            CustomerFirstNameFieldName = "customerFirstName";
+            CustomerMiddleNameFieldName = "customerMiddleName";
+            CustomerLastNameFieldName = "customerLastName";
+            CustomerTypeCodeFieldName = "customerTypeCode";
+            BankCodeFieldName = "bankCode";
+            EmployeeFieldName = "employee";
+            CustomerBranchFieldName = "customerBranch";
+            CustomerOfficerCodeFieldName = "customerOfficerCode";
+            Address1FieldName = "address1";
+            Address2FieldName = "address2";
+            CityFieldName = "city";
+            StateFieldName = "state";
+            ZipCodeFieldName = "zipCode";
+            HomePhoneFieldName = "homePhone";
+            WorkPhoneFieldName = "workPhone";
+            MobilePhoneFieldName = "mobilePhone";
+            FaxFieldName = "fax";
+            EmailFieldName = "email";
+            ClassificationCodeFieldName = "classificationCode";
+            CustomerStatusFieldName = "customerStatus";
+            LoanNumberFieldName = "loanNumber";
+            CollateralLoanNumberFieldName = "collateralLoanNumber";
+            CollateralAddendaFieldName = "collateralAddenda";
+            ParentLoanNumberFieldName = "parentLoanNumber";
+            AccountClassFieldName = "accountClass";
+            LoanOfficerCodeFieldName = "loanOfficerCode";
+            LoanTypeCodeFieldName = "loanTypeCode";
+            CollateralLoanTypeCodeFieldName = "collateralLoanTypeCode";
+            LoanStatusCodeFieldName = "loanStatusCode";
+            LoanClosedFieldName = "loanClosed";
+            LoanAmountFieldName = "loanAmount";
+            LoanOriginationDateFieldName = "loanOriginationDate";
+            LoanDescriptionFieldName = "loanDescription";
+            CollateralDescriptionFieldName = "collateralDescription";
+            BorrowerTypeFieldName = "borrowerType";
+            OwningCustomerNumberFieldName = "owningCustomerNumber";
+            LoanBranchFieldName = "loanBranch";
+            CoreClassCodeFieldName = "coreClassCode";
+            CoreCollCodeFieldName = "coreCollCode";
+            CoreCollateralCodeFieldName = "coreCollateralCode";
+            CorePurposeCodeFieldName = "corePurposeCode";
+            CoreTypeCodeFieldName = "coreTypeCode";
+            CommitmentAmountFieldName = "commitmentAmount";
+            CoreNaicsCodeFieldName = "coreNaicsCode";
+            LoanMaturityDateFieldName = "loanMaturityDate";
+            LoanClassificationCodeFieldName = "loanClassificationCode";
+            ApplicationDateFieldName = "applicationDate";
+            CreditAnalysisStatusFieldName = "creditAnalysisStatus";
+            RequestedAmountFieldName = "requestedAmount";
+            PrimaryCollateralValueFieldName = "primaryCollateralValue";
             FICOFieldName = "FICO";
-            valuationDateFieldName = "valuationDate";
-            interestRateFieldName = "interestRate";
-            probabilityFieldName = "probability";
-            estimatedCloseDateFieldName = "estimatedCloseDate";
-            assignedLenderFieldName = "assignedLender";
-            assignedLenderTypeFieldName = "assignedLenderType";
-            assignedAnalystFieldName = "assignedAnalyst";
-            assignedAnalystTypeFieldName = "assignedAnalystType";
-            assignedLoanProcessorFieldName = "assignedLoanProcessor";
-            assignedLoanProcessorTypeFieldName = "assignedLoanProcessorType";
-            applicationLockedFieldName = "applicationLocked";
-            approvalStatusFieldName = "approvalStatus";
-            originatingUserFieldName = "originatingUser";
-            assignedApproverFieldName = "assignedApprover";
-            assignedApproverTypeFieldName = "assignedApproverType";
+            ValuationDateFieldName = "valuationDate";
+            InterestRateFieldName = "interestRate";
+            ProbabilityFieldName = "probability";
+            EstimatedCloseDateFieldName = "estimatedCloseDate";
+            AssignedLenderFieldName = "assignedLender";
+            AssignedLenderTypeFieldName = "assignedLenderType";
+            AssignedAnalystFieldName = "assignedAnalyst";
+            AssignedAnalystTypeFieldName = "assignedAnalystType";
+            AssignedLoanProcessorFieldName = "assignedLoanProcessor";
+            AssignedLoanProcessorTypeFieldName = "assignedLoanProcessorType";
+            ApplicationLockedFieldName = "applicationLocked";
+            ApprovalStatusFieldName = "approvalStatus";
+            OriginatingUserFieldName = "originatingUser";
+            AssignedApproverFieldName = "assignedApprover";
+            AssignedApproverTypeFieldName = "assignedApproverType";
 
-            postProcessingFieldFieldName = "postProcessingField";
-            generic1FieldName = "generic1";
-            generic2FieldName = "generic2";
-            generic3FieldName = "generic3";
-            generic4FieldName = "generic4";
+            PostProcessingFieldFieldName = "postProcessingField";
+            Generic1FieldName = "generic1";
+            Generic2FieldName = "generic2";
+            Generic3FieldName = "generic3";
+            Generic4FieldName = "generic4";
             
-            XElement xmlMap = XElement.Load(xmlMappingFile);
+            XElement xmlMap = XElement.Load(XmlMappingFile);
 
-            customerNumberMappedField = Utils.ReadXMLElementValue(xmlMap, customerNumberFieldName, "");
-            taxIdMappedField = Utils.ReadXMLElementValue(xmlMap, taxIdFieldName, "");
-            customerNameMappedField = Utils.ReadXMLElementValue(xmlMap, customerNameFieldName, "");
-            businessNameMappedField = Utils.ReadXMLElementValue(xmlMap, businessNameFieldName, "");
-            customerFirstNameMappedField = Utils.ReadXMLElementValue(xmlMap, customerFirstNameFieldName, "");
-            customerMiddleNameMappedField = Utils.ReadXMLElementValue(xmlMap, customerMiddleNameFieldName, "");
-            customerLastNameMappedField = Utils.ReadXMLElementValue(xmlMap, customerLastNameFieldName, "");
-            customerTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, customerTypeCodeFieldName, "");
-            bankCodeMappedField = Utils.ReadXMLElementValue(xmlMap, bankCodeFieldName, "");
-            employeeMappedField = Utils.ReadXMLElementValue(xmlMap, employeeFieldName, "");
-            customerBranchMappedField = Utils.ReadXMLElementValue(xmlMap, customerBranchFieldName, "");
-            customerOfficerCodeMappedField = Utils.ReadXMLElementValue(xmlMap, customerOfficerCodeFieldName, "");
-            address1MappedField = Utils.ReadXMLElementValue(xmlMap, address1FieldName, "");
-            address2MappedField = Utils.ReadXMLElementValue(xmlMap, address2FieldName, "");
-            cityMappedField = Utils.ReadXMLElementValue(xmlMap, cityFieldName, "");
-            stateMappedField = Utils.ReadXMLElementValue(xmlMap, stateFieldName, "");
-            zipCodeMappedField = Utils.ReadXMLElementValue(xmlMap, zipCodeFieldName, "");
-            homePhoneMappedField = Utils.ReadXMLElementValue(xmlMap, homePhoneFieldName, "");
-            workPhoneMappedField = Utils.ReadXMLElementValue(xmlMap, workPhoneFieldName, "");
-            mobilePhoneMappedField = Utils.ReadXMLElementValue(xmlMap, mobilePhoneFieldName, "");
-            faxMappedField = Utils.ReadXMLElementValue(xmlMap, faxFieldName, "");
-            emailMappedField = Utils.ReadXMLElementValue(xmlMap, emailFieldName, "");
-            classificationCodeMappedField = Utils.ReadXMLElementValue(xmlMap, classificationCodeFieldName, "");
-            customerStatusMappedField = Utils.ReadXMLElementValue(xmlMap, customerStatusFieldName, "");
-            loanNumberMappedField = Utils.ReadXMLElementValue(xmlMap, loanNumberFieldName, "");
-            collateralLoanNumberMappedField = Utils.ReadXMLElementValue(xmlMap, collateralLoanNumberFieldName, "");
-            collateralAddendaMappedField = Utils.ReadXMLElementValue(xmlMap, collateralAddendaFieldName, "");
-            parentLoanNumberMappedField = Utils.ReadXMLElementValue(xmlMap, parentLoanNumberFieldName, "");
-            accountClassMappedField = Utils.ReadXMLElementValue(xmlMap, accountClassFieldName, "");
-            loanOfficerCodeMappedField = Utils.ReadXMLElementValue(xmlMap, loanOfficerCodeFieldName, "");
-            loanTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, loanTypeCodeFieldName, "");
-            collateralLoanTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, collateralLoanTypeCodeFieldName, "");
-            loanStatusCodeMappedField = Utils.ReadXMLElementValue(xmlMap, loanStatusCodeFieldName, "");
-            loanClosedMappedField = Utils.ReadXMLElementValue(xmlMap, loanClosedFieldName, "");
-            loanAmountMappedField = Utils.ReadXMLElementValue(xmlMap, loanAmountFieldName, "");
-            loanOriginationDateMappedField = Utils.ReadXMLElementValue(xmlMap, loanOriginationDateFieldName, "");
-            loanDescriptionMappedField = Utils.ReadXMLElementValue(xmlMap, loanDescriptionFieldName, "");
-            collateralDescriptionMappedField = Utils.ReadXMLElementValue(xmlMap, collateralDescriptionFieldName, "");
-            borrowerTypeMappedField = Utils.ReadXMLElementValue(xmlMap, borrowerTypeFieldName, "");
-            owningCustomerNumberMappedField = Utils.ReadXMLElementValue(xmlMap, owningCustomerNumberFieldName, "");
-            loanBranchMappedField = Utils.ReadXMLElementValue(xmlMap, loanBranchFieldName, "");
-            coreClassCodeMappedField = Utils.ReadXMLElementValue(xmlMap, coreClassCodeFieldName, "");
-            coreCollCodeMappedField = Utils.ReadXMLElementValue(xmlMap, coreCollCodeFieldName, "");
-            coreCollateralCodeMappedField = Utils.ReadXMLElementValue(xmlMap, coreCollateralCodeFieldName, "");
-            corePurposeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, corePurposeCodeFieldName, "");
-            coreTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, coreTypeCodeFieldName, "");
-            commitmentAmountMappedField = Utils.ReadXMLElementValue(xmlMap, commitmentAmountFieldName, "");
-            coreNaicsCodeMappedField = Utils.ReadXMLElementValue(xmlMap, coreNaicsCodeFieldName, "");
-            loanMaturityDateMappedField = Utils.ReadXMLElementValue(xmlMap, loanMaturityDateFieldName, "");
-            loanClassificationCodeMappedField = Utils.ReadXMLElementValue(xmlMap, loanClassificationCodeFieldName, "");
-            applicationDateMappedField = Utils.ReadXMLElementValue(xmlMap, applicationDateFieldName, "");
-            creditAnalysisStatusMappedField = Utils.ReadXMLElementValue(xmlMap, creditAnalysisStatusFieldName, "");
-            requestedAmountMappedField = Utils.ReadXMLElementValue(xmlMap, requestedAmountFieldName, "");
-            primaryCollateralValueMappedField = Utils.ReadXMLElementValue(xmlMap, primaryCollateralValueFieldName, "");
+            CustomerNumberMappedField = Utils.ReadXMLElementValue(xmlMap, CustomerNumberFieldName, "");
+            TaxIdMappedField = Utils.ReadXMLElementValue(xmlMap, TaxIdFieldName, "");
+            CustomerNameMappedField = Utils.ReadXMLElementValue(xmlMap, CustomerNameFieldName, "");
+            BusinessNameMappedField = Utils.ReadXMLElementValue(xmlMap, BusinessNameFieldName, "");
+            CustomerFirstNameMappedField = Utils.ReadXMLElementValue(xmlMap, CustomerFirstNameFieldName, "");
+            CustomerMiddleNameMappedField = Utils.ReadXMLElementValue(xmlMap, CustomerMiddleNameFieldName, "");
+            CustomerLastNameMappedField = Utils.ReadXMLElementValue(xmlMap, CustomerLastNameFieldName, "");
+            CustomerTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, CustomerTypeCodeFieldName, "");
+            BankCodeMappedField = Utils.ReadXMLElementValue(xmlMap, BankCodeFieldName, "");
+            EmployeeMappedField = Utils.ReadXMLElementValue(xmlMap, EmployeeFieldName, "");
+            CustomerBranchMappedField = Utils.ReadXMLElementValue(xmlMap, CustomerBranchFieldName, "");
+            CustomerOfficerCodeMappedField = Utils.ReadXMLElementValue(xmlMap, CustomerOfficerCodeFieldName, "");
+            Address1MappedField = Utils.ReadXMLElementValue(xmlMap, Address1FieldName, "");
+            Address2MappedField = Utils.ReadXMLElementValue(xmlMap, Address2FieldName, "");
+            CityMappedField = Utils.ReadXMLElementValue(xmlMap, CityFieldName, "");
+            StateMappedField = Utils.ReadXMLElementValue(xmlMap, StateFieldName, "");
+            ZipCodeMappedField = Utils.ReadXMLElementValue(xmlMap, ZipCodeFieldName, "");
+            HomePhoneMappedField = Utils.ReadXMLElementValue(xmlMap, HomePhoneFieldName, "");
+            WorkPhoneMappedField = Utils.ReadXMLElementValue(xmlMap, WorkPhoneFieldName, "");
+            MobilePhoneMappedField = Utils.ReadXMLElementValue(xmlMap, MobilePhoneFieldName, "");
+            FaxMappedField = Utils.ReadXMLElementValue(xmlMap, FaxFieldName, "");
+            EmailMappedField = Utils.ReadXMLElementValue(xmlMap, EmailFieldName, "");
+            ClassificationCodeMappedField = Utils.ReadXMLElementValue(xmlMap, ClassificationCodeFieldName, "");
+            CustomerStatusMappedField = Utils.ReadXMLElementValue(xmlMap, CustomerStatusFieldName, "");
+            LoanNumberMappedField = Utils.ReadXMLElementValue(xmlMap, LoanNumberFieldName, "");
+            CollateralLoanNumberMappedField = Utils.ReadXMLElementValue(xmlMap, CollateralLoanNumberFieldName, "");
+            CollateralAddendaMappedField = Utils.ReadXMLElementValue(xmlMap, CollateralAddendaFieldName, "");
+            ParentLoanNumberMappedField = Utils.ReadXMLElementValue(xmlMap, ParentLoanNumberFieldName, "");
+            AccountClassMappedField = Utils.ReadXMLElementValue(xmlMap, AccountClassFieldName, "");
+            LoanOfficerCodeMappedField = Utils.ReadXMLElementValue(xmlMap, LoanOfficerCodeFieldName, "");
+            loanTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, LoanTypeCodeFieldName, "");
+            CollateralLoanTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, CollateralLoanTypeCodeFieldName, "");
+            LoanStatusCodeMappedField = Utils.ReadXMLElementValue(xmlMap, LoanStatusCodeFieldName, "");
+            LoanClosedMappedField = Utils.ReadXMLElementValue(xmlMap, LoanClosedFieldName, "");
+            LoanAmountMappedField = Utils.ReadXMLElementValue(xmlMap, LoanAmountFieldName, "");
+            LoanOriginationDateMappedField = Utils.ReadXMLElementValue(xmlMap, LoanOriginationDateFieldName, "");
+            LoanDescriptionMappedField = Utils.ReadXMLElementValue(xmlMap, LoanDescriptionFieldName, "");
+            CollateralDescriptionMappedField = Utils.ReadXMLElementValue(xmlMap, CollateralDescriptionFieldName, "");
+            BorrowerTypeMappedField = Utils.ReadXMLElementValue(xmlMap, BorrowerTypeFieldName, "");
+            OwningCustomerNumberMappedField = Utils.ReadXMLElementValue(xmlMap, OwningCustomerNumberFieldName, "");
+            LoanBranchMappedField = Utils.ReadXMLElementValue(xmlMap, LoanBranchFieldName, "");
+            CoreClassCodeMappedField = Utils.ReadXMLElementValue(xmlMap, CoreClassCodeFieldName, "");
+            CoreCollCodeMappedField = Utils.ReadXMLElementValue(xmlMap, CoreCollCodeFieldName, "");
+            CoreCollateralCodeMappedField = Utils.ReadXMLElementValue(xmlMap, CoreCollateralCodeFieldName, "");
+            CorePurposeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, CorePurposeCodeFieldName, "");
+            CoreTypeCodeMappedField = Utils.ReadXMLElementValue(xmlMap, CoreTypeCodeFieldName, "");
+            CommitmentAmountMappedField = Utils.ReadXMLElementValue(xmlMap, CommitmentAmountFieldName, "");
+            CoreNaicsCodeMappedField = Utils.ReadXMLElementValue(xmlMap, CoreNaicsCodeFieldName, "");
+            LoanMaturityDateMappedField = Utils.ReadXMLElementValue(xmlMap, LoanMaturityDateFieldName, "");
+            LoanClassificationCodeMappedField = Utils.ReadXMLElementValue(xmlMap, LoanClassificationCodeFieldName, "");
+            ApplicationDateMappedField = Utils.ReadXMLElementValue(xmlMap, ApplicationDateFieldName, "");
+            CreditAnalysisStatusMappedField = Utils.ReadXMLElementValue(xmlMap, CreditAnalysisStatusFieldName, "");
+            RequestedAmountMappedField = Utils.ReadXMLElementValue(xmlMap, RequestedAmountFieldName, "");
+            PrimaryCollateralValueMappedField = Utils.ReadXMLElementValue(xmlMap, PrimaryCollateralValueFieldName, "");
             FICOMappedField = Utils.ReadXMLElementValue(xmlMap, FICOFieldName, "");
-            valuationDateMappedField = Utils.ReadXMLElementValue(xmlMap, valuationDateFieldName, "");
-            interestRateMappedField = Utils.ReadXMLElementValue(xmlMap, interestRateFieldName, "");
-            probabilityMappedField = Utils.ReadXMLElementValue(xmlMap, probabilityFieldName, "");
-            estimatedCloseDateMappedField = Utils.ReadXMLElementValue(xmlMap, estimatedCloseDateFieldName, "");
-            assignedLenderMappedField = Utils.ReadXMLElementValue(xmlMap, assignedLenderFieldName, "");
-            assignedLenderTypeMappedField = Utils.ReadXMLElementValue(xmlMap, assignedLenderTypeFieldName, "");
-            assignedAnalystMappedField = Utils.ReadXMLElementValue(xmlMap, assignedAnalystFieldName, "");
-            assignedAnalystTypeMappedField = Utils.ReadXMLElementValue(xmlMap, assignedAnalystTypeFieldName, "");
-            assignedLoanProcessorMappedField = Utils.ReadXMLElementValue(xmlMap, assignedLoanProcessorFieldName, "");
-            assignedLoanProcessorTypeMappedField = Utils.ReadXMLElementValue(xmlMap, assignedLoanProcessorTypeFieldName, "");
-            applicationLockedMappedField = Utils.ReadXMLElementValue(xmlMap, applicationLockedFieldName, "");
-            approvalStatusMappedField = Utils.ReadXMLElementValue(xmlMap, approvalStatusFieldName, "");
-            originatingUserMappedField = Utils.ReadXMLElementValue(xmlMap, originatingUserFieldName, "");
-            assignedApproverMappedField = Utils.ReadXMLElementValue(xmlMap, assignedApproverFieldName, "");
-            assignedApproverTypeMappedField = Utils.ReadXMLElementValue(xmlMap, assignedApproverTypeFieldName, "");
+            ValuationDateMappedField = Utils.ReadXMLElementValue(xmlMap, ValuationDateFieldName, "");
+            InterestRateMappedField = Utils.ReadXMLElementValue(xmlMap, InterestRateFieldName, "");
+            ProbabilityMappedField = Utils.ReadXMLElementValue(xmlMap, ProbabilityFieldName, "");
+            EstimatedCloseDateMappedField = Utils.ReadXMLElementValue(xmlMap, EstimatedCloseDateFieldName, "");
+            AssignedLenderMappedField = Utils.ReadXMLElementValue(xmlMap, AssignedLenderFieldName, "");
+            AssignedLenderTypeMappedField = Utils.ReadXMLElementValue(xmlMap, AssignedLenderTypeFieldName, "");
+            AssignedAnalystMappedField = Utils.ReadXMLElementValue(xmlMap, AssignedAnalystFieldName, "");
+            AssignedAnalystTypeMappedField = Utils.ReadXMLElementValue(xmlMap, AssignedAnalystTypeFieldName, "");
+            AssignedLoanProcessorMappedField = Utils.ReadXMLElementValue(xmlMap, AssignedLoanProcessorFieldName, "");
+            AssignedLoanProcessorTypeMappedField = Utils.ReadXMLElementValue(xmlMap, AssignedLoanProcessorTypeFieldName, "");
+            ApplicationLockedMappedField = Utils.ReadXMLElementValue(xmlMap, ApplicationLockedFieldName, "");
+            ApprovalStatusMappedField = Utils.ReadXMLElementValue(xmlMap, ApprovalStatusFieldName, "");
+            OriginatingUserMappedField = Utils.ReadXMLElementValue(xmlMap, OriginatingUserFieldName, "");
+            AssignedApproverMappedField = Utils.ReadXMLElementValue(xmlMap, AssignedApproverFieldName, "");
+            AssignedApproverTypeMappedField = Utils.ReadXMLElementValue(xmlMap, AssignedApproverTypeFieldName, "");
 
-            postProcessingFieldMappedField = Utils.ReadXMLElementValue(xmlMap, postProcessingFieldFieldName, loanNumberMappedField);
-            generic1MappedField = Utils.ReadXMLElementValue(xmlMap, generic1FieldName, "");
-            generic2MappedField = Utils.ReadXMLElementValue(xmlMap, generic2FieldName, "");
-            generic3MappedField = Utils.ReadXMLElementValue(xmlMap, generic3FieldName, "");
-            generic4MappedField = Utils.ReadXMLElementValue(xmlMap, generic4FieldName, "");
+            PostProcessingFieldMappedField = Utils.ReadXMLElementValue(xmlMap, PostProcessingFieldFieldName, LoanNumberMappedField);
+            Generic1MappedField = Utils.ReadXMLElementValue(xmlMap, Generic1FieldName, "");
+            Generic2MappedField = Utils.ReadXMLElementValue(xmlMap, Generic2FieldName, "");
+            Generic3MappedField = Utils.ReadXMLElementValue(xmlMap, Generic3FieldName, "");
+            Generic4MappedField = Utils.ReadXMLElementValue(xmlMap, Generic4FieldName, "");
             
         }
     

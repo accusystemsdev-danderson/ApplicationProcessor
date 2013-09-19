@@ -1,25 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using System.Xml;
-using System.Xml.Linq;
-using System.Text.RegularExpressions;
-using AccuAccount.Data;
+﻿//-----------------------------------------------------------------------------
+// <copyright file="Program.cs" company="AccuSystems LLC">
+//     Copyright (c) AccuSystems.  All rights reserved.
+// </copyright>
+//-----------------------------------------------------------------------------
 
 namespace ApplicationProcessor
 {
+    using AccuAccount.Data;
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Text;
+    using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
+    using System.Xml;
+    using System.Xml.Linq;
+
+    /// <summary>
+    /// Processes MTE information for customers in a DataTable
+    /// </summary>
     class MTEProcessor
     {
+        private DataContext db { get; set; }
+
         public Configuration Config { get; set; }
         public DataTable TableToProcess { get; set; }
         public LogWriter LogFile { get; set; }
         public FieldMapper FieldMap { get; set; } 
-        private DataContext db { get; set; }
-
-        public bool processMTEs()
+        
+        /// <summary>
+        /// Updates CustomerName or CustomerNumber if MTE records indicate an update should occur
+        /// </summary>
+        /// <returns>True upon successful processing</returns>
+        public bool ProcessMTEs()
         {
             db = new DataContext();
             bool success = false;
@@ -40,9 +54,9 @@ namespace ApplicationProcessor
             }
             foreach (DataRow row in TableToProcess.Rows)
             {
-                string customerNumber = row[FieldMap.customerNumberFieldName].ToString();
-                string customerName = row[FieldMap.customerNameFieldName].ToString();
-                string customerTaxID = row[FieldMap.taxIdFieldName].ToString();
+                string customerNumber = row[FieldMap.CustomerNumberFieldName].ToString();
+                string customerName = row[FieldMap.CustomerNameFieldName].ToString();
+                string customerTaxID = row[FieldMap.TaxIdFieldName].ToString();
 
                 //Check to see if any customers exist that share the same taxID, but under a different name
                 int DupTaxIDs = (from M in db.Customers
@@ -60,8 +74,8 @@ namespace ApplicationProcessor
                     //as the record being processed must be added to the table.
                     if (MTEs.Count() == 0)
                     {
-                        addPrimaryRecordToMTEList(customerTaxID);
-                        addCurrentRecordToMTEList(customerName, customerNumber, customerTaxID);
+                        AddPrimaryRecordToMTEList(customerTaxID);
+                        AddCurrentRecordToMTEList(customerName, customerNumber, customerTaxID);
 
                     }
 
@@ -88,13 +102,13 @@ namespace ApplicationProcessor
                                         string primaryName = (from N in db.MTELists
                                                               where N.CustomerNumber == customerNumber && N.Appendage == "*"
                                                               select N.CustomerName).FirstOrDefault().ToString();
-                                        row[FieldMap.customerNameFieldName] = primaryName;
+                                        row[FieldMap.CustomerNameFieldName] = primaryName;
                                     }
                                     
                                     //appendages of any other single character indicate an additional customer, append the character to the customer number
                                     else if (Regex.IsMatch(mteRecord.Appendage, "[0-9a-zA-Z]"))
                                     {
-                                        row[FieldMap.customerNumberFieldName] = customerNumber + "-" + mteRecord.Appendage;
+                                        row[FieldMap.CustomerNumberFieldName] = customerNumber + "-" + mteRecord.Appendage;
                                     }
 
                                     //appendages with '-' followed by another single character indicate an additional name for a secondary customer, replace the current name and customer number
@@ -103,8 +117,8 @@ namespace ApplicationProcessor
                                         string primaryName = (from N in db.MTELists
                                                               where N.CustomerNumber == customerNumber && N.Appendage == mteRecord.Appendage.Replace("-", "")
                                                               select N.CustomerName).FirstOrDefault().ToString();
-                                        row[FieldMap.customerNameFieldName] = primaryName;
-                                        row[FieldMap.customerNumberFieldName] = customerNumber + "-" + mteRecord.Appendage;
+                                        row[FieldMap.CustomerNameFieldName] = primaryName;
+                                        row[FieldMap.CustomerNumberFieldName] = customerNumber + "-" + mteRecord.Appendage;
                                     }
 
                                 }
@@ -112,7 +126,7 @@ namespace ApplicationProcessor
                         }
 
                         if (!currentRecordExits)
-                            addCurrentRecordToMTEList(customerName, customerNumber, customerTaxID);
+                            AddCurrentRecordToMTEList(customerName, customerNumber, customerTaxID);
                     }
                 }
             }
@@ -132,15 +146,25 @@ namespace ApplicationProcessor
             return success;
         }
 
-        private void addPrimaryRecordToMTEList(string taxID)
+        /// <summary>
+        /// Creates an MTE record for the primary holder of a taxId
+        /// </summary>
+        /// <param name="taxID">The taxId to lookup</param>
+        private void AddPrimaryRecordToMTEList(string taxID)
         {
             var primaryRecord = (from c in db.Customers
                                 where c.TaxId == taxID
                                  select c).FirstOrDefault();
-                addCurrentRecordToMTEList(primaryRecord.CustomerName, primaryRecord.CustomerNumber, primaryRecord.TaxId);
+                AddCurrentRecordToMTEList(primaryRecord.CustomerName, primaryRecord.CustomerNumber, primaryRecord.TaxId);
         }
         
-        private void addCurrentRecordToMTEList(string customerName, string customerNumber, string taxID)
+        /// <summary>
+        /// creates an unresolved MTE record for a customer
+        /// </summary>
+        /// <param name="customerName">The Customer Name for the MTE</param>
+        /// <param name="customerNumber">The Customer Number for the MTE</param>
+        /// <param name="taxID">The TaxId for the MTE</param>
+        private void AddCurrentRecordToMTEList(string customerName, string customerNumber, string taxID)
         {
             {
                 MTEList newMTERecord = new MTEList();

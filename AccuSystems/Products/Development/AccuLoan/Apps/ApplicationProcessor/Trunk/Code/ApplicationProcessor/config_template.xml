@@ -1,11 +1,20 @@
-﻿<AccuAccountApplicationInterfaceProperties>
-  <LogFolder>logs\</LogFolder>
+<AccuAccountApplicationInterfaceProperties>
+  <LogFolder>Logs\</LogFolder>
   <DaysToKeepLogs>14</DaysToKeepLogs>
-  <PathToDBXML>c:\accusystems\config\db.xml</PathToDBXML>
   <FieldMapFile>FieldMappings.xml</FieldMapFile>
-  <OutputFile>acculoan.xml</OutputFile>
   <RulesFile>Rules.xml</RulesFile>
-  <SourceDelimitedSQLXML>delimited</SourceDelimitedSQLXML>
+  <AccountsProcessedLogFile>Accounts.txt</AccountsProcessedLogFile>
+  <PathToDBXML>..\..\config\db.xml</PathToDBXML>
+  <OutputFile>..\acculoanimporter\acculoan.xml</OutputFile>
+  <SourceDelimitedSQLXML>Delimited</SourceDelimitedSQLXML>
   <SourceFile>test.csv</SourceFile>
-  <CollateralsYN></CollateralsYN>
+  <SourceSQLQueryFile>SQLQuery.txt</SourceSQLQueryFile>
+  <SourceSQLConnectionString>Server=servername\instancename;Database=decisionpro;trusted_connection=yes</SourceSQLConnectionString>
+  <PostProcessingQueryYN>N</PostProcessingQueryYN>
+  <PostProcessingSQLQueryFile>postProcess.sql</PostProcessingSQLQueryFile>
+  <TestSourceModeYN>N</TestSourceModeYN>
+  <ProcessExistingAccounts>N</ProcessExistingAccounts>
+  <CollateralsYN>Y</CollateralsYN>
+  <ProcessMTEs>N</ProcessMTEs>
+  <ImporterPath>..\accuaccountimporter</ImporterPath>
 </AccuAccountApplicationInterfaceProperties>
