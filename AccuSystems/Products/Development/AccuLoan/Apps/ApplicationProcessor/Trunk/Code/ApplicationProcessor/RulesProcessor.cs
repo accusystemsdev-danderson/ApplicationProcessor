@@ -303,6 +303,7 @@ namespace ApplicationProcessor
             if (row[FieldMap.CustomerNumberFieldName].ToString() == "") logMessage.Append(FieldMap.CustomerNumberFieldName + " ");
             if (row[FieldMap.CustomerNameFieldName].ToString() == "") logMessage.Append(FieldMap.CustomerNameFieldName + " ");
             if (row[FieldMap.CustomerBranchFieldName].ToString() == "") logMessage.Append(FieldMap.CustomerBranchFieldName + " ");
+            if (row[FieldMap.CustomerOfficerCodeFieldName].ToString() == "") logMessage.Append(FieldMap.CustomerOfficerCodeFieldName + " ");
             if (row[FieldMap.LoanBranchFieldName].ToString() == "") logMessage.Append(FieldMap.LoanBranchFieldName + " ");
             if (row[FieldMap.LoanNumberFieldName].ToString() == "") logMessage.Append(FieldMap.LoanNumberFieldName + " ");
             if (row[FieldMap.AccountClassFieldName].ToString() == "") logMessage.Append(FieldMap.AccountClassFieldName + " ");

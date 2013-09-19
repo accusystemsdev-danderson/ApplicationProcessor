@@ -127,6 +127,15 @@
     Parameter3="" />
   <Rule
     Sequence="15"
+    Field="customerOfficerCode"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="DPO"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="16"
     Field="loanOfficerCode"
     Operator="Always"
     Value=""
@@ -135,7 +144,7 @@
     Parameter2=" "
     Parameter3="" />
   <Rule
-    Sequence="16"
+    Sequence="17"
     Field="approvalStatus"
     Operator="Always"
     Value=""
@@ -144,7 +153,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="17"
+    Sequence="18"
     Field="applicationDate"
     Operator="Always"
     Value=""
@@ -153,7 +162,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="18"
+    Sequence="19"
     Field="collateralAddenda"
     Operator="Always"
     Value=""
@@ -162,7 +171,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="19"
+    Sequence="20"
     Field="collateralAddenda"
     Operator="Always"
     Value=""
@@ -171,7 +180,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="20"
+    Sequence="21"
     Field="collateralLoanNumber"
     Operator="Always"
     Value=""
@@ -180,7 +189,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="21"
+    Sequence="22"
     Field="collateralLoanNumber"
     Operator="Always"
     Value=""
@@ -189,7 +198,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="22"
+    Sequence="23"
     Field="collateralLoanNumber"
     Operator="Always"
     Value=""
@@ -198,7 +207,25 @@
     Parameter2="collateralAddenda"
     Parameter3="" />
   <Rule
-    Sequence="23"
+    Sequence="24"
+    Field="assignedLender"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="Lenders and Assistants"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="25"
+    Field="assignedLenderType"
+    Operator="Always"
+    Value=""
+    Action="Set Value to:"
+    Parameter1="group"
+    Parameter2=""
+    Parameter3="" />
+  <Rule
+    Sequence="26"
     Field="customerTypeCode"
     Operator="Always"
     Value=""
@@ -207,7 +234,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="24"
+    Sequence="27"
     Field="loanStatusCode"
     Operator="Always"
     Value=""
@@ -216,7 +243,7 @@
     Parameter2=""
     Parameter3="" />
   <Rule
-    Sequence="25"
+    Sequence="28"
     Field="bankCode"
     Operator="Always"
     Value=""

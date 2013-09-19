@@ -15,6 +15,6 @@
   <PostProcessingSQLQueryFile>post.sql</PostProcessingSQLQueryFile>
   <TestSourceModeYN>N</TestSourceModeYN>
   <AccountsProcessedLogFile>Accounts.txt</AccountsProcessedLogFile>
-  <ProcessExistingAccounts>Y</ProcessExistingAccounts>
+  <ProcessExistingAccounts>N</ProcessExistingAccounts>
   <ImporterPath>C:\Accusystems\Acculoan\accuaccountimporter</ImporterPath>
 </AccuAccountApplicationInterfaceProperties>
