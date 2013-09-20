@@ -1,4 +1,0 @@
-﻿Bank	Loan_Type	Collateral_Type	Loan_Number	CIF_ID	Last_Name	First_Name	Middle_Name	SSN	Applicant_Type	Decision_Oficer_Name	Decision_Officer	product_name	Description	Amt_Approved	Application_Date	Decision_Status	Send_to_Image
-016	L_INDIRECT	L_coll_titledIND	12121212	0	Last1	First1	M	111223333	Borrower	andrew_Miller	12345	14 Auto Indirect AA	2013 Dodge Durange	25000	2013-07-20 13:24:36.417	A		
-016	L_INDIRECT	L_coll_titledIND	12121212	0	Last2	First2	M	121212121	Co-Borrower	Andrew_Miller	12345	14 Auto Indirect AA	2013 Dodge Durange	25000	2013-07-20 13:24:36.417	A		
-016	L_INDIRECT	L_coll_titledIND	13131313	0	Last3	First3	M	131313131	Borrower	Andrew_Miller	12345	14 Auto Indirect AA	2013 Dodge Durange	25000	2013-07-20 13:24:36.417	A		
