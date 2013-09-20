@@ -1,1 +1,0 @@
-update Application set Send_to_Image = null where Loan_Number in (%%A)

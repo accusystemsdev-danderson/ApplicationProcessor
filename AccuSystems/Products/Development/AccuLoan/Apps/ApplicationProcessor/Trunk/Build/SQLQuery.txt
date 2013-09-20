@@ -1,5 +1,0 @@
-select bank, Loan_Type, Collateral_Type, Loan_Number, CIf_ID, Last_Name, First_Name, Middle_Name, SSN, Applicant_Type,
-	Decision_Oficer_Name, Decision_Officer, product_name, Description, Amt_Approved, Application_Date, Decision_Status,
-	Send_to_Image
-from application
-where send_to_Image = '1'
