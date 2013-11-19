@@ -156,27 +156,26 @@ namespace ApplicationProcessor
             
             #endregion
 
-            #region runImporter
+            #region LegacyImport
 
-            logFile.LogMessage("Starting Importer");
-            
-            Process importer = new Process();
-            importer.StartInfo.FileName = Path.Combine(Config.ImporterPath, "accuaccount.importer.exe");
-            importer.StartInfo.WorkingDirectory = Config.ImporterPath;
-            importer.Start();
-            importer.WaitForExit();
-            logFile.LogMessage("Importer Complete");
-            
-            #endregion
-
-            #region insertApplicationRecord
-
-            logFile.LogMessage("Writing Application Records To Database");
-            ApplicationRecordsWriter appWriter = new ApplicationRecordsWriter()
+            if (Config.UseLegacyImportYN == "Y")
             {
-                LogFile = logFile
-            };
-            appWriter.InsertLoanApplicationRecords(Config.OutputFile);
+                logFile.LogMessage("Starting Importer");
+
+                Process importer = new Process();
+                importer.StartInfo.FileName = Path.Combine(Config.ImporterPath, "accuaccount.importer.exe");
+                importer.StartInfo.WorkingDirectory = Config.ImporterPath;
+                importer.Start();
+                importer.WaitForExit();
+                logFile.LogMessage("Importer Complete");
+
+                logFile.LogMessage("Writing Application Records To Database");
+                ApplicationRecordsWriter appWriter = new ApplicationRecordsWriter()
+                {
+                    LogFile = logFile
+                };
+                appWriter.InsertLoanApplicationRecords(Config.OutputFile);
+            }
             #endregion
 
             #region finalProcesses

@@ -37,3 +37,10 @@ C:\Development\ApplicationProcessor\Trunk\build\config_template.xml
 C:\Development\ApplicationProcessor\Trunk\build\ApplicationProcessor.exe
 C:\Development\ApplicationProcessor\Trunk\build\ApplicationProcessor.pdb
 C:\Development\ApplicationProcessor\Trunk\Code\ApplicationProcessor\obj\Debug\ApplicationProcessor.csprojResolveAssemblyReference.cache
+C:\Development\ApplicationProcessor\Documents\build\ApplicationProcessor.exe.config
+C:\Development\ApplicationProcessor\Documents\Code\ApplicationProcessor\obj\Debug\ApplicationProcessor.exe
+C:\Development\ApplicationProcessor\Documents\Code\ApplicationProcessor\obj\Debug\ApplicationProcessor.pdb
+C:\Development\ApplicationProcessor\Documents\build\config_template.xml
+C:\Development\ApplicationProcessor\Documents\build\ApplicationProcessor.exe
+C:\Development\ApplicationProcessor\Documents\build\ApplicationProcessor.pdb
+C:\Development\ApplicationProcessor\Documents\Code\ApplicationProcessor\obj\Debug\ApplicationProcessor.csprojResolveAssemblyReference.cache
