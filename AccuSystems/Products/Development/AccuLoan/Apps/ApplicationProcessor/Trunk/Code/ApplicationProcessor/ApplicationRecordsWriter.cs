@@ -21,10 +21,6 @@ namespace ApplicationProcessor
     /// </summary>
     class ApplicationRecordsWriter
     {
-        /// <summary>
-        /// Gets or sets the LogWriter for logging
-        /// </summary>
-        public LogWriter LogFile { get; set; }
 
         /// <summary>
         /// Inserts initial application information into the AccuAccount database from importer XML file
@@ -217,7 +213,7 @@ namespace ApplicationProcessor
             }
             else
             {
-                LogFile.LogMessage("Missing application information for fields: " + missingFields.ToString());
+                LogWriter.LogMessage("Missing application information for fields: " + missingFields.ToString());
                 return false;
             }
         }
@@ -239,7 +235,7 @@ namespace ApplicationProcessor
 
                 if (existingApplications > 0)
                 {
-                    LogFile.LogMessage("Application already exists: " + application.ApplicationNumber);
+                    LogWriter.LogMessage("Application already exists: " + application.ApplicationNumber);
                     return;
                 }
 
@@ -257,7 +253,7 @@ namespace ApplicationProcessor
                     {
                         foreach (var validationError in error.ValidationErrors)
                         {
-                            LogFile.LogMessage(string.Format("Error inserting application. Message: {0}, Column: {1}",
+                            LogWriter.LogMessage(string.Format("Error inserting application. Message: {0}, Column: {1}",
                                 validationError.ErrorMessage,
                                 validationError.PropertyName));
                         }
@@ -265,7 +261,7 @@ namespace ApplicationProcessor
                 }
                 catch (DbUpdateException ex)
                 {
-                    LogFile.LogMessage(string.Format("Error updating database. {0}", ex.InnerException.Message));
+                    LogWriter.LogMessage(string.Format("Error updating database. {0}", ex.InnerException.Message));
                     
                 }
             }

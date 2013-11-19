@@ -39,7 +39,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\build\</OutputPath>
@@ -69,14 +69,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationRecordsWriter.cs" />
-    <Compile Include="RulesProcessor.cs" />
+    <Compile Include="RuleDefinition.cs" />
+    <Compile Include="RuleProcessor.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="FieldMapper.cs" />
+    <Compile Include="FieldMap.cs" />
     <Compile Include="Processor.cs" />
     <Compile Include="LogWriter.cs" />
     <Compile Include="MTEProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SourceRecord.cs" />
     <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
