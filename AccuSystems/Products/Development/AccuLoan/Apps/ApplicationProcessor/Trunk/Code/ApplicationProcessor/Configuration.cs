@@ -37,6 +37,8 @@ namespace ApplicationProcessor
         public string ProcessExistingAccounts { get; set; }
         public string AccountsProcessedLogFile { get; set; }
         public string ImporterPath { get; set; }
+        public string UseLegacyImportYN { get; set; }
+
         
         /// <summary>
         /// Reads in configuration settings from the configuration file
@@ -64,6 +66,7 @@ namespace ApplicationProcessor
             ProcessExistingAccounts = Utils.ReadXMLElementValue(xmlConfig, "ProcessExistingAccounts", "N");
             AccountsProcessedLogFile = Utils.ReadXMLElementValue(xmlConfig, "AccountsProcessedLogFile", "Accounts.txt");
             ImporterPath = Utils.ReadXMLElementValue(xmlConfig, "ImporterPath", "..\\accuaccountimporter");
+            UseLegacyImportYN = Utils.ReadXMLElementValue(xmlConfig, "LegacyImportYN", "N");
         }
 
         /// <summary>

@@ -17,4 +17,5 @@
   <CollateralsYN>Y</CollateralsYN>
   <ProcessMTEs>N</ProcessMTEs>
   <ImporterPath>..\accuaccountimporter</ImporterPath>
+  <UseLegacyImport>N</UseLegacyImport>
 </AccuAccountApplicationInterfaceProperties>
