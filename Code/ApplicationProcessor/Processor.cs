@@ -17,6 +17,7 @@ namespace ApplicationProcessor
     using System.Text;
     using System.Threading.Tasks;
     using System.Xml;
+    using System.Xml.Linq;
 
     /// <summary>
     /// Functions for processing source data
@@ -24,10 +25,6 @@ namespace ApplicationProcessor
     class Processor
     {
         private StringBuilder accountsProcessed;
-
-        public Configuration Config { get; set; }
-        public LogWriter LogFile { get; set; }
-        public FieldMapper FieldMap { get; set; }
 
         /// <summary>
         /// Retrieves source data and loads records into a DataTable
@@ -42,18 +39,18 @@ namespace ApplicationProcessor
             try
             {
 
-                switch (Config.SourceDelimitedSQLXML.ToUpper())
+                switch (Configuration.SourceDelimitedSQLXML.ToUpper())
                 {
                     case "DELIMITED":
                         string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\\;Extended Properties=\"Text;HDR=YES;FMT=Delimited\";";
                         OleDbConnection fileConn = new OleDbConnection(connectionString);
-                        OleDbDataAdapter fileAdapter = new OleDbDataAdapter("select * from " + Config.SourceFile, fileConn);
+                        OleDbDataAdapter fileAdapter = new OleDbDataAdapter("select * from " + Configuration.SourceFile, fileConn);
                         fileAdapter.Fill(dataTable);
                         break;
 
                     case "SQL":
-                        string dbConnectionString = Config.SourceSQLConnectionString;
-                        string sqlQuery = File.ReadAllText(Config.SourceSQLQueryFile);
+                        string dbConnectionString = Configuration.SourceSQLConnectionString;
+                        string sqlQuery = File.ReadAllText(Configuration.SourceSQLQueryFile);
                         SqlConnection connection = new SqlConnection(dbConnectionString);
                         connection.Open();
                         SqlDataAdapter dadapter = new SqlDataAdapter();
@@ -62,7 +59,7 @@ namespace ApplicationProcessor
                         connection.Close();
                         break;
                     case "XML":
-                        LogFile.LogMessage("XML Data Source not implemented");
+                        LogWriter.LogMessage("XML Data Source not implemented");
                         break;
                     default:
                         break;
@@ -71,50 +68,42 @@ namespace ApplicationProcessor
             }
             catch (Exception e)
             {
-                LogFile.LogMessage(e.ToString());
-                LogFile.LogMessage();
-                LogFile.LogMessage("Unable to retrieve source data");
+                LogWriter.LogMessage(e.ToString());
+                LogWriter.LogMessage();
+                LogWriter.LogMessage("Unable to retrieve source data");
             }
 
             return success;
         }
 
         /// <summary>
-        /// Mappes source data into a new datatable based on field mapping
+        /// Maps a source data row into a SourceRecord object
         /// </summary>
-        /// <param name="sourceTable">The DataTable containing the source data</param>
-        /// <returns>DataTable containing mapped information</returns>
-        public DataTable LoadDataTableFromMappedFields(DataTable sourceTable)
-        {
-            DataTable newTable = new DataTable();
-            foreach (PropertyInfo prop in FieldMap.GetType().GetProperties())
+        /// <param name="sourceRow">The source row to map</param>
+        /// <returns>A SourceRecord object containing data from the sourceRow</returns>
+        public SourceRecord ReadSourceRecordFromDataRow(DataRow sourceRow)
+        { 
+            SourceRecord newRecord = new SourceRecord();
+            foreach (PropertyInfo prop in newRecord.GetType().GetProperties())
             {
-                if (prop.Name.Contains("MappedField"))
-                    newTable.Columns.Add(prop.Name.Replace("MappedField", ""));
-            }
-
-            foreach (DataRow sourceRow in sourceTable.Rows)
-            {
-                DataRow newRow = newTable.NewRow();
-
-                foreach (PropertyInfo prop in FieldMap.GetType().GetProperties())
+                string propertyName = prop.Name;
+                if (prop.Name != "IgnoreRecord")
                 {
-                    if (prop.Name.Contains("MappedField"))
+                    var mappedField = typeof(FieldMap).GetProperty(propertyName + "MappedField").GetValue(null, null);
+                    string mappedFieldValue = mappedField.ToString();
+                    if (mappedFieldValue != "")
                     {
-                        string sourceField = prop.GetValue(FieldMap, null).ToString();
-                        string destField = prop.Name.Replace("MappedField", "");
-
-                        if (sourceField != "")
-                        {
-                            newRow[destField] = sourceRow[sourceField];
-                        }
+                        prop.SetValue(newRecord, sourceRow[mappedFieldValue].ToString(), null);
+                    }
+                    else
+                    {
+                        prop.SetValue(newRecord, string.Empty, null);
                     }
                 }
-                newTable.Rows.Add(newRow);
             }
-            return newTable;
+            return newRecord;
         }
-        
+
         /// <summary>
         /// Writes the contents of a DataTable to a CSV file
         /// </summary>
@@ -159,134 +148,129 @@ namespace ApplicationProcessor
         /// </summary>
         /// <param name="dataToWrite">The DataTable to process</param>
         /// <returns>True upon successful completion</returns>
-        public bool WriteXMLData(DataTable dataToWrite)
+        public bool WriteXMLData(List<SourceRecord> sourceRecords)
         {
-            bool success = false;
-
             XmlWriterSettings xmlRules = new XmlWriterSettings();
             xmlRules.Indent = true;
             xmlRules.NewLineOnAttributes = true;
             xmlRules.OmitXmlDeclaration = true;
             xmlRules.Encoding = Encoding.Default;
 
-            //List of using postProcessingField for use in post processing query.  Start with single quote for first record
+            //List of postProcessingField for use in post processing query.  Start with single quote for first record
             accountsProcessed = new StringBuilder();
             accountsProcessed.Append("'");
 
-            DataRow[] rowArray = dataToWrite.Select();
-            var uniqueCustomers = (from c in rowArray
-                                   select c[FieldMap.CustomerNumberFieldName]).Distinct();
+            var uniqueCustomers = (from c in sourceRecords
+                                   select c.CustomerNumber).Distinct();
             if (uniqueCustomers.Count() == 0)
             {
-                LogFile.LogMessage("No records to write");
+                LogWriter.LogMessage("No records to write");
                 return false;
             }
             try
             {
-                using (XmlWriter XMLOut = XmlWriter.Create(Config.OutputFile, xmlRules))
+                using (XmlWriter XMLOut = XmlWriter.Create(Configuration.OutputFile, xmlRules))
                 {
                     XMLOut.WriteStartDocument();
                     XMLOut.WriteStartElement("AccuSystems");
 
                     foreach (string customerNumber in uniqueCustomers)
                     {
-                        DataRow customer = dataToWrite.Select(FieldMap.CustomerNumberFieldName + " = '" + customerNumber + "'").First();
+                        SourceRecord customer = sourceRecords.Where(cust => cust.CustomerNumber == customerNumber).First();
                         XMLOut.WriteStartElement("customer");
 
-                        XMLOut.WriteElementString(FieldMap.CustomerNumberFieldName, customer[FieldMap.CustomerNumberFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.TaxIdFieldName, customer[FieldMap.TaxIdFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.CustomerNameFieldName, customer[FieldMap.CustomerNameFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.BusinessNameFieldName, customer[FieldMap.BusinessNameFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.CustomerFirstNameFieldName, customer[FieldMap.CustomerFirstNameFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.CustomerMiddleNameFieldName, customer[FieldMap.CustomerMiddleNameFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.CustomerLastNameFieldName, customer[FieldMap.CustomerLastNameFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.CustomerTypeCodeFieldName, customer[FieldMap.CustomerTypeCodeFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.BankCodeFieldName, customer[FieldMap.BankCodeFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.EmployeeFieldName, customer[FieldMap.EmployeeFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.CustomerBranchFieldName, customer[FieldMap.CustomerBranchFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.CustomerOfficerCodeFieldName, customer[FieldMap.CustomerOfficerCodeFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.Address1FieldName, customer[FieldMap.Address1FieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.Address2FieldName, customer[FieldMap.Address2FieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.CityFieldName, customer[FieldMap.CityFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.StateFieldName, customer[FieldMap.StateFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.ZipCodeFieldName, customer[FieldMap.ZipCodeFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.HomePhoneFieldName, customer[FieldMap.HomePhoneFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.WorkPhoneFieldName, customer[FieldMap.WorkPhoneFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.MobilePhoneFieldName, customer[FieldMap.MobilePhoneFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.FaxFieldName, customer[FieldMap.FaxFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.EmailFieldName, customer[FieldMap.EmailFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.ClassificationCodeFieldName, customer[FieldMap.ClassificationCodeFieldName].ToString());
-                        XMLOut.WriteElementString(FieldMap.CustomerStatusFieldName, customer[FieldMap.CustomerStatusFieldName].ToString());
+                        XMLOut.WriteElementString(FieldMap.CustomerNumberFieldName, customer.CustomerNumber);
+                        XMLOut.WriteElementString(FieldMap.TaxIdFieldName, customer.TaxId);
+                        XMLOut.WriteElementString(FieldMap.CustomerNameFieldName, customer.CustomerName);
+                        XMLOut.WriteElementString(FieldMap.BusinessNameFieldName, customer.BusinessName);
+                        XMLOut.WriteElementString(FieldMap.CustomerFirstNameFieldName, customer.CustomerFirstName);
+                        XMLOut.WriteElementString(FieldMap.CustomerMiddleNameFieldName, customer.CustomerMiddleName);
+                        XMLOut.WriteElementString(FieldMap.CustomerLastNameFieldName, customer.CustomerLastName);
+                        XMLOut.WriteElementString(FieldMap.CustomerTypeCodeFieldName, customer.CustomerTypeCode);
+                        XMLOut.WriteElementString(FieldMap.BankCodeFieldName, customer.BankCode);
+                        XMLOut.WriteElementString(FieldMap.EmployeeFieldName, customer.Employee);
+                        XMLOut.WriteElementString(FieldMap.CustomerBranchFieldName, customer.CustomerBranch);
+                        XMLOut.WriteElementString(FieldMap.CustomerOfficerCodeFieldName, customer.CustomerOfficerCode);
+                        XMLOut.WriteElementString(FieldMap.Address1FieldName, customer.Address1);
+                        XMLOut.WriteElementString(FieldMap.Address2FieldName, customer.Address2);
+                        XMLOut.WriteElementString(FieldMap.CityFieldName, customer.City);
+                        XMLOut.WriteElementString(FieldMap.StateFieldName, customer.State);
+                        XMLOut.WriteElementString(FieldMap.ZipCodeFieldName, customer.ZipCode);
+                        XMLOut.WriteElementString(FieldMap.HomePhoneFieldName, customer.HomePhone);
+                        XMLOut.WriteElementString(FieldMap.WorkPhoneFieldName, customer.WorkPhone);
+                        XMLOut.WriteElementString(FieldMap.MobilePhoneFieldName, customer.MobilePhone);
+                        XMLOut.WriteElementString(FieldMap.FaxFieldName, customer.Fax);
+                        XMLOut.WriteElementString(FieldMap.EmailFieldName, customer.Email);
+                        XMLOut.WriteElementString(FieldMap.ClassificationCodeFieldName, customer.ClassificationCode);
+                        XMLOut.WriteElementString(FieldMap.CustomerStatusFieldName, customer.CustomerStatus);
 
-                        var uniqueAccounts = (from a in rowArray
-                                              where a[FieldMap.CustomerNumberFieldName].ToString() == customerNumber
-                                              select a[FieldMap.LoanNumberFieldName]).Distinct();
+                        var uniqueAccounts = (from a in sourceRecords
+                                              where a.CustomerNumber == customerNumber
+                                              select a.LoanNumber).Distinct();
 
                         foreach (string accountNumber in uniqueAccounts)
                         {
-                            DataRow accountRow = dataToWrite.Select(FieldMap.CustomerNumberFieldName + " = '" + customerNumber +
-                                "' AND " + FieldMap.LoanNumberFieldName + " = '" + accountNumber + "'").First();
-
-                            //build list using postProcessingField for use in post processing query
-                            accountsProcessed.Append(accountRow[FieldMap.PostProcessingFieldFieldName].ToString() + "', '");
+                            SourceRecord accountRow = sourceRecords.Where(acct => acct.CustomerNumber == customerNumber && acct.LoanNumber == accountNumber).First();
+                            
+                            accountsProcessed.Append(accountRow.PostProcessingField + "', '");
 
                             XMLOut.WriteStartElement("loan");
-                            XMLOut.WriteElementString(FieldMap.LoanNumberFieldName, accountRow[FieldMap.LoanNumberFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.CustomerNumberFieldName, accountRow[FieldMap.CustomerNumberFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.AccountClassFieldName, accountRow[FieldMap.AccountClassFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanStatusCodeFieldName, accountRow[FieldMap.LoanStatusCodeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanOfficerCodeFieldName, accountRow[FieldMap.LoanOfficerCodeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanTypeCodeFieldName, accountRow[FieldMap.LoanTypeCodeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanClosedFieldName, accountRow[FieldMap.LoanClosedFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanAmountFieldName, accountRow[FieldMap.LoanAmountFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanOriginationDateFieldName, accountRow[FieldMap.LoanOriginationDateFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanDescriptionFieldName, accountRow[FieldMap.LoanDescriptionFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.BorrowerTypeFieldName, accountRow[FieldMap.BorrowerTypeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.OwningCustomerNumberFieldName, accountRow[FieldMap.OwningCustomerNumberFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanBranchFieldName, accountRow[FieldMap.LoanBranchFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.CoreClassCodeFieldName, accountRow[FieldMap.CoreClassCodeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.CoreCollCodeFieldName, accountRow[FieldMap.CoreCollCodeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.CoreCollateralCodeFieldName, accountRow[FieldMap.CoreCollateralCodeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.CorePurposeCodeFieldName, accountRow[FieldMap.CorePurposeCodeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.CoreTypeCodeFieldName, accountRow[FieldMap.CoreTypeCodeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.CommitmentAmountFieldName, accountRow[FieldMap.CommitmentAmountFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.CoreNaicsCodeFieldName, accountRow[FieldMap.CoreNaicsCodeFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanMaturityDateFieldName, accountRow[FieldMap.LoanMaturityDateFieldName].ToString());
-                            XMLOut.WriteElementString(FieldMap.LoanClassificationCodeFieldName, accountRow[FieldMap.LoanClassificationCodeFieldName].ToString());
+                            XMLOut.WriteElementString(FieldMap.LoanNumberFieldName, accountRow.LoanNumber);
+                            XMLOut.WriteElementString(FieldMap.CustomerNumberFieldName, accountRow.CustomerNumber);
+                            XMLOut.WriteElementString(FieldMap.AccountClassFieldName, accountRow.AccountClass);
+                            XMLOut.WriteElementString(FieldMap.LoanStatusCodeFieldName, accountRow.LoanStatusCode);
+                            XMLOut.WriteElementString(FieldMap.LoanOfficerCodeFieldName, accountRow.LoanOfficerCode);
+                            XMLOut.WriteElementString(FieldMap.LoanTypeCodeFieldName, accountRow.LoanTypeCode);
+                            XMLOut.WriteElementString(FieldMap.LoanClosedFieldName, accountRow.LoanClosed);
+                            XMLOut.WriteElementString(FieldMap.LoanAmountFieldName, accountRow.LoanAmount);
+                            XMLOut.WriteElementString(FieldMap.LoanOriginationDateFieldName, accountRow.LoanOriginationDate);
+                            XMLOut.WriteElementString(FieldMap.LoanDescriptionFieldName, accountRow.LoanDescription);
+                            XMLOut.WriteElementString(FieldMap.BorrowerTypeFieldName, accountRow.BorrowerType);
+                            XMLOut.WriteElementString(FieldMap.OwningCustomerNumberFieldName, accountRow.OwningCustomerNumber);
+                            XMLOut.WriteElementString(FieldMap.LoanBranchFieldName, accountRow.LoanBranch);
+                            XMLOut.WriteElementString(FieldMap.CoreClassCodeFieldName, accountRow.CoreClassCode);
+                            XMLOut.WriteElementString(FieldMap.CoreCollCodeFieldName, accountRow.CoreCollCode);
+                            XMLOut.WriteElementString(FieldMap.CoreCollateralCodeFieldName, accountRow.CoreCollateralCode);
+                            XMLOut.WriteElementString(FieldMap.CorePurposeCodeFieldName, accountRow.CorePurposeCode);
+                            XMLOut.WriteElementString(FieldMap.CoreTypeCodeFieldName, accountRow.CoreTypeCode);
+                            XMLOut.WriteElementString(FieldMap.CommitmentAmountFieldName, accountRow.CommitmentAmount);
+                            XMLOut.WriteElementString(FieldMap.CoreNaicsCodeFieldName, accountRow.CoreNaicsCode);
+                            XMLOut.WriteElementString(FieldMap.LoanMaturityDateFieldName, accountRow.LoanMaturityDate);
+                            XMLOut.WriteElementString(FieldMap.LoanClassificationCodeFieldName, accountRow.LoanClassificationCode);
 
                             {
                                 XMLOut.WriteStartElement("application");
-                                XMLOut.WriteElementString("applicationNumber", accountRow[FieldMap.LoanNumberFieldName].ToString());
-                                XMLOut.WriteElementString(FieldMap.ApplicationDateFieldName, accountRow[FieldMap.ApplicationDateFieldName].ToString());
-                                XMLOut.WriteElementString(FieldMap.CreditAnalysisStatusFieldName, accountRow[FieldMap.CreditAnalysisStatusFieldName].ToString());
-                                XMLOut.WriteElementString(FieldMap.RequestedAmountFieldName, accountRow[FieldMap.RequestedAmountFieldName].ToString());
-                                XMLOut.WriteElementString(FieldMap.PrimaryCollateralValueFieldName, accountRow[FieldMap.PrimaryCollateralValueFieldName].ToString());
-                                XMLOut.WriteElementString(FieldMap.FICOFieldName, accountRow[FieldMap.FICOFieldName].ToString());
-                                XMLOut.WriteElementString(FieldMap.ValuationDateFieldName, accountRow[FieldMap.ValuationDateFieldName].ToString());
-                                XMLOut.WriteElementString(FieldMap.InterestRateFieldName, accountRow[FieldMap.InterestRateFieldName].ToString());
-                                XMLOut.WriteElementString(FieldMap.ProbabilityFieldName, accountRow[FieldMap.ProbabilityFieldName].ToString());
-                                XMLOut.WriteElementString(FieldMap.EstimatedCloseDateFieldName, accountRow[FieldMap.EstimatedCloseDateFieldName].ToString());
+                                XMLOut.WriteElementString("applicationNumber", accountRow.LoanNumber);
+                                XMLOut.WriteElementString(FieldMap.ApplicationDateFieldName, accountRow.ApplicationDate);
+                                XMLOut.WriteElementString(FieldMap.CreditAnalysisStatusFieldName, accountRow.CreditAnalysisStatus);
+                                XMLOut.WriteElementString(FieldMap.RequestedAmountFieldName, accountRow.RequestedAmount);
+                                XMLOut.WriteElementString(FieldMap.PrimaryCollateralValueFieldName, accountRow.PrimaryCollateralValue);
+                                XMLOut.WriteElementString(FieldMap.FICOFieldName, accountRow.FICO);
+                                XMLOut.WriteElementString(FieldMap.ValuationDateFieldName, accountRow.ValuationDate);
+                                XMLOut.WriteElementString(FieldMap.InterestRateFieldName, accountRow.InterestRate);
+                                XMLOut.WriteElementString(FieldMap.ProbabilityFieldName, accountRow.Probability);
+                                XMLOut.WriteElementString(FieldMap.EstimatedCloseDateFieldName, accountRow.EstimatedCloseDate);
                                 XMLOut.WriteStartElement(FieldMap.AssignedLenderFieldName);
-                                XMLOut.WriteAttributeString("type", accountRow[FieldMap.AssignedLenderTypeFieldName].ToString());
-                                XMLOut.WriteValue(accountRow[FieldMap.AssignedLenderFieldName].ToString());
+                                XMLOut.WriteAttributeString("type", accountRow.AssignedLenderType);
+                                XMLOut.WriteValue(accountRow.AssignedLender);
                                 XMLOut.WriteEndElement();
                                 XMLOut.WriteStartElement(FieldMap.AssignedAnalystFieldName);
-                                XMLOut.WriteAttributeString("type", accountRow[FieldMap.AssignedAnalystTypeFieldName].ToString());
-                                XMLOut.WriteValue(accountRow[FieldMap.AssignedAnalystFieldName].ToString());
+                                XMLOut.WriteAttributeString("type", accountRow.AssignedAnalystType);
+                                XMLOut.WriteValue(accountRow.AssignedAnalyst);
                                 XMLOut.WriteEndElement();
                                 XMLOut.WriteStartElement(FieldMap.AssignedLoanProcessorFieldName);
-                                XMLOut.WriteAttributeString("type", accountRow[FieldMap.AssignedLoanProcessorTypeFieldName].ToString());
-                                XMLOut.WriteValue(accountRow[FieldMap.AssignedLoanProcessorFieldName].ToString());
+                                XMLOut.WriteAttributeString("type", accountRow.AssignedLoanProcessorType);
+                                XMLOut.WriteValue(accountRow.AssignedLoanProcessor);
                                 XMLOut.WriteEndElement();
-                                XMLOut.WriteElementString(FieldMap.ApplicationLockedFieldName, accountRow[FieldMap.ApplicationLockedFieldName].ToString());
+                                XMLOut.WriteElementString(FieldMap.ApplicationLockedFieldName, accountRow.ApplicationLocked);
 
                                 {
                                     XMLOut.WriteStartElement("approval");
-                                    XMLOut.WriteElementString(FieldMap.ApprovalStatusFieldName, accountRow[FieldMap.ApprovalStatusFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.OriginatingUserFieldName, accountRow[FieldMap.OriginatingUserFieldName].ToString());
+                                    XMLOut.WriteElementString(FieldMap.ApprovalStatusFieldName, accountRow.ApprovalStatus);
+                                    XMLOut.WriteElementString(FieldMap.OriginatingUserFieldName, accountRow.OriginatingUser);
                                     XMLOut.WriteStartElement(FieldMap.AssignedApproverFieldName);
-                                    XMLOut.WriteAttributeString("type", accountRow[FieldMap.AssignedApproverTypeFieldName].ToString());
-                                    XMLOut.WriteValue(accountRow[FieldMap.AssignedApproverFieldName].ToString());
+                                    XMLOut.WriteAttributeString("type", accountRow.AssignedApproverType);
+                                    XMLOut.WriteValue(accountRow.AssignedApprover);
                                     XMLOut.WriteEndElement();
 
                                     XMLOut.WriteEndElement();
@@ -297,36 +281,36 @@ namespace ApplicationProcessor
 
                             XMLOut.WriteEndElement();
 
-                            if (Config.CollateralsYN == "Y")
+                            if (Configuration.CollateralsYN == "Y")
                             {
-                                DataRow[] collateralRows = dataToWrite.Select(FieldMap.CustomerNumberFieldName + " = '" + customerNumber +
-                                "' AND " + FieldMap.LoanNumberFieldName + " = '" + accountNumber +
-                                "' AND " + FieldMap.BorrowerTypeFieldName + " = ''");
-                                foreach (DataRow collateralRow in collateralRows)
+                                var collateralRows = sourceRecords.Where(acct => acct.CustomerNumber == customerNumber &&
+                                    acct.LoanNumber == accountNumber && acct.BorrowerType == "");
+                                
+                                foreach (SourceRecord collateralRow in collateralRows)
                                 {
                                     XMLOut.WriteStartElement("loan");
-                                    XMLOut.WriteElementString(FieldMap.LoanNumberFieldName, collateralRow[FieldMap.CollateralLoanNumberFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.CustomerNumberFieldName, collateralRow[FieldMap.CustomerNumberFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.AccountClassFieldName, collateralRow[FieldMap.AccountClassFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanStatusCodeFieldName, accountRow[FieldMap.LoanStatusCodeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanOfficerCodeFieldName, accountRow[FieldMap.LoanOfficerCodeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanTypeCodeFieldName, collateralRow[FieldMap.CollateralLoanTypeCodeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanClosedFieldName, accountRow[FieldMap.LoanClosedFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanAmountFieldName, accountRow[FieldMap.LoanAmountFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanOriginationDateFieldName, accountRow[FieldMap.LoanOriginationDateFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.BorrowerTypeFieldName, accountRow[FieldMap.BorrowerTypeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.ParentLoanNumberFieldName, collateralRow[FieldMap.ParentLoanNumberFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanDescriptionFieldName, collateralRow[FieldMap.CollateralDescriptionFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanBranchFieldName, accountRow[FieldMap.LoanBranchFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.CoreClassCodeFieldName, accountRow[FieldMap.CoreClassCodeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.CoreCollCodeFieldName, accountRow[FieldMap.CoreCollCodeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.CoreCollateralCodeFieldName, accountRow[FieldMap.CoreCollateralCodeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.CorePurposeCodeFieldName, accountRow[FieldMap.CorePurposeCodeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.CoreTypeCodeFieldName, accountRow[FieldMap.CoreTypeCodeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.CommitmentAmountFieldName, accountRow[FieldMap.CommitmentAmountFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.CoreNaicsCodeFieldName, accountRow[FieldMap.CoreNaicsCodeFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanMaturityDateFieldName, accountRow[FieldMap.LoanMaturityDateFieldName].ToString());
-                                    XMLOut.WriteElementString(FieldMap.LoanClassificationCodeFieldName, accountRow[FieldMap.LoanClassificationCodeFieldName].ToString());
+                                    XMLOut.WriteElementString(FieldMap.LoanNumberFieldName, collateralRow.CollateralLoanNumber);
+                                    XMLOut.WriteElementString(FieldMap.CustomerNumberFieldName, collateralRow.CustomerNumber);
+                                    XMLOut.WriteElementString(FieldMap.AccountClassFieldName, collateralRow.AccountClass);
+                                    XMLOut.WriteElementString(FieldMap.LoanStatusCodeFieldName, accountRow.LoanStatusCode);
+                                    XMLOut.WriteElementString(FieldMap.LoanOfficerCodeFieldName, accountRow.LoanOfficerCode);
+                                    XMLOut.WriteElementString(FieldMap.LoanTypeCodeFieldName, collateralRow.CollateralLoanTypeCode);
+                                    XMLOut.WriteElementString(FieldMap.LoanClosedFieldName, accountRow.LoanClosed);
+                                    XMLOut.WriteElementString(FieldMap.LoanAmountFieldName, accountRow.LoanAmount);
+                                    XMLOut.WriteElementString(FieldMap.LoanOriginationDateFieldName, accountRow.LoanOriginationDate);
+                                    XMLOut.WriteElementString(FieldMap.BorrowerTypeFieldName, accountRow.BorrowerType);
+                                    XMLOut.WriteElementString(FieldMap.ParentLoanNumberFieldName, collateralRow.ParentLoanNumber);
+                                    XMLOut.WriteElementString(FieldMap.LoanDescriptionFieldName, collateralRow.CollateralDescription);
+                                    XMLOut.WriteElementString(FieldMap.LoanBranchFieldName, accountRow.LoanBranch);
+                                    XMLOut.WriteElementString(FieldMap.CoreClassCodeFieldName, accountRow.CoreClassCode);
+                                    XMLOut.WriteElementString(FieldMap.CoreCollCodeFieldName, accountRow.CoreCollCode);
+                                    XMLOut.WriteElementString(FieldMap.CoreCollateralCodeFieldName, accountRow.CoreCollateralCode);
+                                    XMLOut.WriteElementString(FieldMap.CorePurposeCodeFieldName, accountRow.CorePurposeCode);
+                                    XMLOut.WriteElementString(FieldMap.CoreTypeCodeFieldName, accountRow.CoreTypeCode);
+                                    XMLOut.WriteElementString(FieldMap.CommitmentAmountFieldName, accountRow.CommitmentAmount);
+                                    XMLOut.WriteElementString(FieldMap.CoreNaicsCodeFieldName, accountRow.CoreNaicsCode);
+                                    XMLOut.WriteElementString(FieldMap.LoanMaturityDateFieldName, accountRow.LoanMaturityDate);
+                                    XMLOut.WriteElementString(FieldMap.LoanClassificationCodeFieldName, accountRow.LoanClassificationCode);
                                     XMLOut.WriteEndElement();
                                 }
                             }
@@ -342,49 +326,43 @@ namespace ApplicationProcessor
             }
             catch (Exception e)
             {
-                LogFile.LogMessage(e.ToString());
-                LogFile.LogMessage();
-                LogFile.LogMessage("Unable to write XML file");
-                return success;
+                LogWriter.LogMessage(e.ToString());
+                LogWriter.LogMessage();
+                LogWriter.LogMessage("Unable to write XML file");
+                return false;
             }
 
-            success = true;
-            return success;
+            return true;
         }
 
         /// <summary>
         /// Sets the OwningCustomer field for collateral records
         /// </summary>
         /// <param name="sourceTable">The DataTable to process</param>
-        public void SetOwningCustomer (DataTable sourceTable)
+        public void SetOwningCustomer (List<SourceRecord> sourceRecords)
         {
-            List<int> rowsToRemove = new List<int>();
-
-            for (int i = 0; i < sourceTable.Rows.Count; i++)
+            foreach(SourceRecord record in sourceRecords)
             {
-                DataRow row = sourceTable.Rows[i];
-
-                DataRow[] primaryRows = sourceTable.Select("loanNumber = '" + row[FieldMap.LoanNumberFieldName].ToString() + "' AND borrowerType = ''");
+                var primaryRows = from r in sourceRecords
+                                  where r.LoanNumber == record.LoanNumber &&
+                                    r.BorrowerType == ""
+                                  select r;
+                                  
                 var distinctPrimaries = (from p in primaryRows
-                                        select p[FieldMap.CustomerNumberFieldName]).Distinct().ToList().Count();
+                                        select p.CustomerNumber).Distinct().ToList().Count();
                 if (distinctPrimaries != 1)
                 {
-                    rowsToRemove.Add(i);
-                    LogFile.LogMessage(string.Format("Wrong number of primary relationships for account {0} - primary relationships: {1}",
-                        row[FieldMap.LoanNumberFieldName].ToString(), distinctPrimaries.ToString()));
+                    record.IgnoreRecord = true;
+                    LogWriter.LogMessage(string.Format("Wrong number of primary relationships for account {0} - primary relationships: {1}",
+                        record.LoanNumber, distinctPrimaries.ToString()));
                 }
-                else if (row[FieldMap.BorrowerTypeFieldName].ToString() != "")
+                else if (record.BorrowerType != "")
                 {
-                    DataRow primaryRow = primaryRows[0];
-                    row[FieldMap.OwningCustomerNumberFieldName] = primaryRow[FieldMap.CustomerNumberFieldName].ToString();
+                    record.OwningCustomerNumber = primaryRows.First().CustomerNumber;
                 }
 
             }
-            foreach (int i in rowsToRemove)
-            {
-                sourceTable.Rows[i].Delete();
-            }
-            sourceTable.AcceptChanges();
+            
         }
 
         /// <summary>
@@ -392,8 +370,8 @@ namespace ApplicationProcessor
         /// </summary>
         public void WriteAccountsProcessedLogFile()
         {
-            string[] fileNameParts = Config.AccountsProcessedLogFile.Split('.');
-            string path = string.Format("{0}{1}_{2}.{3}", Config.LogFolder, fileNameParts[0], DateTime.Now.ToString().Replace("/", "_").Replace(":", "_"), fileNameParts[1]);
+            string[] fileNameParts = Configuration.AccountsProcessedLogFile.Split('.');
+            string path = string.Format("{0}{1}_{2}.{3}", Configuration.LogFolder, fileNameParts[0], DateTime.Now.ToString().Replace("/", "_").Replace(":", "_"), fileNameParts[1]);
             string textToWrite = accountsProcessed.ToString().Replace(", ", "\r\n");
             File.WriteAllText(path, textToWrite);
         }
@@ -405,15 +383,15 @@ namespace ApplicationProcessor
         {
             try
             {
-                string sqlQuery = File.ReadAllText(Config.PostProcessingSQLQueryFile).Replace("%%A", accountsProcessed.ToString());
-                int recordsAffected = Utils.ExecuteSQLQuery(Config.SourceSQLConnectionString, sqlQuery);
-                LogFile.LogMessage(recordsAffected + " Records Affected.");
+                string sqlQuery = File.ReadAllText(Configuration.PostProcessingSQLQueryFile).Replace("%%A", accountsProcessed.ToString());
+                int recordsAffected = Utils.ExecuteSQLQuery(Configuration.SourceSQLConnectionString, sqlQuery);
+                LogWriter.LogMessage(recordsAffected + " Records Affected.");
             }
             catch (Exception e)
             {
-                LogFile.LogMessage(e.ToString());
-                LogFile.LogMessage();
-                LogFile.LogMessage("Unable to execute post processing query");
+                LogWriter.LogMessage(e.ToString());
+                LogWriter.LogMessage();
+                LogWriter.LogMessage("Unable to execute post processing query");
 
             }
         }

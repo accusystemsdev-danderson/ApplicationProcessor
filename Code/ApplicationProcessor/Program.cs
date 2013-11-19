@@ -29,54 +29,45 @@ namespace ApplicationProcessor
 
             #region initialize
 
-            Configuration Config = new Configuration();
-            Config.ReadConfiguration(ConfigFileName);
+            Configuration.ReadConfiguration(ConfigFileName);
 
-            LogWriter logFile = new LogWriter() 
-            { 
-                LogFilePath = Config.LogFolder, 
-                LogFileName = LogFileName, 
-            };
-
-            if (!logFile.OpenLog())
+            LogWriter.LogFilePath = Configuration.LogFolder;
+            LogWriter.LogFileName = LogFileName;
+            
+            if (!LogWriter.OpenLog())
             {
-                Console.WriteLine("Unable to setup log file at: " + Config.LogFolder + LogFileName);
+                Console.WriteLine("Unable to setup log file at: " + Configuration.LogFolder + LogFileName);
                 Console.WriteLine("Press Enter to Exit");
                 Console.ReadLine();
                 return;
             };
 
-            logFile.LogMessage(string.Format("{0} version {1} started", Assembly.GetExecutingAssembly().GetName().Name, Assembly.GetExecutingAssembly().GetName().Version));
+            LogWriter.LogMessage(string.Format("{0} version {1} started", Assembly.GetExecutingAssembly().GetName().Name, Assembly.GetExecutingAssembly().GetName().Version));
 
-            logFile.LogMessage("Removing Previous Log Files");
-            logFile.RemovePreviousLogFiles(int.Parse(Config.DaysToKeepLogs));
+            LogWriter.LogMessage("Removing Previous Log Files");
+            LogWriter.RemovePreviousLogFiles(int.Parse(Configuration.DaysToKeepLogs));
 
 
-            if (!Config.SetupDBConnectionString())
+            if (!Configuration.SetupDBConnectionString())
             {
-                logFile.LogMessage("Unable to get database configuration from db.xml file at: " + Config.PathToDBXML);
+                LogWriter.LogMessage("Unable to get database configuration from db.xml file at: " + Configuration.PathToDBXML);
                 return;
             }
             
-            logFile.LogAllProperties(Config);
+            LogWriter.LogConfigProperties();
+
             #endregion
 
             #region getSourceData
 
-            FieldMapper fieldMap = new FieldMapper() 
-            { 
-                XmlMappingFile = Config.FieldMapFile 
-            };
-            fieldMap.ReadFieldMappings();
+            FieldMap.XmlMappingFile = Configuration.FieldMapFile;
 
-            logFile.LogMessage("Retrieving Source Data");
+            FieldMap.ReadFieldMappings();
 
-            Processor appProcessor = new Processor()
-            {
-                Config = Config,
-                LogFile = logFile,
-                FieldMap = fieldMap
-            };
+            LogWriter.LogMessage("Retrieving Source Data");
+
+            Processor appProcessor = new Processor();
+
             DataTable sourceData = new DataTable();
             if (!appProcessor.FillDataTable(out sourceData))
             {
@@ -86,9 +77,9 @@ namespace ApplicationProcessor
 
             #region writeTestData
 
-            if (Config.TestSourceModeYN.ToUpper() == "Y")
+            if (Configuration.TestSourceModeYN.ToUpper() == "Y")
             {
-                logFile.LogMessage("Writing Source Data to TestSourceData.txt");
+                LogWriter.LogMessage("Writing Source Data to TestSourceData.txt");
                 appProcessor.WriteDataTableToFile(sourceData, "TestSourceData.txt");
                 Console.WriteLine();
                 Console.WriteLine();
@@ -101,54 +92,54 @@ namespace ApplicationProcessor
 
             #region processData
             
-            logFile.LogMessage("Mapping Source Data to MappedTable");
+            LogWriter.LogMessage("Mapping Source Data to MappedTable");
 
-            DataTable mappedData = appProcessor.LoadDataTableFromMappedFields(sourceData);
-
-            logFile.LogMessage("Applying Rules");
-
-            RulesProcessor ruleProcessor = new RulesProcessor()
+            List<SourceRecord> sourceRecords = new List<SourceRecord>();
+            foreach (DataRow sourceRow in sourceData.Rows)
             {
-                TableToProcess = mappedData,
-                LogFile = logFile,
-                FieldMap = fieldMap,
-                Config = Config
-            };
-            if (!ruleProcessor.ProcessRules())
+                sourceRecords.Add(appProcessor.ReadSourceRecordFromDataRow(sourceRow));
+            }
+
+            LogWriter.LogMessage("Applying Rules");
+
+
+            if (!RuleProcessor.LoadRulesFromFile())
             {
+                LogWriter.LogMessage("Unable to read rules file.");
                 return;
             }
-            
-            if (Config.ProcessMTEs == "Y")
-            {
-                logFile.LogMessage("Processing MTEs");
-                MTEProcessor MTE = new MTEProcessor()
-                {
-                    Config = Config,
-                    LogFile = logFile,
-                    TableToProcess = mappedData,
-                    FieldMap = fieldMap
-                };
-                if (!MTE.ProcessMTEs())
-                {
-                    return;
-                }
-            }
             else
-                logFile.LogMessage("Skipping MTE processing");
+            {
+                foreach (SourceRecord record in sourceRecords)
+                { 
+                    RuleProcessor.ProcessRules(record);
+                    if (!record.IgnoreRecord)
+                    {
+                        RuleProcessor.VerifyRequiredFields(record);
+                    }
+                    if (Configuration.ProcessExistingAccounts.ToUpper() != "Y" && !record.IgnoreRecord)
+                    { 
+                        RuleProcessor.CheckIfAccountExistsInDatabase(record);
+                    }
+                    if (Configuration.ProcessMTEs == "Y" && !record.IgnoreRecord)
+                    {
+                        MTEProcessor.ProcessMTEs(record);
+                    }
+                }                
+            }
 
-            logFile.LogMessage("Setting owningCustomer Number");
+            LogWriter.LogMessage("Setting owningCustomer Number");
 
-            appProcessor.SetOwningCustomer(mappedData);
+            appProcessor.SetOwningCustomer(sourceRecords);
             #endregion
 
             #region writeData
             
-            logFile.LogMessage("Writing XML File for Importer");
+            LogWriter.LogMessage("Writing XML File for Importer");
 
-            if (!appProcessor.WriteXMLData(mappedData))
+            if (!appProcessor.WriteXMLData(sourceRecords))
             {
-                logFile.LogMessage("Unable to write XML File");
+                LogWriter.LogMessage("Unable to write XML File");
                 return;
             }
 
@@ -158,40 +149,38 @@ namespace ApplicationProcessor
 
             #region LegacyImport
 
-            if (Config.UseLegacyImportYN == "Y")
+            if (Configuration.UseLegacyImportYN == "Y")
             {
-                logFile.LogMessage("Starting Importer");
+                LogWriter.LogMessage("Starting Importer");
 
                 Process importer = new Process();
-                importer.StartInfo.FileName = Path.Combine(Config.ImporterPath, "accuaccount.importer.exe");
-                importer.StartInfo.WorkingDirectory = Config.ImporterPath;
+                importer.StartInfo.FileName = Path.Combine(Configuration.ImporterPath, "accuaccount.importer.exe");
+                importer.StartInfo.WorkingDirectory = Configuration.ImporterPath;
                 importer.Start();
                 importer.WaitForExit();
-                logFile.LogMessage("Importer Complete");
+                LogWriter.LogMessage("Importer Complete");
 
-                logFile.LogMessage("Writing Application Records To Database");
-                ApplicationRecordsWriter appWriter = new ApplicationRecordsWriter()
-                {
-                    LogFile = logFile
-                };
-                appWriter.InsertLoanApplicationRecords(Config.OutputFile);
+                LogWriter.LogMessage("Writing Application Records To Database");
+                ApplicationRecordsWriter appWriter = new ApplicationRecordsWriter();
+                
+                appWriter.InsertLoanApplicationRecords(Configuration.OutputFile);
             }
             #endregion
 
             #region finalProcesses
 
-            if (Config.PostProcessingQueryYN == "Y")
+            if (Configuration.PostProcessingQueryYN == "Y")
             {
-                logFile.LogMessage("Running Post Processing Query");
+                LogWriter.LogMessage("Running Post Processing Query");
                 appProcessor.RunPostProcessingQuery();
             }
             
             DateTime finishedTime = DateTime.Now;
             TimeSpan elapsedTime = finishedTime - StartTime;
 
-            logFile.LogMessage();
-            logFile.LogMessage("Finished at " + finishedTime.ToShortTimeString() + " Elapsed Time: " + elapsedTime.ToString());
-            logFile.CloseLog();
+            LogWriter.LogMessage();
+            LogWriter.LogMessage("Finished at " + finishedTime.ToShortTimeString() + " Elapsed Time: " + elapsedTime.ToString());
+            LogWriter.CloseLog();
             #endregion
         }
 

@@ -3,8 +3,8 @@
   <DaysToKeepLogs>14</DaysToKeepLogs>
   <FieldMapFile>FieldMappings.xml</FieldMapFile>
   <RulesFile>Rules.xml</RulesFile>
-  <AccountsProcessedLogFile>Accounts.txt</AccountsProcessedLogFile>
-  <PathToDBXML>..\..\config\db.xml</PathToDBXML>
+  <AccountsProcessedLogWriter.>Accounts.txt</AccountsProcessedLogWriter.>
+  <PathToDBXML>..\..\Configurationurationuration\db.xml</PathToDBXML>
   <OutputFile>..\acculoanimporter\acculoan.xml</OutputFile>
   <SourceDelimitedSQLXML>Delimited</SourceDelimitedSQLXML>
   <SourceFile>test.csv</SourceFile>

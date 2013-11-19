@@ -16,27 +16,29 @@ namespace ApplicationProcessor
     /// <summary>
     /// Provides information about configuration settings
     /// </summary>
-    class Configuration
+    public static class Configuration
     {
-        public string LogFolder { get; set; }
-        public string DaysToKeepLogs { get; set; }
-        public string PathToDBXML { get; set; }
-        public string FieldMapFile { get; set; }
-        public string OutputFile { get; set; }
-        public string RulesFile { get; set; }
-        public string TestSourceModeYN { get; set; }
-        public string SourceDelimitedSQLXML { get; set; }
-        public string SourceSQLQueryFile { get; set; }
-        public string SourceSQLConnectionString { get; set; }
-        public string PostProcessingQueryYN { get; set; }
-        public string PostProcessingSQLQueryFile { get; set; }
-        public string SourceFile { get; set; }
-        public string CollateralsYN { get; set; }
-        public string ProcessMTEs { get; set; }
-        public string dbConnectionString { get; set; }
-        public string ProcessExistingAccounts { get; set; }
-        public string AccountsProcessedLogFile { get; set; }
-        public string ImporterPath { get; set; }
+        public static string LogFolder { get; set; }
+        public static string DaysToKeepLogs { get; set; }
+        public static string PathToDBXML { get; set; }
+        public static string FieldMapFile { get; set; }
+        public static string OutputFile { get; set; }
+        public static string RulesFile { get; set; }
+        public static string TestSourceModeYN { get; set; }
+        public static string SourceDelimitedSQLXML { get; set; }
+        public static string SourceSQLQueryFile { get; set; }
+        public static string SourceSQLConnectionString { get; set; }
+        public static string PostProcessingQueryYN { get; set; }
+        public static string PostProcessingSQLQueryFile { get; set; }
+        public static string SourceFile { get; set; }
+        public static string CollateralsYN { get; set; }
+        public static string ProcessMTEs { get; set; }
+        public static string dbConnectionString { get; set; }
+        public static string ProcessExistingAccounts { get; set; }
+        public static string AccountsProcessedLogFile { get; set; }
+        public static string ImporterPath { get; set; }
+        public static string UseLegacyImportYN { get; set; }
+
         public string UseLegacyImportYN { get; set; }
 
         
@@ -44,7 +46,7 @@ namespace ApplicationProcessor
         /// Reads in configuration settings from the configuration file
         /// </summary>
         /// <param name="configFileName">The File Name of the configuration file</param>
-        public void ReadConfiguration(string configFileName)
+        public static void ReadConfiguration(string configFileName)
         {
             XElement xmlConfig = XElement.Load(configFileName);
             
@@ -73,7 +75,7 @@ namespace ApplicationProcessor
         /// Builds a database connection string from the db.xml file using the PathToDBXML configration
         /// </summary>
         /// <returns>True if no exceptions are thrown</returns>
-        public bool SetupDBConnectionString()
+        public static bool SetupDBConnectionString()
         {
             bool success = false;
             try

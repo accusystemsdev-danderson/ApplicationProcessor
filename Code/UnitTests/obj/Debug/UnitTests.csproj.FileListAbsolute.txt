@@ -1,0 +1,6 @@
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\build\config_template.xml
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\build\UnitTests.dll
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\build\UnitTests.pdb
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\UnitTests\obj\Debug\UnitTests.dll
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\UnitTests\obj\Debug\UnitTests.pdb

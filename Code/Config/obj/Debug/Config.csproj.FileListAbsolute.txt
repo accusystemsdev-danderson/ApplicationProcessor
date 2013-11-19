@@ -1,60 +1,11 @@
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\bin\Debug\Config.exe.config
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\bin\Debug\Config.exe
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\bin\Debug\Config.pdb
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\obj\Debug\Config.Properties.Resources.resources
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\obj\Debug\Config.csproj.GenerateResource.Cache
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\obj\Debug\Config.exe
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\obj\Debug\Config.pdb
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\obj\Debug\Config.FormMain.resources
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\obj\Debug\Config.FormSettings.resources
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\Config.exe.config
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\Config.exe
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\ApplicationImporter\bin\Debug\Config.pdb
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationImporter\Config\obj\Debug\Config.FormRules.resources
-C:\Users\andrewm\documents\visual studio 2012\Projects\ApplicationImporter\Config\obj\Debug\Config.csprojResolveAssemblyReference.cache
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationImporter\bin\Debug\Config.exe.config
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationImporter\bin\Debug\Config.exe
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationImporter\bin\Debug\Config.pdb
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Debug\Config.FormMain.resources
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Debug\Config.FormRules.resources
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Debug\Config.FormSettings.resources
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Debug\Config.Properties.Resources.resources
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Debug\Config.csproj.GenerateResource.Cache
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Debug\Config.exe
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\Config\obj\Debug\Config.pdb
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\Config.exe.config
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\Config.exe
-C:\Users\andrewm\Documents\Visual Studio 2012\Projects\ApplicationProcessor\ApplicationProcessor\bin\Debug\Config.pdb
-C:\Development\build\Config.exe.config
-C:\Development\build\Config.exe
-C:\Development\build\Config.pdb
-C:\Development\ApplicationProcessor\Config\obj\Debug\Config.csprojResolveAssemblyReference.cache
-C:\Development\ApplicationProcessor\Config\obj\Debug\Config.FormMain.resources
-C:\Development\ApplicationProcessor\Config\obj\Debug\Config.FormRules.resources
-C:\Development\ApplicationProcessor\Config\obj\Debug\Config.FormSettings.resources
-C:\Development\ApplicationProcessor\Config\obj\Debug\Config.Properties.Resources.resources
-C:\Development\ApplicationProcessor\Config\obj\Debug\Config.csproj.GenerateResource.Cache
-C:\Development\ApplicationProcessor\Config\obj\Debug\Config.exe
-C:\Development\ApplicationProcessor\Config\obj\Debug\Config.pdb
-C:\Development\ApplicationProcessor\Trunk\build\Config.exe.config
-C:\Development\ApplicationProcessor\Trunk\build\Config.exe
-C:\Development\ApplicationProcessor\Trunk\build\Config.pdb
-C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.csprojResolveAssemblyReference.cache
-C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.FormMain.resources
-C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.FormRules.resources
-C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.FormSettings.resources
-C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.Properties.Resources.resources
-C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.csproj.GenerateResource.Cache
-C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.exe
-C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.pdb
-C:\Development\ApplicationProcessor\Documents\build\Config.exe.config
-C:\Development\ApplicationProcessor\Documents\build\Config.exe
-C:\Development\ApplicationProcessor\Documents\build\Config.pdb
-C:\Development\ApplicationProcessor\Documents\Code\Config\obj\Debug\Config.csprojResolveAssemblyReference.cache
-C:\Development\ApplicationProcessor\Documents\Code\Config\obj\Debug\Config.FormMain.resources
-C:\Development\ApplicationProcessor\Documents\Code\Config\obj\Debug\Config.FormRules.resources
-C:\Development\ApplicationProcessor\Documents\Code\Config\obj\Debug\Config.FormSettings.resources
-C:\Development\ApplicationProcessor\Documents\Code\Config\obj\Debug\Config.Properties.Resources.resources
-C:\Development\ApplicationProcessor\Documents\Code\Config\obj\Debug\Config.csproj.GenerateResource.Cache
-C:\Development\ApplicationProcessor\Documents\Code\Config\obj\Debug\Config.exe
-C:\Development\ApplicationProcessor\Documents\Code\Config\obj\Debug\Config.pdb
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\build\Config.exe.config
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\build\Config.exe
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\build\Config.pdb
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.csprojResolveAssemblyReference.cache
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.FormMain.resources
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.FormRules.resources
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.FormSettings.resources
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.Properties.Resources.resources
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.csproj.GenerateResource.Cache
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.exe
+C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.pdb

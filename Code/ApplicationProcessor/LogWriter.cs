@@ -17,18 +17,18 @@ namespace ApplicationProcessor
     /// <summary>
     /// Provides file based logging
     /// </summary>
-    class LogWriter : IDisposable
+    public static class LogWriter
     {
-        private StreamWriter logWriter;
+        private static StreamWriter logWriter;
         
-        public string LogFileName { get; set; }
-        public string LogFilePath { get; set; }
+        public static string LogFileName { get; set; }
+        public static string LogFilePath { get; set; }
         
         /// <summary>
         /// Creates log directory and log file.  Opens log file for writing
         /// </summary>
         /// <returns>True upon successfull creation and opening of log file</returns>
-        public bool OpenLog()
+        public static bool OpenLog()
         {
             try
             {
@@ -55,7 +55,7 @@ namespace ApplicationProcessor
         /// Removes all log files in the LogFilePath folder older than the number of days specified
         /// </summary>
         /// <param name="RemovePreviousDays">Number of days to keep log files</param>
-        public void RemovePreviousLogFiles(int RemovePreviousDays)
+        public static void RemovePreviousLogFiles(int RemovePreviousDays)
         {
             if (RemovePreviousDays > 0)
             {
@@ -84,7 +84,7 @@ namespace ApplicationProcessor
         /// Writes a string message and a time stamp to the current log file
         /// </summary>
         /// <param name="msg">The string message to log</param>
-        public void LogMessage(string msg)
+        public static void LogMessage(string msg)
         {
             if (msg != "")
             {
@@ -102,7 +102,7 @@ namespace ApplicationProcessor
         /// <summary>
         /// Writes a blank line to the log file
         /// </summary>
-        public void LogMessage()
+        public static void LogMessage()
         {
             logWriter.WriteLine();
             Console.WriteLine();
@@ -112,19 +112,19 @@ namespace ApplicationProcessor
         /// Reads all properties of a given object and writes them to the log file
         /// </summary>
         /// <param name="objectToLog">The object to read properties from</param>
-        public void LogAllProperties(object objectToLog)
+        public static void LogConfigProperties()
         {
             try
             {
                 LogMessage();
-                LogMessage(string.Format("Reading all properties of the {0} object", objectToLog.ToString()));
+                LogMessage("Reading all configuration properties");
                 LogMessage();
 
-                foreach (PropertyInfo prop in objectToLog.GetType().GetProperties())
+                foreach (PropertyInfo prop in typeof(Configuration).GetProperties())
                 {
-                    if (prop.GetValue(objectToLog, null) != null)
+                    if (prop.GetValue(null, null) != null)
                     {
-                        LogMessage(string.Format("Property Read: {0} - Value: {1}", prop.Name, prop.GetValue(objectToLog, null).ToString()));
+                        LogMessage(string.Format("Property Read: {0} - Value: {1}", prop.Name, prop.GetValue(null, null).ToString()));
                     }
                     else
                     {
@@ -147,17 +147,9 @@ namespace ApplicationProcessor
         /// <summary>
         /// Closes the log file
         /// </summary>
-        public void CloseLog()
+        public static void CloseLog()
         {
             logWriter.Close();
-        }
-
-        /// <summary>
-        /// Implements the IDisposable method.
-        /// </summary>
-        public void Dispose()
-        {
-            CloseLog();
         }
     }
 }
