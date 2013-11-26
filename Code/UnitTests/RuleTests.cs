@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// <copyright file="Program.cs" company="AccuSystems LLC">
+// <copyright file="RuleTests.cs" company="AccuSystems LLC">
 //     Copyright (c) AccuSystems.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------------
@@ -9,11 +9,6 @@ namespace UnitTests
 
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System;
-    using System.Data;
-    using System.IO;
-    using System.Xml.Linq;
-    using System.Xml;
     
     [TestClass]
     public class RuleTests
@@ -34,7 +29,7 @@ namespace UnitTests
 
             record.LoanNumber = "11111";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
             
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -61,7 +56,7 @@ namespace UnitTests
             
             record.LoanNumber = "11111";
             record2.LoanNumber = "22222";
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -91,7 +86,7 @@ namespace UnitTests
             record.LoanNumber = "11112";
             record2.LoanNumber = "11111";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -121,7 +116,7 @@ namespace UnitTests
             record.LoanNumber = "11110";
             record2.LoanNumber = "11111";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -153,7 +148,7 @@ namespace UnitTests
             record2.LoanNumber = "11111";
             record3.LoanNumber = "11112";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -185,7 +180,7 @@ namespace UnitTests
             record.LoanNumber = "11112";
             record2.LoanNumber = "11111";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -217,7 +212,7 @@ namespace UnitTests
             record2.LoanNumber = "11111";
             record3.LoanNumber = "11112";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -249,7 +244,7 @@ namespace UnitTests
             record.LoanNumber = "11111";
             record2.LoanNumber = "";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -279,7 +274,7 @@ namespace UnitTests
             record.LoanNumber = "11111";
             record2.LoanNumber = "";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -309,7 +304,7 @@ namespace UnitTests
             record.LoanDescription = "Test";
             
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -337,7 +332,7 @@ namespace UnitTests
             record.LoanNumber = "11111";
             record.LoanDescription = "Description";
             
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -364,8 +359,8 @@ namespace UnitTests
 
             record.LoanNumber = "11111";
             
-            Helpers.SetupRuleXML(rule);
-            Helpers.SetupLogging();
+            TestUtils.SetupRuleXML(rule);
+            TestUtils.SetupLogging();
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -393,7 +388,7 @@ namespace UnitTests
             record.LoanNumber = "11111";
             record.LoanDescription = "Test";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -420,7 +415,7 @@ namespace UnitTests
             record.LoanNumber = "11111";
             record.LoanDescription = "Test";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -446,7 +441,7 @@ namespace UnitTests
 
             record.LoanNumber = "11111";
             
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -472,7 +467,7 @@ namespace UnitTests
 
             record.LoanNumber = "11111";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -498,7 +493,7 @@ namespace UnitTests
 
             record.LoanNumber = "11_111";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
@@ -511,27 +506,7 @@ namespace UnitTests
         [TestMethod]
         public void RuleTestAlwaysLookupCodeFromDB()
         {
-            ApplicationProcessor.RuleDefinition rule = new ApplicationProcessor.RuleDefinition();
-            rule.Field = "loanNumber";
-            rule.Operator = "Always";
-            rule.Value = "";
-            rule.Action = "Replace text";
-            rule.Parameter1 = "_";
-            rule.Parameter2 = " ";
-            rule.Parameter3 = "";
 
-            ApplicationProcessor.SourceRecord record = new ApplicationProcessor.SourceRecord();
-
-            record.LoanNumber = "11_111";
-
-            Helpers.SetupRuleXML(rule);
-
-            ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
-            ApplicationProcessor.RuleProcessor.ClearRulesList();
-            ApplicationProcessor.RuleProcessor.LoadRulesFromFile();
-            ApplicationProcessor.RuleProcessor.ProcessRules(record);
-
-            Assert.AreEqual("11 111", record.LoanNumber);
         }
     }
 }

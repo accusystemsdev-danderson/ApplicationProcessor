@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// <copyright file="Program.cs" company="AccuSystems LLC">
+// <copyright file="MTEProcessor.cs" company="AccuSystems LLC">
 //     Copyright (c) AccuSystems.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------------

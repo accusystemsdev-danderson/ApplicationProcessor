@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// <copyright file="Program.cs" company="AccuSystems LLC">
+// <copyright file="ApplicationRecordsWriter.cs" company="AccuSystems LLC">
 //     Copyright (c) AccuSystems.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------------
@@ -8,10 +8,8 @@ namespace ApplicationProcessor
 {
     using AccuAccount.Data;
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Validation;
-    using System.Diagnostics;
     using System.Linq;
     using System.Text;
     using System.Xml.Linq;
@@ -70,11 +68,19 @@ namespace ApplicationProcessor
             application.LoanApplicationId = Guid.NewGuid();
             application.ApplicationNumber = applicationXml.Element("applicationNumber").Value;
             application.LoanId = GetLoanId(application.ApplicationNumber);
-            application.ApplicationDate = DateTime.Parse(applicationXml.Element("applicationDate").Value);
+
+            DateTime applicationDate;
+            bool parsed = DateTime.TryParse(applicationXml.Element("applicationDate").Value,
+                out applicationDate);
+            if (parsed)
+            {
+                application.ApplicationDate = applicationDate;
+            }
+
             application.CreditAnalysisStatusId = GetCreditAnalysisStatusId(applicationXml.Element("creditAnalysisStatus").Value);
 
             decimal requestedAmount;
-            bool parsed = decimal.TryParse(applicationXml.Element("requestedAmount").Value,
+            parsed = decimal.TryParse(applicationXml.Element("requestedAmount").Value,
                                            out requestedAmount);
             if (parsed)
             {
@@ -182,31 +188,32 @@ namespace ApplicationProcessor
             {
                 missingFields.Append(" LoanApplicationID");
             }
+
             if (application.LoanId == Guid.Empty)
             {
                 missingFields.Append(" LoanId");
             }
+
             if (application.ApplicationNumber == "")
             {
                 missingFields.Append(" ApplicationNumber");
             }
+
             if (application.ApprovalId == Guid.Empty || application.ApprovalId == null)
             { 
                 missingFields.Append(" ApprovalId");
             }
-            
-            if (approval.ApprovalId == Guid.Empty)
-            {
-                missingFields.Append(" ApprovalId");
-            }
+
             if (approval.ApprovalStatusId == Guid.Empty)
             {
                 missingFields.Append(" ApprovalStatusId");
             }
+
             if (approval.OriginatingUserId == Guid.Empty)
             {
                 missingFields.Append(" OriginatingUserId");
             }
+
             if (missingFields.ToString() == "")
             {
                 return true;

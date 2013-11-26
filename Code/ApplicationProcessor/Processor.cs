@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// <copyright file="Program.cs" company="AccuSystems LLC">
+// <copyright file="Processor.cs" company="AccuSystems LLC">
 //     Copyright (c) AccuSystems.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------------
@@ -15,10 +15,8 @@ namespace ApplicationProcessor
     using System.Linq;
     using System.Reflection;
     using System.Text;
-    using System.Threading.Tasks;
     using System.Xml;
-    using System.Xml.Linq;
-
+    
     /// <summary>
     /// Functions for processing source data
     /// </summary>
@@ -39,7 +37,7 @@ namespace ApplicationProcessor
             try
             {
 
-                switch (Configuration.SourceDelimitedSQLXML.ToUpper())
+                switch (Configuration.SourceDelimitedSqlXml.ToUpper())
                 {
                     case "DELIMITED":
                         string connectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\\;Extended Properties=\"Text;HDR=YES;FMT=Delimited\";";
@@ -49,8 +47,8 @@ namespace ApplicationProcessor
                         break;
 
                     case "SQL":
-                        string dbConnectionString = Configuration.SourceSQLConnectionString;
-                        string sqlQuery = File.ReadAllText(Configuration.SourceSQLQueryFile);
+                        string dbConnectionString = Configuration.SourceSqlConnectionString;
+                        string sqlQuery = File.ReadAllText(Configuration.SourceSqlQueryFile);
                         SqlConnection connection = new SqlConnection(dbConnectionString);
                         connection.Open();
                         SqlDataAdapter dadapter = new SqlDataAdapter();
@@ -61,8 +59,6 @@ namespace ApplicationProcessor
                     case "XML":
                         LogWriter.LogMessage("XML Data Source not implemented");
                         break;
-                    default:
-                        break;
                 }
                 success = true;
             }
@@ -70,7 +66,8 @@ namespace ApplicationProcessor
             {
                 LogWriter.LogMessage(e.ToString());
                 LogWriter.LogMessage();
-                LogWriter.LogMessage("Unable to retrieve source data");
+                LogWriter.LogMessage(string.Format("Unable to retrieve source data: {0}",
+                                                   e.Message));
             }
 
             return success;
@@ -146,7 +143,7 @@ namespace ApplicationProcessor
         /// <summary>
         /// Writes the contents of a DataTable to a standard imorter XML file
         /// </summary>
-        /// <param name="dataToWrite">The DataTable to process</param>
+        /// <param name="sourceRecords">The list of <see cref="SourceRecord"/>to process</param>
         /// <returns>True upon successful completion</returns>
         public bool WriteXMLData(List<SourceRecord> sourceRecords)
         {
@@ -160,9 +157,14 @@ namespace ApplicationProcessor
             accountsProcessed = new StringBuilder();
             accountsProcessed.Append("'");
 
-            var uniqueCustomers = (from c in sourceRecords
-                                   select c.CustomerNumber).Distinct();
-            if (uniqueCustomers.Count() == 0)
+            var recordsToWrite = (from r in sourceRecords
+                                 where r.IgnoreRecord == false
+                                 select r).ToList();
+
+            var uniqueCustomers = (from c in recordsToWrite
+                                   select c.CustomerNumber).Distinct().ToList();
+
+            if (!uniqueCustomers.Any())
             {
                 LogWriter.LogMessage("No records to write");
                 return false;
@@ -176,7 +178,7 @@ namespace ApplicationProcessor
 
                     foreach (string customerNumber in uniqueCustomers)
                     {
-                        SourceRecord customer = sourceRecords.Where(cust => cust.CustomerNumber == customerNumber).First();
+                        SourceRecord customer = recordsToWrite.First(cust => cust.CustomerNumber == customerNumber);
                         XMLOut.WriteStartElement("customer");
 
                         XMLOut.WriteElementString(FieldMap.CustomerNumberFieldName, customer.CustomerNumber);
@@ -204,13 +206,13 @@ namespace ApplicationProcessor
                         XMLOut.WriteElementString(FieldMap.ClassificationCodeFieldName, customer.ClassificationCode);
                         XMLOut.WriteElementString(FieldMap.CustomerStatusFieldName, customer.CustomerStatus);
 
-                        var uniqueAccounts = (from a in sourceRecords
+                        var uniqueAccounts = (from a in recordsToWrite
                                               where a.CustomerNumber == customerNumber
                                               select a.LoanNumber).Distinct();
 
                         foreach (string accountNumber in uniqueAccounts)
                         {
-                            SourceRecord accountRow = sourceRecords.Where(acct => acct.CustomerNumber == customerNumber && acct.LoanNumber == accountNumber).First();
+                            SourceRecord accountRow = recordsToWrite.Where(acct => acct.CustomerNumber == customerNumber && acct.LoanNumber == accountNumber).First();
                             
                             accountsProcessed.Append(accountRow.PostProcessingField + "', '");
 
@@ -283,7 +285,7 @@ namespace ApplicationProcessor
 
                             if (Configuration.CollateralsYN == "Y")
                             {
-                                var collateralRows = sourceRecords.Where(acct => acct.CustomerNumber == customerNumber &&
+                                var collateralRows = recordsToWrite.Where(acct => acct.CustomerNumber == customerNumber &&
                                     acct.LoanNumber == accountNumber && acct.BorrowerType == "");
                                 
                                 foreach (SourceRecord collateralRow in collateralRows)
@@ -338,7 +340,7 @@ namespace ApplicationProcessor
         /// <summary>
         /// Sets the OwningCustomer field for collateral records
         /// </summary>
-        /// <param name="sourceTable">The DataTable to process</param>
+        /// <param name="sourceRecords">The list of <see cref="SourceRecord"/> to process</param>
         public void SetOwningCustomer (List<SourceRecord> sourceRecords)
         {
             foreach(SourceRecord record in sourceRecords)
@@ -383,8 +385,8 @@ namespace ApplicationProcessor
         {
             try
             {
-                string sqlQuery = File.ReadAllText(Configuration.PostProcessingSQLQueryFile).Replace("%%A", accountsProcessed.ToString());
-                int recordsAffected = Utils.ExecuteSQLQuery(Configuration.SourceSQLConnectionString, sqlQuery);
+                string sqlQuery = File.ReadAllText(Configuration.PostProcessingSqlQueryFile).Replace("%%A", accountsProcessed.ToString());
+                int recordsAffected = Utils.ExecuteSQLQuery(Configuration.SourceSqlConnectionString, sqlQuery);
                 LogWriter.LogMessage(recordsAffected + " Records Affected.");
             }
             catch (Exception e)

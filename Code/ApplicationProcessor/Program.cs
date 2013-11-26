@@ -9,13 +9,9 @@ namespace ApplicationProcessor
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Data.OleDb;
     using System.Diagnostics;
     using System.IO;
-    using System.Linq;
     using System.Reflection;
-    using System.Text;
-    using System.Threading.Tasks;
 
     class Program
     {
@@ -46,13 +42,6 @@ namespace ApplicationProcessor
 
             LogWriter.LogMessage("Removing Previous Log Files");
             LogWriter.RemovePreviousLogFiles(int.Parse(Configuration.DaysToKeepLogs));
-
-
-            if (!Configuration.SetupDBConnectionString())
-            {
-                LogWriter.LogMessage("Unable to get database configuration from db.xml file at: " + Configuration.PathToDBXML);
-                return;
-            }
             
             LogWriter.LogConfigProperties();
 
