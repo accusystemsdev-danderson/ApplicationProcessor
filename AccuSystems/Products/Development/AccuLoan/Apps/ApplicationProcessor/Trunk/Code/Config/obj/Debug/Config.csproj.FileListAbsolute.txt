@@ -9,3 +9,14 @@ C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Deb
 C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.csproj.GenerateResource.Cache
 C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.exe
 C:\Development\ApplicationProcessor\Branches\RefactorObjects\Code\Config\obj\Debug\Config.pdb
+C:\Development\ApplicationProcessor\Trunk\build\Config.exe.config
+C:\Development\ApplicationProcessor\Trunk\build\Config.exe
+C:\Development\ApplicationProcessor\Trunk\build\Config.pdb
+C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.FormMain.resources
+C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.FormRules.resources
+C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.FormSettings.resources
+C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.Properties.Resources.resources
+C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.csproj.GenerateResource.Cache
+C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.exe
+C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.pdb
+C:\Development\ApplicationProcessor\Trunk\Code\Config\obj\Debug\Config.csprojResolveAssemblyReference.cache

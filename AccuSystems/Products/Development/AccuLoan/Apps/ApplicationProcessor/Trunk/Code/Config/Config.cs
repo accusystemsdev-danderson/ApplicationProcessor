@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Config
@@ -32,7 +25,7 @@ namespace Config
         private void buttonFieldMap_Click(object sender, EventArgs e)
         {
             FormSettings formMappings = new FormSettings();
-            formMappings.xmlFileToProcess = "fieldmappings.xml";
+            formMappings.xmlFileToProcess = "fieldmap.xml";
             formMappings.Show();
         }
 

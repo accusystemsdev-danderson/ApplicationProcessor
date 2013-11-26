@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// <copyright file="Program.cs" company="AccuSystems LLC">
+// <copyright file="LogWriter.cs" company="AccuSystems LLC">
 //     Copyright (c) AccuSystems.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------------
@@ -7,13 +7,9 @@
 namespace ApplicationProcessor
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
-    using System.Linq;
     using System.Reflection;
-    using System.Text;
-    using System.Threading.Tasks;
-
+    
     /// <summary>
     /// Provides file based logging
     /// </summary>

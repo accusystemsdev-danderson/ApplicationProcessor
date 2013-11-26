@@ -33,13 +33,11 @@ namespace UnitTests
 
             record.LoanNumber = "scanner";
 
-            Helpers.SetupRuleXML(rule);
+            TestUtils.SetupRuleXML(rule);
 
             ApplicationProcessor.Configuration.RulesFile = "testRules.xml";
             ApplicationProcessor.RuleProcessor.ClearRulesList();
             ApplicationProcessor.RuleProcessor.LoadRulesFromFile();
-            ApplicationProcessor.Configuration.PathToDBXML = "db.xml";
-            ApplicationProcessor.Configuration.SetupDBConnectionString();
             ApplicationProcessor.RuleProcessor.ProcessRules(record);
 
             Assert.AreEqual("311E430E-9F17-4AC1-B236-7FEC254E318F", record.LoanNumber.ToUpper());

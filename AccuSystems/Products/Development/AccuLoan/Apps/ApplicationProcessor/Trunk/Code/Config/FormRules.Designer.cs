@@ -56,7 +56,8 @@
             // dataGridViewRules
             // 
             this.dataGridViewRules.AllowUserToAddRows = false;
-            this.dataGridViewRules.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridViewRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRules.Location = new System.Drawing.Point(21, 12);
@@ -68,6 +69,7 @@
             // 
             // labelField
             // 
+            this.labelField.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelField.AutoSize = true;
             this.labelField.Location = new System.Drawing.Point(99, 231);
             this.labelField.Name = "labelField";
@@ -77,6 +79,7 @@
             // 
             // labelOperator
             // 
+            this.labelOperator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelOperator.AutoSize = true;
             this.labelOperator.Location = new System.Drawing.Point(255, 231);
             this.labelOperator.Name = "labelOperator";
@@ -86,6 +89,7 @@
             // 
             // labelAction
             // 
+            this.labelAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelAction.AutoSize = true;
             this.labelAction.Location = new System.Drawing.Point(18, 287);
             this.labelAction.Name = "labelAction";
@@ -95,6 +99,7 @@
             // 
             // labelParameter1
             // 
+            this.labelParameter1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelParameter1.AutoSize = true;
             this.labelParameter1.Location = new System.Drawing.Point(18, 338);
             this.labelParameter1.Name = "labelParameter1";
@@ -104,6 +109,7 @@
             // 
             // comboBoxField
             // 
+            this.comboBoxField.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxField.FormattingEnabled = true;
             this.comboBoxField.Location = new System.Drawing.Point(102, 247);
@@ -113,6 +119,7 @@
             // 
             // comboBoxOperator
             // 
+            this.comboBoxOperator.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxOperator.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxOperator.FormattingEnabled = true;
             this.comboBoxOperator.Location = new System.Drawing.Point(258, 247);
@@ -123,6 +130,7 @@
             // 
             // comboBoxAction
             // 
+            this.comboBoxAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxAction.FormattingEnabled = true;
             this.comboBoxAction.Location = new System.Drawing.Point(21, 303);
@@ -133,6 +141,7 @@
             // 
             // comboBoxParameter1
             // 
+            this.comboBoxParameter1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxParameter1.Enabled = false;
             this.comboBoxParameter1.FormattingEnabled = true;
             this.comboBoxParameter1.Location = new System.Drawing.Point(21, 354);
@@ -142,6 +151,7 @@
             // 
             // comboBoxParameter2
             // 
+            this.comboBoxParameter2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxParameter2.Enabled = false;
             this.comboBoxParameter2.FormattingEnabled = true;
             this.comboBoxParameter2.Location = new System.Drawing.Point(148, 354);
@@ -151,6 +161,7 @@
             // 
             // labelParameter2
             // 
+            this.labelParameter2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelParameter2.AutoSize = true;
             this.labelParameter2.Location = new System.Drawing.Point(145, 338);
             this.labelParameter2.Name = "labelParameter2";
@@ -160,6 +171,7 @@
             // 
             // labelValue
             // 
+            this.labelValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelValue.AutoSize = true;
             this.labelValue.Location = new System.Drawing.Point(361, 231);
             this.labelValue.Name = "labelValue";
@@ -169,6 +181,7 @@
             // 
             // comboBoxValue
             // 
+            this.comboBoxValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxValue.Enabled = false;
             this.comboBoxValue.FormattingEnabled = true;
             this.comboBoxValue.Location = new System.Drawing.Point(361, 247);
@@ -178,6 +191,7 @@
             // 
             // buttonAddRule
             // 
+            this.buttonAddRule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonAddRule.Location = new System.Drawing.Point(21, 383);
             this.buttonAddRule.Name = "buttonAddRule";
             this.buttonAddRule.Size = new System.Drawing.Size(75, 23);
@@ -188,6 +202,7 @@
             // 
             // buttonSave
             // 
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.Location = new System.Drawing.Point(731, 383);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
@@ -198,6 +213,7 @@
             // 
             // buttonCancel
             // 
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.Location = new System.Drawing.Point(812, 383);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
@@ -208,6 +224,7 @@
             // 
             // labelSequence
             // 
+            this.labelSequence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelSequence.AutoSize = true;
             this.labelSequence.Location = new System.Drawing.Point(21, 232);
             this.labelSequence.Name = "labelSequence";
@@ -217,6 +234,7 @@
             // 
             // numericUpDownSequence
             // 
+            this.numericUpDownSequence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.numericUpDownSequence.Location = new System.Drawing.Point(24, 248);
             this.numericUpDownSequence.Maximum = new decimal(new int[] {
             200,
@@ -240,6 +258,7 @@
             // 
             // labelParameter3
             // 
+            this.labelParameter3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelParameter3.AutoSize = true;
             this.labelParameter3.Location = new System.Drawing.Point(272, 338);
             this.labelParameter3.Name = "labelParameter3";
@@ -249,6 +268,7 @@
             // 
             // comboBoxParameter3
             // 
+            this.comboBoxParameter3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboBoxParameter3.Enabled = false;
             this.comboBoxParameter3.FormattingEnabled = true;
             this.comboBoxParameter3.Location = new System.Drawing.Point(275, 354);

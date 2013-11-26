@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------------
-// <copyright file="Program.cs" company="AccuSystems LLC">
+// <copyright file="RuleProcessor.cs" company="AccuSystems LLC">
 //     Copyright (c) AccuSystems.  All rights reserved.
 // </copyright>
 //-----------------------------------------------------------------------------
@@ -9,12 +9,9 @@ namespace ApplicationProcessor
     using AccuAccount.Data;
     using System;
     using System.Collections.Generic;
-    using System.Data;
-    using System.Data.SqlClient;
     using System.Linq;
     using System.Reflection;
     using System.Text;
-    using System.Threading.Tasks;
     using System.Xml.Linq;
 
     /// <summary>
@@ -24,7 +21,6 @@ namespace ApplicationProcessor
     {
         private static DataContext db = new DataContext();
         private static List<RuleDefinition> Rules = new List<RuleDefinition>();
-        private static List<int> rowsToRemove = new List<int>();
         private static Dictionary<string, int> highCollateral = new Dictionary<string,int>();
 
         /// <summary>
@@ -158,10 +154,8 @@ namespace ApplicationProcessor
         /// <summary>
         /// Applies the rule logic to the current record
         /// </summary>
-        /// <param name="row">The DataRow being processed</param>
+        /// <param name="record">The <see cref="SourceRecord"/> to apply the rule to</param>
         /// <param name="rule">The rule to apply</param>
-        /// <param name="dataTable">The Source dataTable</param>
-        /// <param name="removeRecord">Flag to indicate that the current record should not be processed</param>
         private static void ProcessAction(SourceRecord record, RuleDefinition rule)
         {
             PropertyInfo fieldProperty = record.GetType().GetProperty(rule.Field, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
@@ -243,7 +237,7 @@ namespace ApplicationProcessor
         /// <summary>
         /// Validates required fields for the current record
         /// </summary>
-        /// <param name="row">The record to be processed</param>
+        /// <param name="record">The <see cref="SourceRecord"/> to be processed</param>
         /// <returns>True if all fields are successfully validated</returns>
         public static void VerifyRequiredFields(SourceRecord record)
         {
@@ -283,32 +277,18 @@ namespace ApplicationProcessor
         private static string LookupFromDB(string lookupValue, string lookupTable, string lookupField, string selectField)
         {
             string sqlQuery = "Select " + selectField + " from [" + lookupTable + "] where " + lookupField + " = '" + lookupValue + "'";
-            List<string> results = new List<string>();
-
-            using (SqlConnection connection = new SqlConnection(Configuration.dbConnectionString))
+            
+            using (DataContext db = new DataContext())
             {
-                using (SqlCommand command = connection.CreateCommand())
-                {
-                    command.CommandText = sqlQuery;
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+                var results = db.Database.SqlQuery<string>(sqlQuery).ToList();
 
-                    while (reader.Read())
-                    {
-                        results.Add(reader[0].ToString());
-                    }
+                if (results.Count() == 1)
+                {
+                    return results.First();
                 }
             }
-        
-            if (results.Count() == 1)
-            {
-                return results[0];
-            }
 
-            else
-            {
-                return string.Empty;
-            }
+            return string.Empty;
         }
 
         /// <summary>
@@ -473,7 +453,7 @@ namespace ApplicationProcessor
         /// <summary>
         /// Check to see if an AccountNumber exists in the AccuAccount database
         /// </summary>
-        /// <param name="accountNumber">The Account Number to check</param>
+        /// <param name="record">The <see cref="SourceRecord"/> to check the account number for</param>
         /// <returns>True if the account number exists in the database</returns>
         public static void CheckIfAccountExistsInDatabase(SourceRecord record)
         {
@@ -489,6 +469,9 @@ namespace ApplicationProcessor
             }
         }
 
+        /// <summary>
+        /// Clears the list of rules
+        /// </summary>
         public static void ClearRulesList()
         {
             Rules.Clear();
