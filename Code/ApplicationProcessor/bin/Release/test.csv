@@ -1,3 +1,0 @@
-﻿Bank	CIF_ID	SSN	Last_Name	First_Name	Middle_Name	SSN	Name	Decision_Oficer_Name	Product_name	Vehicle_Year	Make	Model	security_type	stock_name	share_count	Asset_Description
-16	123456789	987654321	Last	First	M	987654321	16	loan_officer	16 Auto Used	2013	Chevrolet	Truck	Tahoe-V8	NULL	NULL	NULL	NULL
-16	111223333	222334444	Last2	First2	I	222334444	16	Loan2_Officer	17 Boat	1995	Scooter	Yacht	128	NULL	NULL	NULL	NULL

@@ -28,7 +28,7 @@ namespace ApplicationProcessor
         {
             try
             {
-                if (LogFilePath.Substring(LogFilePath.Length - 1) != "\\")
+                if (!LogFilePath.EndsWith("\\"))
                     LogFilePath = LogFilePath + "\\";
 
                 if (!Directory.Exists(LogFilePath))
@@ -50,10 +50,10 @@ namespace ApplicationProcessor
         /// <summary>
         /// Removes all log files in the LogFilePath folder older than the number of days specified
         /// </summary>
-        /// <param name="RemovePreviousDays">Number of days to keep log files</param>
-        public static void RemovePreviousLogFiles(int RemovePreviousDays)
+        /// <param name="removePreviousDays">Number of days to keep log files</param>
+        public static void RemovePreviousLogFiles(int removePreviousDays)
         {
-            if (RemovePreviousDays > 0)
+            if (removePreviousDays > 0)
             {
                 try
                 {
@@ -61,7 +61,7 @@ namespace ApplicationProcessor
                     foreach (string file in files)
                     {
                         FileInfo info = new FileInfo(file);
-                        if (info.CreationTime < DateTime.Now.AddDays(-RemovePreviousDays))
+                        if (info.CreationTime < DateTime.Now.AddDays(-removePreviousDays))
                         {
                             info.Delete();
                         }
@@ -105,9 +105,8 @@ namespace ApplicationProcessor
         }
 
         /// <summary>
-        /// Reads all properties of a given object and writes them to the log file
+        /// Reads all properties of the configuration object and writes them to the log file
         /// </summary>
-        /// <param name="objectToLog">The object to read properties from</param>
         public static void LogConfigProperties()
         {
             try
