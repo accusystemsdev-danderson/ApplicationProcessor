@@ -65,7 +65,7 @@
             this.dataGridViewRules.ReadOnly = true;
             this.dataGridViewRules.Size = new System.Drawing.Size(867, 206);
             this.dataGridViewRules.TabIndex = 0;
-            this.dataGridViewRules.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewRules_UserDeletedRow);
+            this.dataGridViewRules.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DataGridViewRules_UserDeletedRow);
             // 
             // labelField
             // 
@@ -126,7 +126,7 @@
             this.comboBoxOperator.Name = "comboBoxOperator";
             this.comboBoxOperator.Size = new System.Drawing.Size(97, 21);
             this.comboBoxOperator.TabIndex = 6;
-            this.comboBoxOperator.SelectedIndexChanged += new System.EventHandler(this.comboBoxOperator_SelectedIndexChanged);
+            this.comboBoxOperator.SelectedIndexChanged += new System.EventHandler(this.ComboBoxOperator_SelectedIndexChanged);
             // 
             // comboBoxAction
             // 
@@ -137,7 +137,7 @@
             this.comboBoxAction.Name = "comboBoxAction";
             this.comboBoxAction.Size = new System.Drawing.Size(121, 21);
             this.comboBoxAction.TabIndex = 7;
-            this.comboBoxAction.SelectedIndexChanged += new System.EventHandler(this.comboBoxAction_SelectedIndexChanged);
+            this.comboBoxAction.SelectedIndexChanged += new System.EventHandler(this.ComboBoxAction_SelectedIndexChanged);
             // 
             // comboBoxParameter1
             // 
@@ -198,7 +198,7 @@
             this.buttonAddRule.TabIndex = 13;
             this.buttonAddRule.Text = "AddRule";
             this.buttonAddRule.UseVisualStyleBackColor = true;
-            this.buttonAddRule.Click += new System.EventHandler(this.buttonAddRule_Click);
+            this.buttonAddRule.Click += new System.EventHandler(this.ButtonAddRule_Click);
             // 
             // buttonSave
             // 
@@ -209,7 +209,7 @@
             this.buttonSave.TabIndex = 14;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // buttonCancel
             // 
@@ -220,7 +220,7 @@
             this.buttonCancel.TabIndex = 15;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // labelSequence
             // 
@@ -254,7 +254,7 @@
             this.buttonEditRule.TabIndex = 19;
             this.buttonEditRule.Text = "Edit Rule";
             this.buttonEditRule.UseVisualStyleBackColor = true;
-            this.buttonEditRule.Click += new System.EventHandler(this.buttonEditRule_Click);
+            this.buttonEditRule.Click += new System.EventHandler(this.ButtonEditRule_Click);
             // 
             // labelParameter3
             // 

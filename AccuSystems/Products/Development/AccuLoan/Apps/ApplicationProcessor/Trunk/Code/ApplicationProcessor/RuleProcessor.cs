@@ -141,10 +141,16 @@ namespace ApplicationProcessor
                     if (valueOfFieldToCheck == null || valueOfFieldToCheck.Trim() == "")
                         match = true;
                     break;
+                case "Contains Text":
+                    if (valueOfFieldToCheck.IndexOf(rule.Value, StringComparison.OrdinalIgnoreCase) >= 0)
+                        match = true;
+                    break;
+                case "Contained in Text":
+                    if (rule.Value.IndexOf(valueOfFieldToCheck, StringComparison.OrdinalIgnoreCase) >= 0)
+                        match = true;
+                    break;
                 case "Always":
                     match = true;
-                    break;
-                default:
                     break;
             }
 
@@ -224,12 +230,10 @@ namespace ApplicationProcessor
                     int collateralPaddingSize = GetCollateralPaddingSize();
                     if (collateralPaddingSize > originalValue.Length)
                     {
-                        fieldProperty.SetValue(record, int.Parse(originalValue).ToString("D" + collateralPaddingSize.ToString()), null);
+                        fieldProperty.SetValue(record, int.Parse(originalValue).ToString("D" + collateralPaddingSize), null);
                     }
                     break;
-                default:
-                    break;
-                
+               
             }
 
         }
@@ -280,12 +284,25 @@ namespace ApplicationProcessor
             
             using (DataContext db = new DataContext())
             {
-                var results = db.Database.SqlQuery<string>(sqlQuery).ToList();
-
-                if (results.Count() == 1)
+                if (selectField.EndsWith("ID", StringComparison.OrdinalIgnoreCase))
                 {
-                    return results.First();
+                    var results = db.Database.SqlQuery<Guid>(sqlQuery).ToList();
+
+                    if (results.Count() == 1)
+                    {
+                        return results.First().ToString();
+                    }
                 }
+                else
+                {
+                    var results = db.Database.SqlQuery<string>(sqlQuery).ToList();
+
+                    if (results.Count() == 1)
+                    {
+                        return results.First();
+                    }
+                }
+
             }
 
             return string.Empty;

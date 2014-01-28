@@ -4,9 +4,6 @@
 // </copyright>
 //-----------------------------------------------------------------------------
 
-using System;
-using System.Text;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests
@@ -20,6 +17,8 @@ namespace UnitTests
         [TestMethod]
         public void RuleTestAlwaysLookupCodeFromDB()
         {
+            TestUtils.SetupLogging();
+
             ApplicationProcessor.RuleDefinition rule = new ApplicationProcessor.RuleDefinition();
             rule.Field = "loanNumber";
             rule.Operator = "Always";
