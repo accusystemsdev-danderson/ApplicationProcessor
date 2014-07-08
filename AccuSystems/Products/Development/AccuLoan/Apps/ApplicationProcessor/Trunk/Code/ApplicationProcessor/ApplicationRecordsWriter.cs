@@ -342,7 +342,7 @@ namespace ApplicationProcessor
         {
             using (DataContext db = new DataContext())
             {
-                switch (assignedType)
+                switch (assignedType.ToLower())
                 {
                     case "user":
                         var user = (from u in db.Users

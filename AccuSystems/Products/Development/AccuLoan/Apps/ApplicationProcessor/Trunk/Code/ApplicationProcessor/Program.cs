@@ -97,6 +97,8 @@ namespace ApplicationProcessor
             Process importer = new Process();
             importer.StartInfo.FileName = Path.Combine(Configuration.ImporterPath, "accuaccount.importer.exe");
             importer.StartInfo.WorkingDirectory = Configuration.ImporterPath;
+            importer.StartInfo.Arguments = string.Format("/IN:{0}",
+                                                         Path.GetFileName(Configuration.OutputFile));
             importer.Start();
             importer.WaitForExit();
             LogWriter.LogMessage("Importer Complete");

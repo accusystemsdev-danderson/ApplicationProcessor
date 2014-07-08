@@ -208,7 +208,7 @@ namespace ApplicationProcessor
                     fieldProperty.SetValue(record, LookupFromDB(fieldValue, rule.Parameter1, rule.Parameter2, rule.Parameter3), null);
                     break;
                 case "Convert to short date":
-                    fieldProperty.SetValue(record, DateTime.Parse(fieldValue).ToShortDateString().ToString(), null);
+                    fieldProperty.SetValue(record, DateTime.Parse(fieldValue).ToShortDateString(), null);
                     break;
                 case "Next Collateral Number":
                     int nextCollateral = 1;
