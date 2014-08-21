@@ -34,9 +34,9 @@ namespace ApplicationProcessor
 
             LogWriter.LogMessage("Retrieving Source Data");
 
-            Processor appProcessor = new Processor();
+            var appProcessor = new Processor();
 
-            DataTable sourceData = new DataTable();
+            var sourceData = new DataTable();
             if (!appProcessor.FillDataTable(out sourceData))
             {
                 return;
@@ -94,19 +94,25 @@ namespace ApplicationProcessor
         {
             LogWriter.LogMessage("Starting Importer");
 
-            Process importer = new Process();
-            importer.StartInfo.FileName = Path.Combine(Configuration.ImporterPath, "accuaccount.importer.exe");
-            importer.StartInfo.WorkingDirectory = Configuration.ImporterPath;
-            importer.StartInfo.Arguments = string.Format("/IN:{0}",
-                                                         Path.GetFileName(Configuration.OutputFile));
+            var importer = new Process
+                           {
+                               StartInfo =
+                               {
+                                   FileName            = Path.Combine(Configuration.ImporterPath, "accuaccount.importer.exe"),
+                                   WorkingDirectory    = Configuration.ImporterPath,
+                                   Arguments           = string.Format("/IN:{0}",
+                                                                       Path.GetFileName(Configuration.OutputFile))
+                               }
+                           };
+
             importer.Start();
             importer.WaitForExit();
             LogWriter.LogMessage("Importer Complete");
 
             LogWriter.LogMessage("Writing Application Records To Database");
-            ApplicationRecordsWriter appWriter = new ApplicationRecordsWriter();
+            var applicationRecordsWriter = new ApplicationRecordsWriter();
 
-            appWriter.InsertLoanApplicationRecords(Configuration.OutputFile);
+            applicationRecordsWriter.InsertLoanApplicationRecords(Configuration.OutputFile);
         }
 
         /// <summary>
@@ -147,7 +153,7 @@ namespace ApplicationProcessor
                 }
                 if (Configuration.ProcessMTEs == "Y" && !record.IgnoreRecord)
                 {
-                    MTEProcessor.ProcessMTEs(record);
+                    MteProcessor.ProcessMte(record);
                 }
             }
 

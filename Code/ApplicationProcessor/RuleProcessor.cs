@@ -190,7 +190,7 @@ namespace ApplicationProcessor
                     record.IgnoreRecord = true;
                     break;
                 case "Combine fields with space":
-                    fieldProperty.SetValue(record, parameter1FieldValue + " " + parameter2FieldValue, null);
+                    fieldProperty.SetValue(record, (parameter1FieldValue + " " + parameter2FieldValue).Trim(), null);
                     break;
                 case "Combine fields no space":
                     fieldProperty.SetValue(record, parameter1FieldValue + parameter2FieldValue, null);

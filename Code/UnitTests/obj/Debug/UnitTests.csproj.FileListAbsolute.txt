@@ -10,3 +10,9 @@ C:\Development\ApplicationProcessor\Trunk\build\config_template.xml
 C:\Development\ApplicationProcessor\Trunk\build\UnitTests.dll
 C:\Development\ApplicationProcessor\Trunk\build\UnitTests.pdb
 C:\Development\ApplicationProcessor\Trunk\Code\UnitTests\obj\Debug\UnitTests.pdb
+C:\Development\ApplicationProcessor\Branches\MTE fixes\build\config_template.xml
+C:\Development\ApplicationProcessor\Branches\MTE fixes\build\UnitTests.dll
+C:\Development\ApplicationProcessor\Branches\MTE fixes\build\UnitTests.pdb
+C:\Development\ApplicationProcessor\Branches\MTE fixes\Code\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
+C:\Development\ApplicationProcessor\Branches\MTE fixes\Code\UnitTests\obj\Debug\UnitTests.dll
+C:\Development\ApplicationProcessor\Branches\MTE fixes\Code\UnitTests\obj\Debug\UnitTests.pdb
