@@ -364,10 +364,16 @@ namespace ApplicationProcessor
                 else if (record.BorrowerType != "")
                 {
                     record.OwningCustomerNumber = primaryRows.First().CustomerNumber;
+                    
+                    if (primaryRows.Any(p => p.IgnoreRecord))
+                    {
+                        record.IgnoreRecord = true;
+                        LogWriter.LogMessage(string.Format("Excluded relationship for account: {0} customer number: {1} - Primary customer record for the account already excluded.",
+                                                           record.LoanNumber, 
+                                                           record.CustomerNumber));
+                    }
                 }
-
             }
-            
         }
 
         /// <summary>
