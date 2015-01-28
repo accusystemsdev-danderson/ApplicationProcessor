@@ -148,13 +148,15 @@ namespace ApplicationProcessor
         /// </summary>
         /// <param name="sourceRecords">The list of <see cref="SourceRecord"/>to process</param>
         /// <returns>True upon successful completion</returns>
-        public bool WriteXMLData(List<SourceRecord> sourceRecords)
+        public bool WriteXmlData(List<SourceRecord> sourceRecords)
         {
-            XmlWriterSettings xmlRules = new XmlWriterSettings();
-            xmlRules.Indent = true;
-            xmlRules.NewLineOnAttributes = true;
-            xmlRules.OmitXmlDeclaration = true;
-            xmlRules.Encoding = Encoding.Default;
+            var xmlRules = new XmlWriterSettings
+            {
+                Indent = true,
+                NewLineOnAttributes = true,
+                OmitXmlDeclaration = true,
+                Encoding = Encoding.Default
+            };
 
             //List of postProcessingField for use in post processing query.  Start with single quote for first record
             accountsProcessed = new StringBuilder();
@@ -215,7 +217,7 @@ namespace ApplicationProcessor
 
                         foreach (string accountNumber in uniqueAccounts)
                         {
-                            SourceRecord accountRow = recordsToWrite.Where(acct => acct.CustomerNumber == customerNumber && acct.LoanNumber == accountNumber).First();
+                            SourceRecord accountRow = recordsToWrite.First(acct => acct.CustomerNumber == customerNumber && acct.LoanNumber == accountNumber);
                             
                             accountsProcessed.Append(accountRow.PostProcessingField + "', '");
 

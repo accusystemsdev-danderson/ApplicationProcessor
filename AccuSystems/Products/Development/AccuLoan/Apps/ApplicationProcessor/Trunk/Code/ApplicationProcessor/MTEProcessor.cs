@@ -6,6 +6,7 @@
 
 namespace ApplicationProcessor
 {
+    using System.Collections.Generic;
     using AccuAccount.Data;
     using System;
     using System.Linq;
@@ -17,7 +18,14 @@ namespace ApplicationProcessor
     /// </summary>
     public static class MteProcessor
     {
+        public static List<string> AccountsWithUnresolvedMtes;
+
         private static readonly DataContext DB = new DataContext();
+
+        static MteProcessor()
+        {
+            AccountsWithUnresolvedMtes = new List<string>();
+        }
 
         /// <summary>
         /// Updates CustomerName or CustomerNumber if MTE records indicate an update should occur
@@ -58,6 +66,7 @@ namespace ApplicationProcessor
                                                        record.LoanNumber,
                                                        record.TaxId,
                                                        record.CustomerName));
+                    AccountsWithUnresolvedMtes.Add(record.LoanNumber);
                     return false;
                 }
             }
