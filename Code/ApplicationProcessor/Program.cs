@@ -11,6 +11,7 @@ namespace ApplicationProcessor
     using System.Data;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
 
     class Program
@@ -58,7 +59,7 @@ namespace ApplicationProcessor
 
             LogWriter.LogMessage("Writing XML File for Importer");
 
-            if (!appProcessor.WriteXMLData(sourceRecords))
+            if (!appProcessor.WriteXmlData(sourceRecords))
             {
                 LogWriter.LogMessage("Unable to write XML File");
                 return;
@@ -155,6 +156,19 @@ namespace ApplicationProcessor
                 {
                     MteProcessor.ProcessMte(record);
                 }
+            }
+
+            foreach (var unresolvedAccount in MteProcessor.AccountsWithUnresolvedMtes.Distinct())
+            {
+                string accountNumber = unresolvedAccount;
+                var accountsToExclude = sourceRecords.Where(r => r.LoanNumber == accountNumber &&
+                                                                 !r.IgnoreRecord);
+                foreach (var sourceRecord in accountsToExclude)
+                {
+                    sourceRecord.IgnoreRecord = true;
+                }
+
+                LogWriter.LogMessage(string.Format("Application Number: {0} excluded due to unresolved MTE records", accountNumber));
             }
 
             LogWriter.LogMessage("Setting owningCustomer Number");
